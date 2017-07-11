@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    
     $('#machinevision').on('hidden.bs.modal', function() {
 
 	// This is a quick and easy way of stopping the video once the modal is hidden.
@@ -23,4 +24,11 @@ $(document).ready(function() {
 	$this.attr('src', "");
 	$this.attr('src', tempSrc);
     });
+    
+    $('#websites').on('hidden.bs.modal', function() {
+	var $this = $(this).find('iframe'), tempSrc = $this.attr('src');
+	$this.attr('src', "");
+	$this.attr('src', tempSrc);
+    });
+
 });
