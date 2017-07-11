@@ -17,4 +17,10 @@ $(document).ready(function() {
 	$this.attr('src', "");
 	$this.attr('src', tempSrc);
     });
+
+    $('#embeddedlinux').on('hidden.bs.modal', function() {
+	var $this = $(this).find('iframe'), tempSrc = $this.attr('src');
+	$this.attr('src', "");
+	$this.attr('src', tempSrc);
+    });
 });
