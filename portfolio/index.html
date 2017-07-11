@@ -11,13 +11,13 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    
+
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </head>
 
   <script src="js/functions.js"></script>
-  
+
   <body>
     <div class="container">
       <div class="row" id="header">
@@ -26,7 +26,7 @@
 	<img class="title-logo" src="images/udacity_logo.png" width="20px">
         <div class="col-md-12 text-center text-uppercase">
 
-	  <!-- Now the logo is on the same row as the header element -->	 
+	  <!-- Now the logo is on the same row as the header element -->
 
           <h1 class="title-super text-thin">Jon Lee</h1>
           <h3>Portfolio</h3>
@@ -37,13 +37,13 @@
       <div class="row" id="intro">
 	<div class="col-md-12 text-center">
 	  <article>
-	    This is a collection of all the projects I have worked on over 5 years.<br>
-	    I have provided the source code and video demonstrations for each featured item.<br>	   
+	    This is a collection of projects I have worked on over 5 years.<br>
+	    Each project showcase includes the source code and a video demonstration.<br>
 	  </article>
 	</div>
       </div>
       <!-- padding -->
-      <!-- NOTE : The hr tag defines a thematic break in an html page. It draws a feint line. -->      
+      <!-- NOTE : The hr tag defines a thematic break in an html page. It draws a feint line. -->
       <div class="row">
         <div class="col-md-12">
 	  <hr>
@@ -66,13 +66,15 @@
           <h3>Websites</h3>
           <img class="img-responsive portfolio-image-dims" src="images/moviewebsite.jpg" data-toggle="modal" data-target="#websites">
         </div>
-	
+
 	<!-- Opencv -->
 	<div class="col-md-6">
           <h3>Computer Vision</h3>
           <img class="img-responsive portfolio-image-dims" src="images/imgprocessing.jpg" data-toggle="modal" data-target="#machinevision">
        	</div>
       </div>
+
+      <br>
 
       <!-- 2nd row of projects  -->
       <div class="row text-center text-uppercase">
@@ -91,7 +93,7 @@
             <a class="portfolio-link" href="favapp/index-1.html">favapp</a>
           </p>
 	</div>
-	
+
       </div>
 
       <!-- Modal i.e What shows when you click on the image -->
@@ -100,66 +102,65 @@
       <div class="modal fade" id="websites" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
           <div class="modal-content">
-	    
+
             <div class="modal-header">
               <h4 class="modal-title" id="myModalLabel">Websites created using bootstrap, angularJS, and opencv!</h4>
             </div>
-	    
+
             <div class="modal-body">
-	      
+
               <div class="youtubevideo-wrapper">
 		<iframe
 		  width="100%" height="315"
 		  src="https://www.youtube.com/embed/JwDSwzqi1Co?re1=0&enablejsapi=1"
 		  frameborder="0" allowfullscreen>
 		</iframe>
-	      </div>	      
+	      </div>
 	      <div class="modal-footer">
 		<div class="col-md-12 text-center text-uppercase">
-		  <a class="portfolio-link" href="https://github.com/jonlee836/SRR-2016-opencv-">Source Code</a>
+		  <a class="portfolio-link" href="https://github.com/jonlee836/websites/tree/master/opencv%20webinterface">Source Code</a>
 		</div>
 	      </div>
 	    </div>
-	    
 	  </div>
 	</div>
       </div>
-      
+
       <!-- Machine Vision -->
       <div class="modal fade" id="machinevision" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 	  <div class="modal-content">
-	    
+
 	    <div class="modal-header">
 	      <h4 class="modal-title" id="myModalLabel">Opencv helps our robot "Max" autonomously collect colored rocks!</h4>
 	    </div>
 
 	    <div class="modal-body">
-	      
+
 	      <div class="youtubevideo-wrapper">
 		<iframe
 		  width="100%" height="315"
 		  src="https://www.youtube.com/embed/x6Dsqha9JPM?re1=0&enablejsapi=1"
 		  frameborder="0" allowfullscreen>
 		</iframe>
-	      </div>	      
+	      </div>
 	      <div class="modal-footer">
 		<div class="col-md-12 text-center text-uppercase">
 		  <a class="portfolio-link" href="https://github.com/jonlee836/SRR-2016-opencv-">Source Code</a>
 		</div>
-	      </div>	      
-	    </div>	    
+	      </div>
+	    </div>
 	  </div>
-	  
+
 	</div>
       </div>
     </div>
-    
+
     <!-- Android App -->
     <div class="modal fade" id="androidapp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
 	<div class="modal-content">
-	  
+
 	  <div class="modal-header">
 	    <h4 class="modal-title" id="myModalLabel">A sound board of Liberty Prime from Fallout 4</h4>
 	  </div>
@@ -172,12 +173,12 @@
 	    </div>
 	  </div>
 	  <div class="modal-footer">
-	    <div class="col-md-12 text-center text-uppercase">	    
+	    <div class="col-md-12 text-center text-uppercase">
 	      <a class="portfolio-link" href="https://github.com/jonlee836/Liberty-Prime">Source Code</a>
 	    </div>
 	  </div>
-	  
-	</div>	    
+
+	</div>
       </div>
     </div>
 
@@ -185,7 +186,7 @@
     <div class="modal fade" id="embeddedlinux" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
 	<div class="modal-content">
-	  
+
 	  <div class="modal-body">
 	    <div class="youtubevideo-wrapper">
 	      <iframe
@@ -195,7 +196,7 @@
 	    </div>
 	  </div>
 	  <div class="modal-footer">
-	    <div class="col-md-12 text-center text-uppercase">	    
+	    <div class="col-md-12 text-center text-uppercase">
 	      <a class="portfolio-link" href="https://github.com/jonlee836/Embedded-Linux/tree/master/RPI/simcam">Source Code</a>
 	    </div>
 	  </div>
