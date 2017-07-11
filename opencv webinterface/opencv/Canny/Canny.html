@@ -1,0 +1,23 @@
+<div ng-controller="Canny">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-5">     
+      <button ng-click="Canny_Button()"> Canny </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-5">
+      <div class="progress-box" ng-app>
+	<div class="percentage-cur" ng-init="selectedRange=0">
+	  <span class="num">{{ selectedRange }}%</span>
+	</div>
+	<div class="progress-bar progress-bar-slider">
+	  <input class="progress-slider" type="range" min="0" max="100" ng-model="selectedRange">
+	  <div class="inner" ng-style="{ width: selectedRange + '%' || '0%' }"></div>
+	</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

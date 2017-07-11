@@ -1,0 +1,81 @@
+<html ng-app="app">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/opencv_css.css" />
+  </head>
+
+  <nav class="navbar navbar-default">
+    <div class="container">                
+      <div class="navbar-header">
+	<a class="navbar-brand" href="#/"> COSMONiO OPENCV 3.0.0 </a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+	<li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
+	<li><a href="#/about"><i class="fa fa-shield"></i> About</a></li>
+	<li><a href="#/contact"><i class="fa fa-comment"></i> Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <body ng-controller="MainController">
+
+    <div class="row">
+
+      <div class="col-md-20">
+	<div id="main">
+	  <form class="form-horizontal" role="form">
+	    <label class="control-label col-md-2">Filter List:</label>
+	    <div class="col-md-5">
+
+	      <select id="form_filter" class="form-control"
+		      ng-model="template"
+		      ng-options="t as t.name for t in templates">
+	      </select>
+
+	    </div>
+	  </form>
+	</div>
+      </div>
+      
+      <input type="file" id="form_img" name="fileToUpload">
+      <button ng-click="UploadFile()">Upload</button>
+
+      <!--
+	  Display Images down here.
+	  
+	-->
+
+      <br><br> 
+
+      <div class="row">
+	
+	<div class="col-md-push-2 col-sm-push-1 col-lg-push-1 col-md-1-col-sm-8 col-lg-6 text-warning">
+	  <div id="imagesData">	  
+	    <img id="img1" src="" alt="" class="data-image" />
+
+	  </div>
+	</div>
+
+	<div id="imagesData">	  
+	  <img id="img2" src="" alt="" class="data-image" />
+	</div>     
+
+      </div>
+
+      <br>
+
+      <div ng-include='template.url'></div>
+      
+      <script src="js/jQuery.js"></script>
+      <script src="js/angular.js"></script>
+      <script src="js/angular-route.js"></script>      
+      <script src="js/ui-bootstrap-tpls-0.14.3.min.js"></script>    
+      <script src="js/app.js"></script>
+
+      <script src="opencv/MakeGray/MakeGray.js"></script>
+      <script src="opencv/Canny/Canny.js"></script>
+
+  </body>
+</html>
