@@ -1,0 +1,5 @@
+A basic website built from python2.7 that plays movie trailers in a web browser.
+
+To run this website simply open a terminal inside the src folder and type python2.7 entertainment_center.py
+
+It will open a new tab in the currently open web browser and will open a web browser if one is not already open.
