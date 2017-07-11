@@ -1,4 +1,4 @@
-How to setup and work on the COSMONiO Opencv Web Interface.
+How to setup and work on the Opencv Web Interface.
 
 REQUIREMENTS
 
@@ -46,7 +46,7 @@ Overall tree of the web interface
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-		The COSMONiO Opencv Web Interface is an SPA that is designed to allow users to do image processing without the need
+		The Opencv Web Interface is an SPA that is designed to allow users to do image processing without the need
  	to setup opencv on their machine. The modular design of this web api allows any opencv filter to be added to the interface.
 	For instance, you could delete the entire opencv folder and you could still write images to the server. You could also simply 
 	delete the MakeGray filter and the Canny filter would not be affected. Whatever is not answered in the guide will most likely be found
