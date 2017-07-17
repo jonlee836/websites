@@ -10,7 +10,7 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </head>
@@ -19,12 +19,34 @@
 
   <body>
     <div class="container">
-      <div class="row" id="header">
-
-	<img class="title-logo" src="images/udacity_logo.png" width="20px">
-        <div class="col-md-12 text-center text-uppercase">
-	  
-        </div>
+      
+      <div class="row">	
+	<div class="col-md-12">
+	  <!--<div class="col-md-4" id="button">-->
+	  <div class="button" onclick="openNav()">&#9776; The Eastern Front : Stalingrad</div>
+	</div>
       </div>
+
+      <div class="row" id="map-container">
+	<div class="col-md-12">
+	  <!-- initMap function injected with id="map" -->
+	  <div id="map"></div>
+	</div>
+
+	<!-- Replace the value of the key parameter with your own API key. -->
+	<script async defer		  
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4nxGl7ZGcpRv8TgxN94A-AD42w_qsbhI&callback=initMap">
+	</script>
+      </div>
+      
+      <div id="mySidenav" class="sidenav">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	<a href="#">The City</a>
+	<a href="#">Red Army</a>
+	<a href="#">Wehrmacht</a>
+	<a href="#">Contact</a>
+      </div>
+
+    </div>
   </body>
 </html>

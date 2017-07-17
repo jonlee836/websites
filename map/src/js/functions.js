@@ -1,34 +1,31 @@
-$(document).ready(function() {
-    
-    $('#machinevision').on('hidden.bs.modal', function() {
+/*
+  function initMap() {
+  var uluru = {lat: 48.709657, lng: 44.512527};
+  var map = new google.maps.Map(document.getElementById('map'), {
+  zoom: 10,
+  center: uluru
+  
+  });
+  
+  var marker = new google.maps.Marker({
+  position: uluru,
+  map: map
+  });
 
-	// This is a quick and easy way of stopping the video once the modal is hidden.
-	// Still looking for a way to pause it without using the youtube-API.
-	
-	//$this.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
-	//iframe.postMessage('{"event":"command","func":"' + func + '","args":""}','*');
+  }
+*/
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+	center: {lat: 48.6809657, lng: 44.512527},
+	zoom: 10,
+	mapTypeId: 'satellite'
+    });
+}
 
-	var $this = $(this).find('iframe'), tempSrc = $this.attr('src');
-	$this.attr('src', "");
-	$this.attr('src', tempSrc);
-    });
-    
-    $('#androidapp').on('hidden.bs.modal', function() {
-	var $this = $(this).find('iframe'), tempSrc = $this.attr('src');
-	$this.attr('src', "");
-	$this.attr('src', tempSrc);
-    });
+function openNav() {
+    document.getElementById("mySidenav").style.width = "200px";
+}
 
-    $('#embeddedlinux').on('hidden.bs.modal', function() {
-	var $this = $(this).find('iframe'), tempSrc = $this.attr('src');
-	$this.attr('src', "");
-	$this.attr('src', tempSrc);
-    });
-    
-    $('#websites').on('hidden.bs.modal', function() {
-	var $this = $(this).find('iframe'), tempSrc = $this.attr('src');
-	$this.attr('src', "");
-	$this.attr('src', tempSrc);
-    });
-
-});
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
