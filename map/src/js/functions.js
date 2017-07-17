@@ -1,5 +1,5 @@
 var navWidth="200px";
-var navOnOff=false;
+var menuOff = true;
 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -10,27 +10,39 @@ function initMap() {
 }
 
 function openNav() {
-    document.getElementById("mySidenav").style.width = navWidth;
+    if(document.getElementById("mySidenav").style.width == navWidth){
+	closeNav();
+    }
+    else{
+	document.getElementById("mySidenav").style.width = navWidth;
+    }
 }
 
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0px";
+    menuOff = true;
+    
 }
 
-window.onclick = function(event) {     
+window.onclick = function(event) {
     if(	!event.target.matches(".button") &&
 	!event.target.matches(".sidenav") &&
 	!event.target.matches("a") &&
+	!event.target.matches("p") &&
 	!event.target.matches(".toggle-button-sidenav") &&
-	document.getElementById("mySidenav").style.width == navWidth){
-	
+	document.getElementById("mySidenav").style.width == navWidth) {
+		
 	closeNav();
     }
+    $('#mySidenav').on('click', 'a', function() {
+	console.log($(this).index());
+    });
+
 }
 
 window.onload = function(){
-    alert
+
 }
     // if (!event.target.matches(".sidenav") && document.getElementById("mySidenav").style.width == navWidth){
     // 	alert("clicked outside")

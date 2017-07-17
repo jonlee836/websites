@@ -46,11 +46,19 @@ body {
     color: #818181;
     display: block;
     transition: 0.3s;
+    text-decoration: none;
 }
 
-.sidenav a:hover, .offcanvas a:focus{
+.highlight a {
+    color: #f1f1f1;
+    text-decoration:none;
+}
+
+.sidenav a:hover, .sidenav a:active {
+    text-decoration: none;
     color: #f1f1f1;
 }
+
 
 .sidenav .toggle-button-sidenav {
     position: absolute;
@@ -66,13 +74,14 @@ body {
     width: 100%;
 }
 
-.sidenav toggle-button-sidenav p{
+.sidenav toggle-button-sidenav p {   
     text-align: center;
     margin: auto;
 }
 
-.sidenav toggle-button-sidenav:hover p, .offcanvas toggle-button-sidenav:focus p{
+.sidenav toggle-button-sidenav:hover p, .offcanvas toggle-button-sidenav:focus p {
     color: #f1f1f1;
+    text-decoration: none;
     background-color: #111;
 }
 
