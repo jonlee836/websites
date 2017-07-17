@@ -36,21 +36,16 @@ body {
     background-color: #111;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    padding-top: 80px;
 }
 
 .sidenav a {
     padding: 8px 8px 8px 32px;
-    text-decoration: none;
+    margin: 20px 20px 50px 10px;
     font-size: 25px;
     color: #818181;
     display: block;
     transition: 0.3s;
-}
-
-.sidenav a .toggle-button {
-    position: absolute;
-    bottom: 40px;
 }
 
 .sidenav a:hover, .offcanvas a:focus{
@@ -60,12 +55,25 @@ body {
 .sidenav .toggle-button-sidenav {
     position: absolute;
     bottom: 40px;
-    padding: 8px 8px 8px 32px;
+    padding: auto;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: #ffffff;
+    background-color: #111;
+    border: #111;
     display: block;
     transition: 0.3s;
+    width: 100%;
+}
+
+.sidenav toggle-button-sidenav p{
+    text-align: center;
+    margin: auto;
+}
+
+.sidenav toggle-button-sidenav:hover p, .offcanvas toggle-button-sidenav:focus p{
+    color: #f1f1f1;
+    background-color: #111;
 }
 
 .sidenav .closebtn {
@@ -73,7 +81,8 @@ body {
     top: 0;
     right: 25px;
     font-size: 36px;
-    margin-left: 50px;
+    margin-bottom: auto;
+    margin-top: auto;
 }
 
 .button {
