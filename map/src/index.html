@@ -17,7 +17,7 @@
     <script src="js/bootstrap.min.js"></script>
   </head>
 
-  <script src="js/functions.js"></script>
+  <script src="js/onload.js"></script>
 
   <body>
     <div id="app" class="container">
@@ -31,13 +31,17 @@
 
       <div class="row" id="map-container">
 	<div class="col-md-12">
+
+	  <!-- 4 maps of the city starting with august and ending with november. -->
+	  <!-- When another month is clicked the current map hides and gets replaced by another js script. -->
 	  <!-- initMap function injected with id="map" -->
-	  <div id="map"></div>
+
+	  <div id="map-august"></div>
 	</div>
 
 	<!-- Replace the value of the key parameter with your own API key. -->
 	<script async defer		  
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4nxGl7ZGcpRv8TgxN94A-AD42w_qsbhI&callback=initMap">
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4nxGl7ZGcpRv8TgxN94A-AD42w_qsbhI&callback=init_augustMap">
 	</script>
       </div>
       

@@ -1,8 +1,8 @@
 var navWidth="200px";
 var menuOff = true;
 
-function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
+function init_augustMap() {
+    var map = new google.maps.Map(document.getElementById('map-august'), {
 	center: {lat: 48.6809657, lng: 44.512527},
 	zoom: 10,
 	mapTypeId: 'satellite'
@@ -44,6 +44,3 @@ window.onclick = function(event) {
 window.onload = function(){
 
 }
-    // if (!event.target.matches(".sidenav") && document.getElementById("mySidenav").style.width == navWidth){
-    // 	alert("clicked outside")
-    // }

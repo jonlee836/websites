@@ -40,30 +40,6 @@ body {
 }
 
 .nav-button {
-    
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    margin: 20px 20px 50px 10px;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-    text-decoration: none;
-}
-
-.highlight a {
-    color: #f1f1f1;
-    text-decoration:none;
-}
-
-.sidenav a:hover, .sidenav a:active {
-    text-decoration: none;
-    color: #f1f1f1;
-}
-
-.nav-button {
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
