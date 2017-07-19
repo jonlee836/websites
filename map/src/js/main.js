@@ -1,12 +1,21 @@
 var navWidth="200px";
-var menuOff = true;
+var mapdata;
 
-function init_augustMap() {
-    var map = new google.maps.Map(document.getElementById('map-august'), {
+function initMap() {
+    mapdata = new google.maps.Map(document.getElementById('map'), {
 	center: {lat: 48.6809657, lng: 44.512527},
 	zoom: 10,
 	mapTypeId: 'satellite'
     });
+
+
+    var markersCity = $.getJSON("../json/thecity.js", function(Json) {
+	for (var i = 0; i < Json.length; i++){
+
+	}
+	console.log(Json); // this will show the info it in firebug console
+    }); 
+    
 }
 
 function openNav() {
@@ -18,11 +27,8 @@ function openNav() {
     }
 }
 
-
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0px";
-    menuOff = true;
-    
 }
 
 window.onclick = function(event) {
@@ -32,7 +38,7 @@ window.onclick = function(event) {
 	!event.target.matches(".toggle-button-sidenav") &&
 	!event.target.matches(".nav-button") &&
 	document.getElementById("mySidenav").style.width == navWidth) {
-		
+	
 	closeNav();
     }
     $('#mySidenav').on('click', 'a', function() {
@@ -44,3 +50,11 @@ window.onclick = function(event) {
 window.onload = function(){
 
 }
+
+// var template = {
+//     {"name": "",
+//      "description": "",
+//      "lat": ,
+//      "lng":
+//     }
+// }
