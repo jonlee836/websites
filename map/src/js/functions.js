@@ -28,9 +28,9 @@ function closeNav() {
 window.onclick = function(event) {
     if(	!event.target.matches(".button") &&
 	!event.target.matches(".sidenav") &&
-	!event.target.matches("a") &&
 	!event.target.matches("p") &&
 	!event.target.matches(".toggle-button-sidenav") &&
+	!event.target.matches(".nav-button") &&
 	document.getElementById("mySidenav").style.width == navWidth) {
 		
 	closeNav();
