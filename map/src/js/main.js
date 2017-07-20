@@ -1,23 +1,39 @@
+var marker, mapdata, infowindow;
 var navWidth="200px";
-var mapdata;
+var defaultPos = {lat: 48.6809657, lng: 44.512527};
+
+var battlefront = []; // 
+var cityMarkers = []; // Regular Markers
+
+var sovietMarkers = []; // Cluster Marker
+var wehrmachtMarkers = []; // Cluster Marker
+
+var cityJson = $.getJSON("../json/thecity.js");
 
 function initMap() {
+    infowindow = new google.maps.InfoWindow();
     mapdata = new google.maps.Map(document.getElementById('map'), {
-	center: {lat: 48.6809657, lng: 44.512527},
+	center: defaultPos,
 	zoom: 10,
 	mapTypeId: 'satellite'
     });
 
 
-    var markersCity = $.getJSON("../json/thecity.js", function(Json) {
-	for (var i = 0; i < Json.length; i++){
-
-	}
-	console.log(Json); // this will show the info it in firebug console
-    }); 
-    
 }
 
+// pass json
+
+function setCityMarkers(){
+    var CityJson = $.getJSON("../json/thecity.js", function(Json) {
+	for (var i = 0; i < Json.length; i++) {
+	    marker = new google.maps.Marker({
+		position: new google.maps.LatLng(locations[i][2], locations[i][3]),
+		map: mapdata
+	    });
+	}
+	// console.log(Json); // this will show the info it in firebug console
+    });
+}
 function openNav() {
     if(document.getElementById("mySidenav").style.width == navWidth){
 	closeNav();
