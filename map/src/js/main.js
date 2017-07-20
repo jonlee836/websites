@@ -18,22 +18,20 @@ function initMap() {
 	mapTypeId: 'satellite'
     });
 
-
+    setCityMarkers();
 }
 
 // pass json
-
-function setCityMarkers(){
-    var CityJson = $.getJSON("../json/thecity.js", function(Json) {
-	for (var i = 0; i < Json.length; i++) {
-	    marker = new google.maps.Marker({
-		position: new google.maps.LatLng(locations[i][2], locations[i][3]),
-		map: mapdata
-	    });
-	}
-	// console.log(Json); // this will show the info it in firebug console
-    });
+function setCityMarkers(){    
+    for (var i = 0; i < cityJson.length; i++) {
+	marker = new google.maps.Marker({
+	    position: new google.maps.LatLng(locations[i][2], locations[i][3]),
+	    map: mapdata
+	});
+    }
+    console.log(cityJson); // this will show the info it in firebug console
 }
+
 function openNav() {
     if(document.getElementById("mySidenav").style.width == navWidth){
 	closeNav();
