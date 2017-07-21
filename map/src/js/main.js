@@ -1,8 +1,8 @@
-var marker, mapdata, infowindow;
+var mapdata, marker, infowindow;
 var navWidth="200px";
-var defaultPos = {lat: 48.6809657, lng: 44.512527};
+var defaultPos = {lat: 48.75618876280552, lng: 44.5246696472168};
 
-var battlefront = []; // 
+var battlefront = []; //
 var cityMarkers = []; // Regular Markers
 
 var sovietMarkers = []; // Cluster Marker
@@ -10,33 +10,42 @@ var wehrmachtMarkers = []; // Cluster Marker
 
 // 0 = Name , 1 = description, 2 = lat, 3 = lng
 var cityData = [
-    
-    [
-	"Grain Elevator",
-	"The tallest building before and after the bombing campaign of Stalingrad. The Red Army had neglected to use the building as a defensive position. It wasn't until Soviet Marines occupied the building did the Wehrmacht come under fire from the green fortress.",
-	48.687818,
-	44.483573
-    ],    
     [
 	"Mamayev Kurgan",
 	"A strategic hill that splits the city from north to south. Despite the heavily entrenched Soviet defenders, it was captured by the Wehrmacht on September 13, 1942. Control of the hill was of such importance for both sides, that entire divisions were destroyed down to the last man in order to defend or capture it. The sheer carnage for control of Mamayev Kurgen raged until January 26, 1943. The hill's height fell from 102ft down to 98ft. Nothing would grow on the hill until spring of 1944.",
 	48.742295,
 	44.537050
+    ],
+    [
+	"Grain Elevator",
+	"The tallest building before and after the bombing campaign of Stalingrad. The Red Army had neglected to use the building as a defensive position. It wasn't until Soviet Marines occupied the building did the Wehrmacht come under fire from the green fortress.",
+	48.687818,
+	44.483573
+    ],
+    [
+	"Spartanovka",
+	"",
+	48.8183777,
+	44.6062698
     ]
 ]
 
 console.log(cityData.length);
-// Access google maps api
+
+// Access google maps api, initialize var mapdata
 function initMap() {
-    
+
     infowindow = new google.maps.InfoWindow();
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	center: defaultPos,
-	zoom: 10,
+	zoom: 12,
 	mapTypeId: 'satellite'
     });
 
+    // On start initialize city markers
     setCityMarkers();
+    // populate yor box/field with lat, lng
+    getclickPos();
 }
 
 // pass json
@@ -71,6 +80,16 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0px";
 }
 
+function getclickPos() {
+    google.maps.event.addListener(mapdata, 'click', function(event) {
+	var lat = event.latLng.lat();
+	var lng = event.latLng.lng();
+	mapdata.setCenter(new google.maps.LatLng(lat, lng));
+	console.log(mapdata.getZoom());
+	console.log(lat + " " + lng);  // in event.latLng  you have the coordinates of click
+    });
+}
+
 window.onclick = function(event) {
     if(	!event.target.matches(".button") &&
 	!event.target.matches(".sidenav") &&
@@ -78,13 +97,12 @@ window.onclick = function(event) {
 	!event.target.matches(".toggle-button-sidenav") &&
 	!event.target.matches(".nav-button") &&
 	document.getElementById("mySidenav").style.width === navWidth) {
-	
+
 	closeNav();
     }
     $('#mySidenav').on('click', 'a', function() {
 	console.log($(this).index());
     });
-
 }
 
 window.onload = function(){
