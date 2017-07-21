@@ -47,7 +47,7 @@ console.log(cityData.length);
 // Access google maps api, initialize var mapdata
 function initMap() {
 
-    infowindow = new google.maps.InfoWindow();
+    var infowindow = new google.maps.InfoWindow();
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	center: defaultPos,
 	zoom: 11,
@@ -63,27 +63,31 @@ function initMap() {
 
 // pass json
 function setCityMarkers() {
-
+    
     for (var currIndex = 0; currIndex < cityData.length; currIndex++) {
 	var marker = new google.maps.Marker({
 	    position: new google.maps.LatLng(cityData[currIndex][2], cityData[currIndex][3]),
 	    map: mapdata
 	});
-	cityMarkers.push(marker);
 	
 	// Add a listener to each marker
-	//var infowindow = new google.maps.InfoWindow({
-
-	//}):
-	    
+	
+	var strHtml = setInfoWindow(currIndex);
+	infowindow = new google.maps.InfoWindow({
+	    content: strHtml,
+	    maxWidth: 200
+	});
+	cityMarkers.push(marker);
 	google.maps.event.addListener(marker, 'click', (function(marker, currIndex) {
 	    return function() {
 		var htmlStr = setInfoWindow(currIndex);
-		infowindow.setContent(htmlStr);
+		//infowindow.setContent(htmlStr);
 		//infowindow.setContent(cityData[i][0] + "<br>" + cityData[i][1]);
 		infowindow.open(map, marker);
 	    }
 	})(marker, currIndex));
+		
+
     }
     //console.log(cityJson); // this will show the info it in firebug console
 }
@@ -100,8 +104,6 @@ function setInfoWindow(currIndex) {
 	}
 	strHtml = strHtml + markerHtml[i];
     }
-    // markerHtml.join("");
-    console.log(strHtml);
     return strHtml;
 }
 
