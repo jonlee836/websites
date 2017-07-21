@@ -1,6 +1,7 @@
-var mapdata, marker, infowindow;
-var navWidth="200px";
+var mapdata;
+
 var defaultPos = {lat: 48.75618876280552, lng: 44.5246696472168};
+var navWidth="200px";
 
 var battlefront = []; //
 var cityMarkers = []; // Regular Markers
@@ -29,7 +30,18 @@ var cityData = [
 	44.6062698
     ]
 ]
-
+var infoHtml = [
+    '<div id="info-window">',
+    '<h1 id="info-header">',
+    '<b>',
+    'title',
+    '</b>',
+    '</h1>',
+    '<article>',
+    'article',
+    '</article>',
+    '</div>'
+]
 console.log(cityData.length);
 
 // Access google maps api, initialize var mapdata
@@ -38,12 +50,13 @@ function initMap() {
     infowindow = new google.maps.InfoWindow();
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	center: defaultPos,
-	zoom: 12,
+	zoom: 11,
 	mapTypeId: 'satellite'
     });
 
     // On start initialize city markers
     setCityMarkers();
+
     // populate yor box/field with lat, lng
     getclickPos();
 }
@@ -51,20 +64,45 @@ function initMap() {
 // pass json
 function setCityMarkers() {
 
-    for (var i = 0; i < cityData.length; i++) {
-	marker = new google.maps.Marker({
-	    position: new google.maps.LatLng(cityData[i][2], cityData[i][3]),
+    for (var currIndex = 0; currIndex < cityData.length; currIndex++) {
+	var marker = new google.maps.Marker({
+	    position: new google.maps.LatLng(cityData[currIndex][2], cityData[currIndex][3]),
 	    map: mapdata
 	});
 	cityMarkers.push(marker);
-	google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	
+	// Add a listener to each marker
+	//var infowindow = new google.maps.InfoWindow({
+
+	//}):
+	    
+	google.maps.event.addListener(marker, 'click', (function(marker, currIndex) {
 	    return function() {
-		infowindow.setContent(cityData[i][0]);
+		var htmlStr = setInfoWindow(currIndex);
+		infowindow.setContent(htmlStr);
+		//infowindow.setContent(cityData[i][0] + "<br>" + cityData[i][1]);
 		infowindow.open(map, marker);
 	    }
-	})(marker, i ));
+	})(marker, currIndex));
     }
     //console.log(cityJson); // this will show the info it in firebug console
+}
+
+function setInfoWindow(currIndex) {
+    var markerHtml = infoHtml;
+    var strHtml = "";
+    for (var i = 0; i < markerHtml.length; i++){
+	if (markerHtml[i] == 'title'){
+	    markerHtml[i] = cityData[currIndex][0];
+	}
+	else if (markerHtml[i] == 'article'){
+	    markerHtml[i] = cityData[currIndex][1];
+	}
+	strHtml = strHtml + markerHtml[i];
+    }
+    // markerHtml.join("");
+    console.log(strHtml);
+    return strHtml;
 }
 
 function openNav() {
@@ -115,4 +153,32 @@ window.onload = function(){
 //      "lat": ,
 //      "lng":
 //     }
+// }
+
+
+// This is how not to do load html. Reason being, you're reading from a local file.
+// function infoWin () {
+//     var htmlArray = require("htmlArray");
+//     var htmlText = htmlArray.readFileSync("../infowindow.html").toString('utf-8');
+//     var htmlStr = htmlText.split("\n");
+//     console.llog(htmlStr);
+// }
+
+// function readTextFile(file)
+// {
+//     var allText;
+//     var rawFile = new XMLHttpRequest();
+//     rawFile.open("GET", file, false);
+//     rawFile.onreadystatechange = function ()
+//     {
+//         if(rawFile.readyState === 4)
+//         {
+//             if(rawFile.status === 200 || rawFile.status == 0)
+//             {
+//                 allText = rawFile.responseText;
+//             }
+//         }
+//     }
+//     rawFile.send(null);
+//     return allText;
 // }
