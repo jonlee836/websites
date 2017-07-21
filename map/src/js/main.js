@@ -25,7 +25,7 @@ var cityData = [
     ],
     [
 	"Spartanovka",
-	"",
+	"The Wehrmacht's encirclement was complete with the capture of this northern village.",
 	48.8183777,
 	44.6062698
     ]
@@ -42,12 +42,10 @@ var infoHtml = [
     '</article>',
     '</div>'
 ]
-console.log(cityData.length);
 
 // Access google maps api, initialize var mapdata
 function initMap() {
 
-    var infowindow = new google.maps.InfoWindow();
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	center: defaultPos,
 	zoom: 11,
@@ -63,38 +61,51 @@ function initMap() {
 
 // pass json
 function setCityMarkers() {
-    
+
     for (var currIndex = 0; currIndex < cityData.length; currIndex++) {
+	console.log(currIndex);
+	
+	var strTitle = cityData[currIndex][0];	
+	var infowindow = new google.maps.InfoWindow();
 	var marker = new google.maps.Marker({
 	    position: new google.maps.LatLng(cityData[currIndex][2], cityData[currIndex][3]),
-	    map: mapdata
+	    map: mapdata,
+	    title : strTitle
 	});
 	
-	// Add a listener to each marker
-	
-	var strHtml = setInfoWindow(currIndex);
-	infowindow = new google.maps.InfoWindow({
-	    content: strHtml,
-	    maxWidth: 200
-	});
 	cityMarkers.push(marker);
 	google.maps.event.addListener(marker, 'click', (function(marker, currIndex) {
 	    return function() {
-		var htmlStr = setInfoWindow(currIndex);
-		//infowindow.setContent(htmlStr);
+		var htmlStr = setInfo(currIndex);
+		infowindow.setContent(htmlStr);
 		//infowindow.setContent(cityData[i][0] + "<br>" + cityData[i][1]);
 		infowindow.open(map, marker);
 	    }
 	})(marker, currIndex));
-		
 
+	// marker.addListener('click', function() {
+	//     infowindow.setContent(strHtml);
+	//     infowindow.open(mapdata, cityMarkers[currIndex]);
+	//});
+	// Add a listener to each marker	
+	
+	// google.maps.event.addListener(marker, 'click', (function() {
+	//     infowindow.setContent(strHtml);
+	//     infowindow.open(map, marker);
+        // }));
     }
     //console.log(cityJson); // this will show the info it in firebug console
 }
 
-function setInfoWindow(currIndex) {
-    var markerHtml = infoHtml;
+function setInfo(currIndex) {
+    var markerHtml = [];
     var strHtml = "";
+
+    // Apparently copy by reference is default when cloning arrays in javascript.
+    for (var i = 0; i < infoHtml.length; i++){
+	markerHtml[i] = infoHtml[i];
+    }
+    
     for (var i = 0; i < markerHtml.length; i++){
 	if (markerHtml[i] == 'title'){
 	    markerHtml[i] = cityData[currIndex][0];
@@ -102,6 +113,7 @@ function setInfoWindow(currIndex) {
 	else if (markerHtml[i] == 'article'){
 	    markerHtml[i] = cityData[currIndex][1];
 	}
+	console.log(markerHtml[i]);
 	strHtml = strHtml + markerHtml[i];
     }
     return strHtml;
