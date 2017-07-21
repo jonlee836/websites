@@ -1,0 +1,21 @@
+// 0 = Name , 1 = description, 2 = lat, 3 = lng
+[
+    [
+	"Mamayev Kurgan",
+	"A strategic hill that splits the city from north to south. Despite the heavily entrenched Soviet defenders, it was captured by the Wehrmacht on September 13, 1942. Control of the hill was of such importance for both sides, that entire divisions were destroyed down to the last man in order to defend or capture it. The sheer carnage for control of Mamayev Kurgen raged until January 26, 1943. The hill's height fell from 102ft down to 98ft. Nothing would grow on the hill until spring of 1944.",
+	48.742295,
+	44.537050
+    ],
+    [
+	"Grain Elevator",
+	"The tallest building before and after the bombing campaign of Stalingrad. Surprisingly, the Red Army had neglected to use the building as a defensive position. It wasn't until Soviet Marines occupied the building did the Wehrmacht come under fire from the green fortress.",
+	48.687818,
+	44.483573
+    ],
+    [
+	"Spartanovka",
+	"A village north of the city.",
+	48.8183777,
+	44.6062698
+    ]
+]

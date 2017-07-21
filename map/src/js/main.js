@@ -13,7 +13,7 @@ var wehrmachtMarkers = []; // Cluster Marker
 var cityData = [
     [
 	"Mamayev Kurgan",
-	"A strategic hill that splits the city from north to south. Despite the heavily entrenched Soviet defenders, it was captured by the Wehrmacht on September 13, 1942. Control of the hill was of such importance for both sides, that entire divisions were destroyed down to the last man in order to defend or capture it. The sheer carnage for control of Mamayev Kurgen raged until January 26, 1943. The hill's height fell from 102ft down to 98ft. Nothing would grow on the hill until spring of 1944.",
+	"A strategic hill that splits the city from north to south, it's elevation meant no part of the city was safe from artillery, even beyond the Volga. Despite the heavily entrenched Soviet defenders, it was captured by the Wehrmacht on September 13, 1942. Control of the hill was of such importance for both sides, that entire divisions were destroyed down to the last man in order to defend or capture it. The sheer carnage raged until January 26, 1943 and reduced the height of Mamayev Kurgen from 102ft down to 98ft. Nothing would grow on the hill until spring of 1944.",
 	48.742295,
 	44.537050
     ],
@@ -66,7 +66,9 @@ function setCityMarkers() {
 	console.log(currIndex);
 	
 	var strTitle = cityData[currIndex][0];	
-	var infowindow = new google.maps.InfoWindow();
+	var infowindow = new google.maps.InfoWindow({
+	    maxWidth: 250
+	});
 	var marker = new google.maps.Marker({
 	    position: new google.maps.LatLng(cityData[currIndex][2], cityData[currIndex][3]),
 	    map: mapdata,
@@ -78,21 +80,9 @@ function setCityMarkers() {
 	    return function() {
 		var htmlStr = setInfo(currIndex);
 		infowindow.setContent(htmlStr);
-		//infowindow.setContent(cityData[i][0] + "<br>" + cityData[i][1]);
 		infowindow.open(map, marker);
 	    }
 	})(marker, currIndex));
-
-	// marker.addListener('click', function() {
-	//     infowindow.setContent(strHtml);
-	//     infowindow.open(mapdata, cityMarkers[currIndex]);
-	//});
-	// Add a listener to each marker	
-	
-	// google.maps.event.addListener(marker, 'click', (function() {
-	//     infowindow.setContent(strHtml);
-	//     infowindow.open(map, marker);
-        // }));
     }
     //console.log(cityJson); // this will show the info it in firebug console
 }
