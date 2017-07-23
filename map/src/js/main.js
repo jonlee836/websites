@@ -13,13 +13,13 @@ var wehrmachtMarkers = []; // Cluster Marker
 var cityData = [
     [
 	"Mamayev Kurgan",
-	"A strategic hill that splits the city from north to south, it's elevation meant no part of the city was safe from artillery, even beyond the Volga. Despite the heavily entrenched Soviet defenders, it was captured by the Wehrmacht on September 13, 1942. Control of the hill was of such importance for both sides, that entire divisions were destroyed down to the last man in order to defend or capture it. The sheer carnage raged until January 26, 1943 and reduced the height of Mamayev Kurgen from 102ft down to 98ft. Nothing would grow on the hill until spring of 1944.",
+	"A strategic hill that splits the city from north to south. The elevation it provided to artillery meant no part of the city was safe, even land beyond the Volga. It was captured by the Wehrmacht on September 13, 1942 and re-captured by the Soviet 13th Guards Rifle Division 3 days later. Entire divisions were destroyed down to the last man, in order to defend or capture it. The sheer carnage raged that took place on Mamayev Kurgen reduced its height by several feet. Nothing would grow on the hill until spring of 1944.",
 	48.742295,
 	44.537050
     ],
     [
 	"Grain Elevator",
-	"The tallest building before and after the bombing campaign of Stalingrad. The Red Army had neglected to use the building as a defensive position. It wasn't until Soviet Marines occupied the building did the Wehrmacht come under fire from the green fortress.",
+	"One of the few still standing buildings in the city, its size  dominated the landscape of southern Stalingrad. Amazingly, the Soviets overlooked this building and was captured by the Wehrmacht on Sept 15th. Despite the Wehrmacht's artillery and stuka dive bombers scoring direct hits, the grain elevator remained intact. On Sept 16th, 1942 12 tanks from 4th Panzer and grenadiers 94th Infantry Division mounted a direct assault against the green giant.",
 	48.687818,
 	44.483573
     ],
@@ -32,7 +32,6 @@ var cityData = [
 ]
 
 var infoHtml = [
-
     '<!doctype html>',
     '<html>',
     '<head>',
@@ -83,19 +82,6 @@ var infoHtml = [
     '</body>',
     '</html>'
 ]
-
-// var infoHtml = [
-//     '<div id="info-window">',
-//     '<h1 id="info-header">',
-//     '<b>',
-//     'title',
-//     '</b>',
-//     '</h1>',
-//     '<article>',
-//     'article',
-//     '</article>',
-//     '</div>'
-// ]
 
 // Access google maps api, initialize var mapdata
 function initMap() {
