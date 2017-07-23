@@ -30,8 +30,36 @@ var cityData = [
 	44.6062698
     ]
 ]
+
 var infoHtml = [
-    '<div id="info-window">',
+
+    '<!doctype html>',
+    '<html>',
+    '<head>',
+    '<meta charset="UTF-8">',
+    '<meta name="description" content="Portfolio">',
+    '<meta name="keywords" content="HTML,CSS,XML,JavaScript">',
+    '<meta name="author" content="Jon Lee">',
+    '<meta name="viewport" content="width=device-width, initial-scale=1">',
+    '<link href="http://fonts.googleapis.com/css?family=Lato:100,300" rel=""stylesheet"" type=""text/css"">',
+    '<link rel="stylesheet" href="css/bootstrap.min.css">',
+    '<link rel="stylesheet" href="css/style.css">',
+    '<link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">',
+    '<style>',
+    '.info-window {',
+    'padding: 0;',
+    'margin: 0;',
+    'height: 100%;',
+    '}',
+    '.info-window h1 {',
+    'font-size: 18px;',
+    'margin-top: -5px;',
+    'margin-bottom: 15px;',
+    '}',
+    '</style>',
+    '</head>>',
+    '<body>',
+    '<div class="info-window">',
     '<h1 id="info-header">',
     '<b>',
     'title',
@@ -40,8 +68,23 @@ var infoHtml = [
     '<article>',
     'article',
     '</article>',
-    '</div>'
+    '</div>',
+    '</body>',
+    '</html>'
 ]
+
+// var infoHtml = [
+//     '<div id="info-window">',
+//     '<h1 id="info-header">',
+//     '<b>',
+//     'title',
+//     '</b>',
+//     '</h1>',
+//     '<article>',
+//     'article',
+//     '</article>',
+//     '</div>'
+// ]
 
 // Access google maps api, initialize var mapdata
 function initMap() {
