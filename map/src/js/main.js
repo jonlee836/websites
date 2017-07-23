@@ -19,7 +19,7 @@ var cityData = [
     ],
     [
 	"Grain Elevator",
-	"One of the tallest and last standing buildings left in the city. Direct hits from tanks and artillery proved ineffective against its reinforced concrete. On Sept 16th, 1942 12 tanks from 4th Panzer and grenadiers from 94th Infantry Division mounted a direct assault against the green giant.",
+	"One of the tallest and last standing buildings left in the city. It would continue to remain standing despite direct hits from Wehrmacht tanks, stukas, and even artillery. On Sept 16th, 1942 12 tanks from 4th Panzer and grenadiers from 94th Infantry Division mounted a direct assault against the green giant.",
 	48.687818,
 	44.483573
     ],
