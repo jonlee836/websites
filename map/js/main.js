@@ -1,3 +1,6 @@
+// foobar
+// foo bar 1
+
 var mapdata;
 
 var defaultPos = {lat: 48.75618876280552, lng: 44.5246696472168};
@@ -5,9 +8,6 @@ var navWidth="200px";
 
 var battlefront = []; //
 var cityMarkers = []; // Regular Markers
-
-var sovietMarkers = []; // Cluster Marker
-var wehrmachtMarkers = []; // Cluster Marker
 
 // 0 = Name , 1 = description, 2 = lat, 3 = lng
 var cityData = [
