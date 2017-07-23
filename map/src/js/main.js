@@ -13,13 +13,13 @@ var wehrmachtMarkers = []; // Cluster Marker
 var cityData = [
     [
 	"Mamayev Kurgan",
-	"A strategic hill that overlooks the city, both sides lost entire divisions (down to the last man) in its defense or capture. The sheer carnage that raged on the once steep slopes  Mamayev Kurgan had reduced its overall height by several feet. Nothing would grow on the hill until spring of 1944.",
+	"A strategic hill that splits the city into northern and southern halves. The sheer carnage that raged on the once steep slopes of Mamayev Kurgan had reduced its overall height by several feet. Nothing would grow on the hill until spring of 1944.",
 	48.742295,
 	44.537050
     ],
     [
 	"Grain Elevator",
-	"One of the few standing buildings in the city, its size and bright green exterior dominated the landscape of southern Stalingrad. Amazingly, the Soviets overlooked this building and was captured by the Wehrmacht on Sept 15th. Despite the Wehrmacht's artillery and stuka dive bombers scoring direct hits, the grain elevator remained intact. On Sept 16th, 1942 12 tanks from 4th Panzer and grenadiers 94th Infantry Division mounted a direct assault against the green giant.",
+	"One of the tallest and last standing buildings left in the city. Direct hits from tanks and artillery proved ineffective against its reinforced concrete. On Sept 16th, 1942 12 tanks from 4th Panzer and grenadiers from 94th Infantry Division mounted a direct assault against the green giant.",
 	48.687818,
 	44.483573
     ],
