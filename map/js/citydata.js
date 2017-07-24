@@ -34,11 +34,8 @@ jQuery.extend({
             }
         });
 
-	console.log(result);
 	var strArray = result.split('\n');
 	var strRes = sanitizeHtml(strArray);
-
-	console.log("strRes " + strRes);
 
 	return strRes;
     }
@@ -67,7 +64,6 @@ function sanitizeHtml (strArray){
 		if (copyStart == true) {
 		    var endIndex = strArray[i].length;
 		    newStr = currStr.substr(k, endIndex);
-		    console.log(newStr + " " + i  + " currIndex " + k + " endIndex " + currStr.length);
 		    break;
 		}
 	    }

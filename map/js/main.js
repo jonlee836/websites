@@ -47,22 +47,25 @@ function setCityMarkers() {
 		infowindow.open(map, marker);
 	    }
 	})(marker, currIndex));
+
+	// close infowindow when you click outside of it
+	google.maps.event.addListener(mapdata, "click", function(event) {
+	    console.log(event);
+	    infowindow.close();
+	});
+
     }
-    //console.log(cityJson); // this will show the info it in firebug console
 }
 
 function setInfo(currIndex) {
-    console.log("infoData " + infoData);
+
     var markerHtml = [];
     var strHtml = "";
 
     // Apparently copy by reference is default when cloning arrays in javascript.
     for (var i = 0; i < infoData.length; i++){
 	markerHtml[i] = infoData[i];
-	console.log(infoData[i]);
     }
-
-    console.log("markerHTML" + markerHtml);
 
     for (var i = 0; i < markerHtml.length; i++){
 	if (markerHtml[i] == 'title'){
@@ -71,7 +74,6 @@ function setInfo(currIndex) {
 	else if (markerHtml[i] == 'article'){
 	    markerHtml[i] = cityData[currIndex][1];
 	}
-	console.log(markerHtml[i]);
 	strHtml = strHtml + markerHtml[i];
     }
     return strHtml;
@@ -95,8 +97,6 @@ function getclickPos() {
 	var lat = event.latLng.lat();
 	var lng = event.latLng.lng();
 	mapdata.setCenter(new google.maps.LatLng(lat, lng));
-	console.log(mapdata.getZoom());
-	console.log(lat + " " + lng);  // in event.latLng  you have the coordinates of click
     });
 }
 
