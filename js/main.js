@@ -1,6 +1,3 @@
-// foobar
-// foo bar 1
-// working?working
 var mapdata;
 var cityData = data;
 var infoData = htmldata;

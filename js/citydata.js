@@ -20,6 +20,31 @@ var data = [
     ]
 ]
 
+jQuery.extend({
+    getValues: function(url) {
+        var result = null;
+        $.ajax({
+            url: url,
+            type: 'get',
+            dataType: 'html',
+            async: false,
+            success: function(data) {
+                result = data;
+            }
+        });
+       return result;
+    }
+});
+
+var htmltest = $.getValues("js/infowindow.html");
+console.log(htmltest);
+//$(function(e){
+//    $("#windowData").load("js/infowindow.html");
+//});
+
+//var htmltest = $("#windowData *").contents;
+//alert(htmltest.toString());
+
 var htmldata = [
     '<!doctype html>',
     '<html>',
