@@ -1,14 +1,14 @@
 // 0 = Name , 1 = description, 2 = lat, 3 = lng
-var data = [
+var cityInfo = [
     [
 	"Mamayev Kurgan",
-	"A strategic hill that splits the city into northern and southern halves. The sheer carnage that raged on the once steep slopes of Mamayev Kurgan had reduced its overall height by several feet. Nothing would grow on the hill until spring of 1944.",
+	"A strategic hill that splits the city into northern and southern halves. The sheer carnage that raged on the once steep slopes of Mamayev Kurgan reduced its overall height by several feet. Nothing would grow on the hill until spring of 1944.",
 	48.742295,
 	44.537050
     ],
     [
 	"Grain Elevator",
-	"One of the tallest and last standing buildings left in the city. 2 days of sustained fire from tanks, stukas, and artillery did little to the grain elevator. On Sept 16th, 1942 12 tanks from 4th Panzer and grenadiers from 94th Infantry Division mounted a direct assault against the green giant.",
+	"One of the tallest and only buildings left standing in Stalingrad after the Luftwaffe's bombing campaign. Even 2 days of sustained fire from tanks, stukas, and artillery did little to the grain elevator. On Sept 16th, 1942 the Wehrmacht mounted a direct assault against the green giant of Stalingrad.",
 	48.687818,
 	44.483573
     ],
@@ -43,7 +43,6 @@ jQuery.extend({
 
 // remove things that look like spaces
 function sanitizeHtml (strArray){
-
     var fixedArray = [];
     for (var i = 0; i < strArray.length; i++){
 
@@ -75,6 +74,9 @@ function sanitizeHtml (strArray){
     
     return fixedArray;
 }
+
+var mapStyle = [{'featureType': 'administrative', 'elementType': 'labels.text.fill', 'stylers': [{'color': '#444444'}]}, {'featureType': 'landscape', 'elementType': 'all', 'stylers': [{'color': '#f2f2f2'}]}, {'featureType': 'poi', 'elementType': 'all', 'stylers': [{'visibility': 'off'}]}, {'featureType': 'road', 'elementType': 'all', 'stylers': [{'saturation': -100}, {'lightness': 45}]}, {'featureType': 'road.highway', 'elementType': 'all', 'stylers': [{'visibility': 'simplified'}]}, {'featureType': 'road.arterial', 'elementType': 'labels.icon', 'stylers': [{'visibility': 'off'}]}, {'featureType': 'transit', 'elementType': 'all', 'stylers': [{'visibility': 'off'}]}, {'featureType': 'water', 'elementType': 'all', 'stylers': [{'color': '#4f595d'}, {'visibility': 'on'}]}];
+
 
 //$(function(e){
 //    $("#windowData").load("js/infowindow.html");

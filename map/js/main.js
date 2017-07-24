@@ -1,17 +1,23 @@
 var mapdata;
  
-var cityData = data;
-var infoData = $.getValues("js/infowindow.html");
+var cityData = cityInfo;
+var infowindowData = $.getValues("js/infowindow.html");
 
 var defaultPos = {lat: 48.75618876280552, lng: 44.5246696472168};
 var navWidth="200px";
 
 var battlefront = []; // Overlay
 var cityMarkers = []; // Regular Markers
-//
+
 // Access google maps api, initialize var mapdata
+$(function() {
+    initMap();
+});
+
 function initMap() {
-    mapdata = new google.maps.Map(document.getElementById('map'), {
+    mapdata = new google.maps.Map($('.map-canvas')[0], {
+    //mapdata = new google.maps.Map(document.getElementById('map-canvas'), {
+	styles: mapStyle,
 	center: defaultPos,
 	zoom: 11,
 	mapTypeId: 'satellite'
@@ -24,7 +30,6 @@ function initMap() {
     getclickPos();
 }
 
-// pass json
 function setCityMarkers() {
 
     for (var currIndex = 0; currIndex < cityData.length; currIndex++) {
@@ -63,8 +68,8 @@ function setInfo(currIndex) {
     var strHtml = "";
 
     // Apparently copy by reference is default when cloning arrays in javascript.
-    for (var i = 0; i < infoData.length; i++){
-	markerHtml[i] = infoData[i];
+    for (var i = 0; i < infowindowData.length; i++){
+	markerHtml[i] = infowindowData[i];
     }
 
     for (var i = 0; i < markerHtml.length; i++){
