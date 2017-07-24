@@ -8,7 +8,7 @@ var cityInfo = [
     ],
     [
 	"Grain Elevator",
-	"One of the tallest and only buildings left standing in Stalingrad after the Luftwaffe's bombing campaign. Even 2 days of sustained fire from tanks, stukas, and artillery did little to the grain elevator. On Sept 16th, 1942 the Wehrmacht mounted a direct assault against the green giant of Stalingrad.",
+	"One of the only buildings to survive the Luftwaffe's bombing campaign. Its reinforced concrete weathered a storm of direct hits from tanks, stukas, and artillery. On Sept 16th, 1942 the Wehrmacht mounted a direct assault against the green giant of Stalingrad.",
 	48.687818,
 	44.483573
     ],
@@ -19,6 +19,8 @@ var cityInfo = [
 	44.6062698
     ]
 ]
+
+var mapStyle = [{'featureType': 'administrative', 'elementType': 'labels.text.fill', 'stylers': [{'color': '#444444'}]}, {'featureType': 'landscape', 'elementType': 'all', 'stylers': [{'color': '#f2f2f2'}]}, {'featureType': 'poi', 'elementType': 'all', 'stylers': [{'visibility': 'off'}]}, {'featureType': 'road', 'elementType': 'all', 'stylers': [{'saturation': -100}, {'lightness': 45}]}, {'featureType': 'road.highway', 'elementType': 'all', 'stylers': [{'visibility': 'simplified'}]}, {'featureType': 'road.arterial', 'elementType': 'labels.icon', 'stylers': [{'visibility': 'off'}]}, {'featureType': 'transit', 'elementType': 'all', 'stylers': [{'visibility': 'off'}]}, {'featureType': 'water', 'elementType': 'all', 'stylers': [{'color': '#4f595d'}, {'visibility': 'on'}]}];
 
 // read local html file and return it as a string
 jQuery.extend({
@@ -74,9 +76,6 @@ function sanitizeHtml (strArray){
     
     return fixedArray;
 }
-
-var mapStyle = [{'featureType': 'administrative', 'elementType': 'labels.text.fill', 'stylers': [{'color': '#444444'}]}, {'featureType': 'landscape', 'elementType': 'all', 'stylers': [{'color': '#f2f2f2'}]}, {'featureType': 'poi', 'elementType': 'all', 'stylers': [{'visibility': 'off'}]}, {'featureType': 'road', 'elementType': 'all', 'stylers': [{'saturation': -100}, {'lightness': 45}]}, {'featureType': 'road.highway', 'elementType': 'all', 'stylers': [{'visibility': 'simplified'}]}, {'featureType': 'road.arterial', 'elementType': 'labels.icon', 'stylers': [{'visibility': 'off'}]}, {'featureType': 'transit', 'elementType': 'all', 'stylers': [{'visibility': 'off'}]}, {'featureType': 'water', 'elementType': 'all', 'stylers': [{'color': '#4f595d'}, {'visibility': 'on'}]}];
-
 
 //$(function(e){
 //    $("#windowData").load("js/infowindow.html");

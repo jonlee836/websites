@@ -1,8 +1,8 @@
 var mapdata;
- 
+
 var cityData = cityInfo;
 var infowindowData = $.getValues("js/infowindow.html");
-
+var mapcanvasData = $.getValues("js/mapindex.html")
 var defaultPos = {lat: 48.75618876280552, lng: 44.5246696472168};
 var navWidth="200px";
 
@@ -11,23 +11,39 @@ var cityMarkers = []; // Regular Markers
 
 // Access google maps api, initialize var mapdata
 $(function() {
+    //mapdata = new google.maps.Map($('.map-canvas')[0], {
+    mapdata = new google.maps.Map(document.getElementById('map'), {
+	styles: mapStyle,
+	center: defaultPos,
+	zoom: 11,
+
+	// I guess mapTypeId overrides styles??!??!?!!?!?
+	// mapTypeId: 'satellite'
+    });
+    
     initMap();
 });
 
 function initMap() {
-    mapdata = new google.maps.Map($('.map-canvas')[0], {
-    //mapdata = new google.maps.Map(document.getElementById('map-canvas'), {
-	styles: mapStyle,
-	center: defaultPos,
-	zoom: 11,
-	mapTypeId: 'satellite'
-    });
+    // var map = new google.maps.Map($('.map-canvas')[0], {
+    //     zoom: 14,
+    //     center: center
+    // });
 
+    // Create map
+    setMapCanvas();
+    
     // On start initialize city markers
     setCityMarkers();
 
     // populate yor box/field with lat, lng
     getclickPos();
+}
+
+function setMapCanvas() {
+    window.onload = function(){
+	console.log("loaded map");
+    }
 }
 
 function setCityMarkers() {
