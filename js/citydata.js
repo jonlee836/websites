@@ -32,12 +32,54 @@ jQuery.extend({
                 result = data;
             }
         });
-       return result;
+
+
+	console.log(result);
+	var strArray = result.split('\n');
+	var strRes = sanitizeHtml(strArray);
+
+	console.log("strRes " + strRes);
+
+	return strRes;
     }
 });
 
-var htmltest = $.getValues("js/infowindow.html");
-console.log(htmltest);
+function sanitizeHtml (strArray){
+
+    var fixedArray = [];
+    for (var i = 0; i < strArray.length; i++){
+
+	var newStr = "";
+	var currStr = strArray[i];
+
+	// skip empty strings
+	if (typeof currStr !== 'undefined'){
+	    var copyStart = false;
+	    for (var k = 0; k < strArray[i].length; k++){
+
+		// Doesn't equal a space, a non-breaking space, or a horizontal-tab'
+		if (currStr.charAt(k) != ' ' &&
+		    currStr.charCodeAt(k) != 160 &&
+		    currStr.charCodeAt(k) != 09) {
+		    copyStart = true;
+		}
+		if (copyStart == true) {
+
+		    var endIndex = strArray[i].length;
+		    newStr = currStr.substr(k, endIndex);
+		    console.log(newStr + " " + i  + " currIndex " + k + " endIndex " + currStr.length);
+		    break;
+		}
+	    }
+	    if (copyStart == true) {
+		fixedArray.push(newStr);
+	    }
+	}
+    }
+    
+    return fixedArray;
+}
+
 //$(function(e){
 //    $("#windowData").load("js/infowindow.html");
 //});
@@ -45,7 +87,7 @@ console.log(htmltest);
 //var htmltest = $("#windowData *").contents;
 //alert(htmltest.toString());
 
-var htmldata = [
+var badhtmldata = [
     '<!doctype html>',
     '<html>',
     '<head>',
@@ -96,3 +138,4 @@ var htmldata = [
     '</body>',
     '</html>'
 ]
+

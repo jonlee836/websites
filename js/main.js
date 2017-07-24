@@ -1,6 +1,9 @@
 var mapdata;
+ 
 var cityData = data;
-var infoData = htmldata;
+console.log(cityData);
+
+var infoData = $.getValues("js/infowindow.html");
 
 var defaultPos = {lat: 48.75618876280552, lng: 44.5246696472168};
 var navWidth="200px";
@@ -27,7 +30,6 @@ function initMap() {
 function setCityMarkers() {
 
     for (var currIndex = 0; currIndex < cityData.length; currIndex++) {
-	console.log(currIndex);
 	
 	var strTitle = cityData[currIndex][0];	
 	var infowindow = new google.maps.InfoWindow({
@@ -52,14 +54,18 @@ function setCityMarkers() {
 }
 
 function setInfo(currIndex) {
+    console.log("infoData " + infoData);
     var markerHtml = [];
     var strHtml = "";
 
     // Apparently copy by reference is default when cloning arrays in javascript.
     for (var i = 0; i < infoData.length; i++){
 	markerHtml[i] = infoData[i];
+	console.log(infoData[i]);
     }
-    
+
+    console.log("markerHTML" + markerHtml);
+
     for (var i = 0; i < markerHtml.length; i++){
 	if (markerHtml[i] == 'title'){
 	    markerHtml[i] = cityData[currIndex][0];
