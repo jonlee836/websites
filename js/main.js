@@ -1,8 +1,6 @@
 var mapdata;
  
 var cityData = data;
-console.log(cityData);
-
 var infoData = $.getValues("js/infowindow.html");
 
 var defaultPos = {lat: 48.75618876280552, lng: 44.5246696472168};

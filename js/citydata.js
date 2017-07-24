@@ -8,18 +8,19 @@ var data = [
     ],
     [
 	"Grain Elevator",
-	"One of the tallest and last standing buildings left in the city. It would continue to remain standing despite direct hits from Wehrmacht tanks, stukas, and even artillery. On Sept 16th, 1942 12 tanks from 4th Panzer and grenadiers from 94th Infantry Division mounted a direct assault against the green giant.",
+	"One of the tallest and last standing buildings left in the city. 2 days of sustained fire from tanks, stukas, and artillery did little to the grain elevator. On Sept 16th, 1942 12 tanks from 4th Panzer and grenadiers from 94th Infantry Division mounted a direct assault against the green giant.",
 	48.687818,
 	44.483573
     ],
     [
 	"Spartanovka",
-	"The Wehrmacht's encirclement was complete with the capture of this northern village.",
+	"The Wehrmacht's encirclement of Stalingrad was complete with the capture of this northern village.",
 	48.8183777,
 	44.6062698
     ]
 ]
 
+// read local html file and return it as a string
 jQuery.extend({
     getValues: function(url) {
         var result = null;
@@ -33,7 +34,6 @@ jQuery.extend({
             }
         });
 
-
 	console.log(result);
 	var strArray = result.split('\n');
 	var strRes = sanitizeHtml(strArray);
@@ -44,6 +44,7 @@ jQuery.extend({
     }
 });
 
+// remove things that look like spaces
 function sanitizeHtml (strArray){
 
     var fixedArray = [];
@@ -58,13 +59,12 @@ function sanitizeHtml (strArray){
 	    for (var k = 0; k < strArray[i].length; k++){
 
 		// Doesn't equal a space, a non-breaking space, or a horizontal-tab'
-		if (currStr.charAt(k) != ' ' &&
-		    currStr.charCodeAt(k) != 160 &&
-		    currStr.charCodeAt(k) != 09) {
+		if (currStr.charCodeAt(k) !=  09 &&
+		    currStr.charCodeAt(k) !=  32 &&
+		    currStr.charCodeAt(k) != 160) {
 		    copyStart = true;
 		}
 		if (copyStart == true) {
-
 		    var endIndex = strArray[i].length;
 		    newStr = currStr.substr(k, endIndex);
 		    console.log(newStr + " " + i  + " currIndex " + k + " endIndex " + currStr.length);
@@ -86,56 +86,3 @@ function sanitizeHtml (strArray){
 
 //var htmltest = $("#windowData *").contents;
 //alert(htmltest.toString());
-
-var badhtmldata = [
-    '<!doctype html>',
-    '<html>',
-    '<head>',
-    '<meta charset="UTF-8">',
-    '<meta name="description" content="Portfolio">',
-    '<meta name="keywords" content="HTML,CSS,XML,JavaScript">',
-    '<meta name="author" content="Jon Lee">',
-    '<meta name="viewport" content="width=device-width, initial-scale=1">',
-    '<link href="http://fonts.googleapis.com/css?family=Lato:100,300" rel=""stylesheet"" type=""text/css"">',
-    '<link rel="stylesheet" href="css/bootstrap.min.css">',
-    '<link rel="stylesheet" href="css/style.css">',
-    '<link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">',
-    '<style>',
-    '.info-window {',
-    'padding: 0;',
-    'margin: 0;',
-    'height: 100%;',
-    '}',
-    '.info-window h1 {',
-    'font-size: 18px;',
-    'margin-top: 0px;',
-    'margin-bottom: 0px;',
-    'color: slategrey;',
-    '}',
-    '.info-window b {',
-    'font-family: "Special Elite", cursive;',
-    'color: #7b0000;',
-    '}',
-    '.info-window article {',
-    'font-size: 14px:',
-    'text-align: left:',
-    'color: #053573;',
-    'font-family: "Special Elite", cursive;',
-    '}',
-    '</style>',
-    '</head>',
-    '<body>',
-    '<div class="info-window">',
-    '<h1 id="info-header">',
-    '<b>',
-    'title',
-    '</b>',
-    '</h1>',
-    '<article>',
-    'article',
-    '</article>',
-    '</div>',
-    '</body>',
-    '</html>'
-]
-
