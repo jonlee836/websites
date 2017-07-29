@@ -72,8 +72,7 @@ function sanitizeHtml (strArray){
 		fixedArray.push(newStr);
 	    }
 	}
-    }
-    
+    }    
     return fixedArray;
 }
 

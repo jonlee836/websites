@@ -2,7 +2,7 @@ var mapdata;
 
 var cityData = cityInfo;
 var infowindowData = $.getValues("js/infowindow.html");
-var mapcanvasData = $.getValues("js/mapindex.html")
+
 var defaultPos = {lat: 48.75618876280552, lng: 44.5246696472168};
 var navWidth="200px";
 
@@ -17,28 +17,16 @@ $(function() {
 	center: defaultPos,
 	zoom: 11,
 
-	// I guess mapTypeId overrides styles??!??!?!!?!?
+	// If mapTypeId is set it will negate styles
 	// mapTypeId: 'satellite'
     });
-    
-    initMap();
-});
-
-function initMap() {
-    // var map = new google.maps.Map($('.map-canvas')[0], {
-    //     zoom: 14,
-    //     center: center
-    // });
-
-    // Create map
-    setMapCanvas();
     
     // On start initialize city markers
     setCityMarkers();
 
     // populate yor box/field with lat, lng
     getclickPos();
-}
+});
 
 function setMapCanvas() {
     window.onload = function(){
@@ -47,7 +35,6 @@ function setMapCanvas() {
 }
 
 function setCityMarkers() {
-
     for (var currIndex = 0; currIndex < cityData.length; currIndex++) {
 	
 	var strTitle = cityData[currIndex][0];	
@@ -74,7 +61,6 @@ function setCityMarkers() {
 	    console.log(event);
 	    infowindow.close();
 	});
-
     }
 }
 
