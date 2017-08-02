@@ -17,22 +17,42 @@ $(function() {
 	center: defaultPos,
 	zoom: 11,
 
+	mapTypeControl: true,
+	mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+            position: google.maps.ControlPosition.TOP_CENTER
+	},
 	// If mapTypeId is set it will negate styles
 	// mapTypeId: 'satellite'
     });
+
+    // Show lat and lng of clicked position
+    mapdata.addListener('click', function(e){
+	var position = {lat: e.latLng.lat(), lng: e.latLng.lng()}
+	console.log(position);
+    });
     
+    // show address of clicked location
+    // var geocoder = new google.maps.Geocoder();
+    // google.maps.event.addListener(mapdata, 'click', function(event) {
+    // 	geocoder.geocode({
+    // 	    'latLng': event.latLng
+    // 	}, function(results, status) {
+
+    // 	    if (status == google.maps.GeocoderStatus.OK) {
+    // 		for (var i = 0; i < results.length; i++){
+    // 		    console.log(results[i].formatted_address);
+    // 		}
+    // 	    }
+    // 	});
+    // });
+
     // On start initialize city markers
     setCityMarkers();
 
     // populate yor box/field with lat, lng
     getclickPos();
 });
-
-function setMapCanvas() {
-    window.onload = function(){
-	console.log("loaded map");
-    }
-}
 
 function setCityMarkers() {
     for (var currIndex = 0; currIndex < cityData.length; currIndex++) {
@@ -58,14 +78,12 @@ function setCityMarkers() {
 
 	// close infowindow when you click outside of it
 	google.maps.event.addListener(mapdata, "click", function(event) {
-	    console.log(event);
 	    infowindow.close();
 	});
     }
 }
 
 function setInfo(currIndex) {
-
     var markerHtml = [];
     var strHtml = "";
 
@@ -107,6 +125,7 @@ function getclickPos() {
     });
 }
 
+// There has got to be a better way...
 window.onclick = function(event) {
     if(	!event.target.matches(".button") &&
 	!event.target.matches(".sidenav") &&
@@ -120,6 +139,12 @@ window.onclick = function(event) {
     $('#mySidenav').on('click', 'a', function() {
 	console.log($(this).index());
     });
+}
+
+function setMapCanvas() {
+    window.onload = function(){
+	console.log("loaded map");
+    }
 }
 
 window.onload = function(){
