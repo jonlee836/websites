@@ -1,5 +1,4 @@
 var mapdata;
-
 var cityData = cityInfo;
 var infowindowData = $.getValues("js/infowindow.html");
 
@@ -15,38 +14,28 @@ $(function() {
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	styles: mapStyle,
 	center: defaultPos,
-	zoom: 11,
-
-	mapTypeControl: true,
-	mapTypeControlOptions: {
-            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-            position: google.maps.ControlPosition.TOP_CENTER
-	},
-	// If mapTypeId is set it will negate styles
-	// mapTypeId: 'satellite'
+	zoom: 11
+	
     });
-
+    
     // Show lat and lng of clicked position
     mapdata.addListener('click', function(e){
 	var position = {lat: e.latLng.lat(), lng: e.latLng.lng()}
 	console.log(position);
     });
+
+    // Set buttons for WW2 map and present day satellite map
+    var ctrlDiv = document.createElement('div');
+    ctrlDiv.index = 1;
+    ctrlDiv.style['padding-top'] = '1px';
+
+    var ctrlObj;    
+    $.getScript("js/mapButtons.js", function() {
+    	ctrlObj = new OverlayCtrl(ctrlDiv, mapdata);
+    });
+
+    mapdata.controls[google.maps.ControlPosition.TOP_CENTER].push(ctrlDiv);
     
-    // show address of clicked location
-    // var geocoder = new google.maps.Geocoder();
-    // google.maps.event.addListener(mapdata, 'click', function(event) {
-    // 	geocoder.geocode({
-    // 	    'latLng': event.latLng
-    // 	}, function(results, status) {
-
-    // 	    if (status == google.maps.GeocoderStatus.OK) {
-    // 		for (var i = 0; i < results.length; i++){
-    // 		    console.log(results[i].formatted_address);
-    // 		}
-    // 	    }
-    // 	});
-    // });
-
     // On start initialize city markers
     setCityMarkers();
 

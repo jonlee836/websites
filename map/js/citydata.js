@@ -87,7 +87,7 @@ jQuery.extend({
                 result = data;
             }
         });
-
+	
 	var strArray = result.split('\n');
 	var strRes = sanitizeHtml(strArray);
 
