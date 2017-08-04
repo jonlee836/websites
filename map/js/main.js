@@ -2,7 +2,7 @@ var mapdata;
 var cityData = cityInfo;
 var infowindowData = $.getValues("js/infowindow.html");
 
-var defaultPos = {lat: 48.75618876280552, lng: 44.5246696472168};
+var defaultPos = {lat: 48.79103311379115, lng: 44.540977478027344};
 var navWidth="200px";
 
 var battlefront = []; // Overlay
@@ -14,8 +14,8 @@ $(function() {
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	styles: mapStyle,
 	center: defaultPos,
-	zoom: 11
-	
+	zoom: 11,
+	disableDefaultUI: true	
     });
     
     // Show lat and lng of clicked position
@@ -50,10 +50,11 @@ function setCityMarkers() {
 	var infowindow = new google.maps.InfoWindow({
 	    maxWidth: 250
 	});
+	
 	var marker = new google.maps.Marker({
 	    position: new google.maps.LatLng(cityData[currIndex][2], cityData[currIndex][3]),
 	    map: mapdata,
-	    title : strTitle
+	    title : strTitle	    
 	});
 	
 	cityMarkers.push(marker);
