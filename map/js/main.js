@@ -2,21 +2,33 @@ var mapdata;
 var cityData = cityInfo;
 var infowindowData = $.getValues("js/infowindow.html");
 
-var defaultPos = {lat: 48.79103311379115, lng: 44.540977478027344};
+var defaultPos = {lat: 48.75686777983242, lng: 44.5469856262207};
 var navWidth="200px";
 
 var battlefront = []; // Overlay
 var cityMarkers = []; // Regular Markers
 
-// Access google maps api, initialize var mapdata
+// initialize var mapdata
 $(function() {
     //mapdata = new google.maps.Map($('.map-canvas')[0], {
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	styles: mapStyle,
 	center: defaultPos,
-	zoom: 11,
-	disableDefaultUI: true	
+	zoom: 10,
+	gestureHandling: 'none',
+	scrollwheel: false,
+	disableDoubleClickZoom: true,
+	zoomControl: false,
+	//disableDefaultUI: true
     });
+
+    
+    google.maps.event.addDomListener(window, 'load');
+    
+    // setup overlay
+    // $.getScript("js/overlays.js", function() {
+    // setOverlay_Stalingrad();
+    // });
     
     // Show lat and lng of clicked position
     mapdata.addListener('click', function(e){
@@ -29,17 +41,17 @@ $(function() {
     ctrlDiv.index = 1;
     ctrlDiv.style['padding-top'] = '1px';
 
-    var ctrlObj;    
     $.getScript("js/mapButtons.js", function() {
-    	ctrlObj = new OverlayCtrl(ctrlDiv, mapdata);
+    	OverlayCtrl(ctrlDiv, mapdata);
     });
 
+    // push  button divs to the top part of the map
     mapdata.controls[google.maps.ControlPosition.TOP_CENTER].push(ctrlDiv);
     
-    // On start initialize city markers
+    // initialize city markers
     setCityMarkers();
-
-    // populate yor box/field with lat, lng
+    
+    // get lat, lng
     getclickPos();
 });
 
@@ -107,11 +119,13 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0px";
 }
 
+// recenter map to clicked location
 function getclickPos() {
     google.maps.event.addListener(mapdata, 'click', function(event) {
 	var lat = event.latLng.lat();
 	var lng = event.latLng.lng();
-	mapdata.setCenter(new google.maps.LatLng(lat, lng));
+//	mapdata.panTo(new google.maps.LatLng(lat, lng));
+//	mapdata.setCenter(new google.maps.LatLng(lat, lng));
     });
 }
 

@@ -335,30 +335,6 @@ var mapStyle = [
     }
 ]
 
-// var mapStyle = [
-//     {
-//         "featureType": "all",
-//         "elementType": "all",
-//         "stylers": [
-//             {
-//                 "visibility": "off"
-//             }
-//         ]
-//     },
-//     {
-//         "featureType": "water",
-//         "elementType": "all",
-//         "stylers": [
-//             {
-//                 "visibility": "on"
-//             },
-//             {
-//                 "lightness": -100
-//             }
-//         ]
-//     }
-// ]
-
 // read local html file and return it as a string
 jQuery.extend({
     getValues: function(url) {
