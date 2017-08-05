@@ -1,4 +1,5 @@
-var mapdata;
+var mapdata, cityOverlay;
+
 var cityData = cityInfo;
 var infowindowData = $.getValues("js/infowindow.html");
 
@@ -15,27 +16,25 @@ $(function() {
 	styles: mapStyle,
 	center: defaultPos,
 	zoom: 10,
-	gestureHandling: 'none',
-	scrollwheel: false,
-	disableDoubleClickZoom: true,
-	zoomControl: false,
-	//disableDefaultUI: true
+	// gestureHandling: 'none',
+	// scrollwheel: false,
+	// disableDoubleClickZoom: true,
+	// zoomControl: false,
+	disableDefaultUI: true
     });
-
     
     google.maps.event.addDomListener(window, 'load');
-    
-    // setup overlay
-    // $.getScript("js/overlays.js", function() {
-    // setOverlay_Stalingrad();
-    // });
-    
-    // Show lat and lng of clicked position
-    mapdata.addListener('click', function(e){
-	var position = {lat: e.latLng.lat(), lng: e.latLng.lng()}
-	console.log(position);
-    });
 
+    // setup overlay
+    var cityOverlay = new google.maps.OverlayView();
+
+    var imgbounds = new google.maps.LatLngBounds(
+	new google.maps.LatLng(49.005447494058096, 44.894256591796875),
+	new google.maps.LatLng(48.53843177405044, 44.33807373046875)
+    );
+    
+    cityOverlay = new google.maps.GroundOverlay('http://i.imgur.com/pyjuLfd.jpg', imgbounds);
+    cityOverlay.setMap(mapdata);
     // Set buttons for WW2 map and present day satellite map
     var ctrlDiv = document.createElement('div');
     ctrlDiv.index = 1;
@@ -53,6 +52,13 @@ $(function() {
     
     // get lat, lng
     getclickPos();
+
+    // Show lat and lng of clicked position
+    mapdata.addListener('click', function(e){
+	var position = {lat: e.latLng.lat(), lng: e.latLng.lng()}
+	console.log(position);
+    });
+
 });
 
 function setCityMarkers() {

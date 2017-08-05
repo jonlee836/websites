@@ -37,5 +37,5 @@ function OverlayCtrl(ctrlDiv, mapdata) {
 
     Volgagrad_Button.addEventListener('click', function() {
 	console.log("Volgagrad Button");
-    });
+    });    
 }
