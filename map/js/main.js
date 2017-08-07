@@ -7,7 +7,6 @@ var defaultPos = {lat: 48.75686777983242, lng: 44.5469856262207};
 var navWidth="200px";
 
 var toggle = new Array(5);
-var divArray = ["The City", "Red Army", "Wehrmacht", "About", "Toggle Menu"];
 var battlefront = []; // Overlay
 var cityMarkers = []; // Regular Markers
 
@@ -103,8 +102,11 @@ function toggleClick(e){
     var str = getButtonStr(e);
     var strId = toTitleCase(str);
     
-    var colorOn  = hexToRgbA("#ffffff");
-    var colorOff = hexToRgbA("#818181");
+    //    var colorOn  = hexToRgbA("#ffffff");
+    //    var colorOff = hexToRgbA("#818181");
+
+    var colorOn  = "#ffffff";
+    var colorOff = "#818181";
 
     switch(str.toUpperCase()){
 	
@@ -117,38 +119,46 @@ function toggleClick(e){
     case "Wehrmacht".toUpperCase():
 	toggle[2] = !toggle[2];
 	break;
-	
+    case "About".toUpperCase():
+	toggle[3] = !toggle[3];
+	break;
     case "Toggle Menu".toUpperCase():
 	toggle[endIndex] = !toggle[endIndex];
 	break;
     }
 
     // highlight clicked buttons
+    // I can only turn them on, how to turn off?
+    var f = document.getElementById(strId), style = window.getComputedStyle(f), top = style.getPropertyValue('color');
+
+    console.log("top ", top, "colorOn ", colorOn, "colorOff ", colorOff);
+    
     for (var i = 0; i < toggle.length; i++){
-	var color = document.getElementById(strId).style.color;
-	if (toggle[i] && divArray[i] != strId){
+
+	if (toggle[i] && top != colorOn){
+	    console.log("color on");
 	    document.getElementById(strId).style.color = colorOn;
 	    break;
 	}
-	else {
+	else if (!toggle[i] && top == colorOn){
 	    document.getElementById(strId).style.color = colorOff;
+	    console.log("color off");
+	    break;
 	}
-	console.log(i, color, toggle[i])
     }
-
 }
 
-function hexToRgbA(hex){
-    var c;
-    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-        c= hex.substring(1).split('');
-        if(c.length== 3){
-            c= [c[0], c[0], c[1], c[1], c[2], c[2]];
-        }
-        c= '0x'+c.join('');
-        return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',1)';
+function hexToRgb(hex, alpha) {
+    hex   = hex.replace('#', '');
+    var r = parseInt(hex.length == 3 ? hex.slice(0, 1).repeat(2) : hex.slice(0, 2), 16);
+    var g = parseInt(hex.length == 3 ? hex.slice(1, 2).repeat(2) : hex.slice(2, 4), 16);
+    var b = parseInt(hex.length == 3 ? hex.slice(2, 3).repeat(2) : hex.slice(4, 6), 16);
+    if ( alpha ) {
+	return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
     }
-    throw new Error('Bad Hex');
+    else {
+	return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+    }
 }
 
 // Only apitalize the first letter of each word.
