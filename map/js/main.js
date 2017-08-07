@@ -135,11 +135,14 @@ function toggleClick(e){
     
     for (var i = 0; i < toggle.length; i++){
 
+	// if it's true and has the incorrect highlighting color'
 	if (toggle[i] && top != colorOn){
 	    console.log("color on");
 	    document.getElementById(strId).style.color = colorOn;
 	    break;
 	}
+
+	// if it's false and has highlighting on, revert back to original color'
 	else if (!toggle[i] && top == colorOn){
 	    document.getElementById(strId).style.color = colorOff;
 	    console.log("color off");
