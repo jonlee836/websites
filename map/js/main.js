@@ -7,6 +7,7 @@ var defaultPos = {lat: 48.75686777983242, lng: 44.5469856262207};
 var navWidth="200px";
 
 var toggle = new Array(5);
+var divArray = ["The City", "Red Army", "Wehrmacht", "About", "Toggle Menu"];
 var battlefront = []; // Overlay
 var cityMarkers = []; // Regular Markers
 
@@ -100,16 +101,62 @@ function getclickPos() {
 function toggleClick(e){
 
     var str = getButtonStr(e);
+    var strId = toTitleCase(str);
+    
+    var colorOn  = hexToRgbA("#ffffff");
+    var colorOff = hexToRgbA("#818181");
 
-    switch(str)
-    {
-	case "The City":    toggle[0] = !toggle[0]; break;
-	case "Red Army":    toggle[1] = !toggle[1]; break;
-	case "Wehrmacht":   toggle[2] = !toggle[2]; break;
+    switch(str.toUpperCase()){
 	
-	case "Toggle Menu": toggle[endIndex] = !toggle[endIndex];
+    case "The City".toUpperCase():
+	toggle[0] = !toggle[0];
+	break;
+    case "Red Army".toUpperCase():
+	toggle[1] = !toggle[1];
+	break;
+    case "Wehrmacht".toUpperCase():
+	toggle[2] = !toggle[2];
+	break;
+	
+    case "Toggle Menu".toUpperCase():
+	toggle[endIndex] = !toggle[endIndex];
+	break;
     }
+
+    // highlight clicked buttons
+    for (var i = 0; i < toggle.length; i++){
+	var color = document.getElementById(strId).style.color;
+	if (toggle[i] && divArray[i] != strId){
+	    document.getElementById(strId).style.color = colorOn;
+	    break;
+	}
+	else {
+	    document.getElementById(strId).style.color = colorOff;
+	}
+	console.log(i, color, toggle[i])
+    }
+
 }
+
+function hexToRgbA(hex){
+    var c;
+    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+        c= hex.substring(1).split('');
+        if(c.length== 3){
+            c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+        }
+        c= '0x'+c.join('');
+        return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',1)';
+    }
+    throw new Error('Bad Hex');
+}
+
+// Only apitalize the first letter of each word.
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
 
 // get the text of the button
 function getButtonStr (e) {
@@ -121,7 +168,7 @@ function getButtonStr (e) {
     else{
 	str = e.target.innerText;
     }
-    console.log(str);
+
     return str;
 }
 
@@ -129,7 +176,6 @@ function getButtonStr (e) {
 window.onclick = function(event) {
     
     // if toggleCondition is true don't hide navbar when you click outside it
-    console.log(event);
     if (event.target.matches("button.nav-button") ||
 	event.target.matches("p")
        ){
@@ -145,13 +191,11 @@ window.onclick = function(event) {
 	   !event.target.matches(".nav-button") &&
 	   document.getElementById("mySidenav").style.width === navWidth
 	  ){
-	    console.log(toggleCondition);
 	    closeNav();
-	    
 	}
-    }  
+    }
     $('#mySidenav').on('click', 'a', function() {
-	console.log($(this).index());
+	//console.log($(this).index());
     });
 }
 

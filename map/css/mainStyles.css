@@ -40,10 +40,12 @@ body {
 }
 
 .nav-button {
+    padding: 0px 0px 0px 0px;
     width: 100%;
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 50%;
     text-decoration: none;
+    text-transform: uppercase;
     font-size: 25px;
     font-family: 'Special Elite', cursive;
     color: #818181;
@@ -51,22 +53,7 @@ body {
     border: #111;
     display: block;
     transition: 0.3s;
-}
-.nav-button:focus {
     outline: 0;
-}
-
-.nav-button p {
-    margin: inherit;
-    text-decoration: none;
-    background-color: #111;
-}
-
-.nav-button p1 {
-    margin: inherit;
-    color: #f1f1f1
-    text-decoration: none;
-    background-color: #111;    
 }
 
 .sidenav .toggle-button-sidenav {
