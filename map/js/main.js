@@ -6,12 +6,16 @@ var infowindowData = $.getValues("js/infowindow.html");
 var defaultPos = {lat: 48.75686777983242, lng: 44.5469856262207};
 var navWidth="200px";
 
+var toggle = new Array(5);
 var battlefront = []; // Overlay
 var cityMarkers = []; // Regular Markers
 
-var toggleCondition = false;
+var endIndex = toggle.length - 1;
 // initialize var mapdata
 $(function() {
+
+    for (var i = 0; i < toggle.length; i++) {toggle[i] = false;}
+    
     //mapdata = new google.maps.Map($('.map-canvas')[0], {
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	styles: mapStyle,
@@ -66,12 +70,6 @@ $(function() {
 
 });
 
-// toggle button click
-function toggleClick(){
-    toggleCondition = !toggleCondition;
-    console.log(toggleCondition);
-}
-
 // open navigation on nav button click
 function openNav() {
     // if it is open close it, the window.onclick stuff is so it doesn't close when you click inside the navbar
@@ -98,11 +96,25 @@ function getclickPos() {
     });
 }
 
+// toggle button click
+function toggleClick(){
+    toggle[endIndex] = !toggle[endIndex];
+    console.log(toggle[endIndex]);
+}
+
 // There has got to be a better way...
 window.onclick = function(event) {
     
     // if toggleCondition is true don't hide navbar when you click outside it
-    if (toggleCondition){
+    console.log(event);
+    if (event.target.matches("nav-button") ||
+	event.target.matches("p")
+       ){
+	if (event.target.innerHTML == "Wehrmacht"){
+	    
+	}
+    }
+    else if (toggle[endIndex]){
 	
 	// check if click is outside the nav bar
 	if(!event.target.matches(".button") &&
@@ -126,38 +138,3 @@ window.onclick = function(event) {
 window.onload = function(){
 
 }
-
-// var template = {
-//     {"name": "",
-//      "description": "",
-//      "lat": ,
-//      "lng":
-//     }
-// }
-
-// This is how not to do load html. Reason being, you're reading from a local file.
-// function infoWin () {
-//     var htmlArray = require("htmlArray");
-//     var htmlText = htmlArray.readFileSync("../infowindow.html").toString('utf-8');
-//     var htmlStr = htmlText.split("\n");
-//     console.llog(htmlStr);
-// }
-
-// function readTextFile(file)
-// {
-//     var allText;
-//     var rawFile = new XMLHttpRequest();
-//     rawFile.open("GET", file, false);
-//     rawFile.onreadystatechange = function ()
-//     {
-//         if(rawFile.readyState === 4)
-//         {
-//             if(rawFile.status === 200 || rawFile.status == 0)
-//             {
-//                 allText = rawFile.responseText;
-//             }
-//         }
-//     }
-//     rawFile.send(null);
-//     return allText;
-// }
