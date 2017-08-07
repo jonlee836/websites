@@ -97,9 +97,29 @@ function getclickPos() {
 }
 
 // toggle button click
-function toggleClick(){
-    toggle[endIndex] = !toggle[endIndex];
-    console.log(toggle[endIndex]);
+function toggleClick(str){
+
+    switch(str)
+    {
+	case "The City":    toggle[0] = !toggle[0];
+	case "Red Army":    toggle[1] = !toggle[1];
+	case "Wehrmacht":   toggle[2] = !toggle[2];
+	case "Toggle Menu": toggle[endIndex] = !toggle[endIndex];
+    }
+    console.log(str);
+}
+
+// get the text of the button
+function getButtonStr (e) {
+    var str = "";
+    if (e.target.matches("nav-button")){
+	str = e.target.firstElementChild.innerHTML;
+    }
+    else{
+	str = e.target.innerText;
+    }
+
+    return str;
 }
 
 // There has got to be a better way...
@@ -107,12 +127,13 @@ window.onclick = function(event) {
     
     // if toggleCondition is true don't hide navbar when you click outside it
     console.log(event);
-    if (event.target.matches("nav-button") ||
+    if (event.target.matches("button.nav-button") ||
 	event.target.matches("p")
        ){
-	if (event.target.innerHTML == "Wehrmacht"){
-	    
-	}
+	console.log("match");
+
+	var htmlStr = getButtonStr(event);
+	toggleClick(htmlStr);
     }
     else if (toggle[endIndex]){
 	
