@@ -97,28 +97,31 @@ function getclickPos() {
 }
 
 // toggle button click
-function toggleClick(str){
+function toggleClick(e){
+
+    var str = getButtonStr(e);
 
     switch(str)
     {
-	case "The City":    toggle[0] = !toggle[0];
-	case "Red Army":    toggle[1] = !toggle[1];
-	case "Wehrmacht":   toggle[2] = !toggle[2];
+	case "The City":    toggle[0] = !toggle[0]; break;
+	case "Red Army":    toggle[1] = !toggle[1]; break;
+	case "Wehrmacht":   toggle[2] = !toggle[2]; break;
+	
 	case "Toggle Menu": toggle[endIndex] = !toggle[endIndex];
     }
-    console.log(str);
 }
 
 // get the text of the button
 function getButtonStr (e) {
     var str = "";
+
     if (e.target.matches("nav-button")){
 	str = e.target.firstElementChild.innerHTML;
     }
     else{
 	str = e.target.innerText;
     }
-
+    console.log(str);
     return str;
 }
 
@@ -130,10 +133,7 @@ window.onclick = function(event) {
     if (event.target.matches("button.nav-button") ||
 	event.target.matches("p")
        ){
-	console.log("match");
-
-	var htmlStr = getButtonStr(event);
-	toggleClick(htmlStr);
+	toggleClick(event);
     }
     else if (toggle[endIndex]){
 	
@@ -143,8 +143,7 @@ window.onclick = function(event) {
 	   !event.target.matches("p") &&
 	   !event.target.matches(".toggle-button-sidenav") &&
 	   !event.target.matches(".nav-button") &&
-	   document.getElementById("mySidenav").style.width === navWidth &&
-	   toggleCondition != false
+	   document.getElementById("mySidenav").style.width === navWidth
 	  ){
 	    console.log(toggleCondition);
 	    closeNav();

@@ -55,14 +55,18 @@ body {
 .nav-button:focus {
     outline: 0;
 }
+
 .nav-button p {
     margin: inherit;
-} 
-
-.nav-button:focus p {
-    color: #f1f1f1;
     text-decoration: none;
     background-color: #111;
+}
+
+.nav-button p1 {
+    margin: inherit;
+    color: #f1f1f1
+    text-decoration: none;
+    background-color: #111;    
 }
 
 .sidenav .toggle-button-sidenav {
