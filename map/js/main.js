@@ -9,6 +9,7 @@ var navWidth="200px";
 var battlefront = []; // Overlay
 var cityMarkers = []; // Regular Markers
 
+var toggleCondition = false;
 // initialize var mapdata
 $(function() {
     //mapdata = new google.maps.Map($('.map-canvas')[0], {
@@ -35,20 +36,24 @@ $(function() {
     
     cityOverlay = new google.maps.GroundOverlay('http://i.imgur.com/pyjuLfd.jpg', imgbounds);
     cityOverlay.setMap(mapdata);
+
     // Set buttons for WW2 map and present day satellite map
     var ctrlDiv = document.createElement('div');
     ctrlDiv.index = 1;
     ctrlDiv.style['padding-top'] = '1px';
-
     $.getScript("js/mapButtons.js", function() {
     	OverlayCtrl(ctrlDiv, mapdata);
     });
 
     // push  button divs to the top part of the map
     mapdata.controls[google.maps.ControlPosition.TOP_CENTER].push(ctrlDiv);
+    $.getScript("js/overlays.js", function() {
+	setCityMarkers(cityMarkers, cityData, mapdata);
+    });
     
     // initialize city markers
-    setCityMarkers();
+    
+    //setCityMarkers();
     
     // get lat, lng
     getclickPos();
@@ -61,61 +66,19 @@ $(function() {
 
 });
 
-function setCityMarkers() {
-    for (var currIndex = 0; currIndex < cityData.length; currIndex++) {
-	
-	var strTitle = cityData[currIndex][0];	
-	var infowindow = new google.maps.InfoWindow({
-	    maxWidth: 250
-	});
-	
-	var marker = new google.maps.Marker({
-	    position: new google.maps.LatLng(cityData[currIndex][2], cityData[currIndex][3]),
-	    map: mapdata,
-	    title : strTitle	    
-	});
-	
-	cityMarkers.push(marker);
-	google.maps.event.addListener(marker, 'click', (function(marker, currIndex) {
-	    return function() {
-		var htmlStr = setInfo(currIndex);
-		infowindow.setContent(htmlStr);
-		infowindow.open(map, marker);
-	    }
-	})(marker, currIndex));
-
-	// close infowindow when you click outside of it
-	google.maps.event.addListener(mapdata, "click", function(event) {
-	    infowindow.close();
-	});
-    }
+// toggle button click
+function toggleClick(){
+    toggleCondition = !toggleCondition;
+    console.log(toggleCondition);
 }
 
-function setInfo(currIndex) {
-    var markerHtml = [];
-    var strHtml = "";
-
-    // Apparently copy by reference is default when cloning arrays in javascript.
-    for (var i = 0; i < infowindowData.length; i++){
-	markerHtml[i] = infowindowData[i];
-    }
-
-    for (var i = 0; i < markerHtml.length; i++){
-	if (markerHtml[i] == 'title'){
-	    markerHtml[i] = cityData[currIndex][0];
-	}
-	else if (markerHtml[i] == 'article'){
-	    markerHtml[i] = cityData[currIndex][1];
-	}
-	strHtml = strHtml + markerHtml[i];
-    }
-    return strHtml;
-}
-
+// open navigation on nav button click
 function openNav() {
+    // if it is open close it, the window.onclick stuff is so it doesn't close when you click inside the navbar
     if(document.getElementById("mySidenav").style.width == navWidth){
 	closeNav();
     }
+    // if it's not open, open it
     else{
 	document.getElementById("mySidenav").style.width = navWidth;
     }
@@ -130,31 +93,34 @@ function getclickPos() {
     google.maps.event.addListener(mapdata, 'click', function(event) {
 	var lat = event.latLng.lat();
 	var lng = event.latLng.lng();
-//	mapdata.panTo(new google.maps.LatLng(lat, lng));
-//	mapdata.setCenter(new google.maps.LatLng(lat, lng));
+	//	mapdata.panTo(new google.maps.LatLng(lat, lng));
+	//	mapdata.setCenter(new google.maps.LatLng(lat, lng));
     });
 }
 
 // There has got to be a better way...
 window.onclick = function(event) {
-    if(	!event.target.matches(".button") &&
-	!event.target.matches(".sidenav") &&
-	!event.target.matches("p") &&
-	!event.target.matches(".toggle-button-sidenav") &&
-	!event.target.matches(".nav-button") &&
-	document.getElementById("mySidenav").style.width === navWidth) {
-
-	closeNav();
-    }
+    
+    // if toggleCondition is true don't hide navbar when you click outside it
+    if (toggleCondition){
+	
+	// check if click is outside the nav bar
+	if(!event.target.matches(".button") &&
+	   !event.target.matches(".sidenav") &&
+	   !event.target.matches("p") &&
+	   !event.target.matches(".toggle-button-sidenav") &&
+	   !event.target.matches(".nav-button") &&
+	   document.getElementById("mySidenav").style.width === navWidth &&
+	   toggleCondition != false
+	  ){
+	    console.log(toggleCondition);
+	    closeNav();
+	    
+	}
+    }  
     $('#mySidenav').on('click', 'a', function() {
 	console.log($(this).index());
     });
-}
-
-function setMapCanvas() {
-    window.onload = function(){
-	console.log("loaded map");
-    }
 }
 
 window.onload = function(){
@@ -168,7 +134,6 @@ window.onload = function(){
 //      "lng":
 //     }
 // }
-
 
 // This is how not to do load html. Reason being, you're reading from a local file.
 // function infoWin () {
