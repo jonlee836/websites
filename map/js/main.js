@@ -2,20 +2,30 @@ var mapdata, cityOverlay;
 
 var cityData = cityInfo;
 var infowindowData = $.getValues("js/infowindow.html");
-
-var defaultPos = {lat: 48.75686777983242, lng: 44.5469856262207};
 var navWidth="200px";
+var defaultPos = {
+    lat: 48.75686777983242,
+    lng: 44.5469856262207
+};
 
-var toggle = new Array(5);
+var toggle = [true, false, false, false, true];
 var battlefront = []; // Overlay
 var cityMarkers = []; // Regular Markers
 
 var endIndex = toggle.length - 1;
-// initialize var mapdata
+
+// onload initialize map data and UI elements
 $(function() {
 
-    for (var i = 0; i < toggle.length; i++) {toggle[i] = false;}
-    
+    // for (var i = 0; i < toggle.length; i++){
+    // 	if (toggle[i]){
+    // 	    document.getElementById(strId).style.color = colorOn;
+    // 	}
+    // 	else if (!toggle[i]){
+    // 	    document.getElementById(strId).style.color = colorOff;
+    // 	}
+    // }    
+
     //mapdata = new google.maps.Map($('.map-canvas')[0], {
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	styles: mapStyle,
@@ -123,9 +133,13 @@ function toggleClick(e){
 	toggle[3] = !toggle[3];
 	break;
     case "Toggle Menu".toUpperCase():
+	console.log("before" ,toggle[endIndex]);
 	toggle[endIndex] = !toggle[endIndex];
+	console.log("after", toggle[endIndex]);
 	break;
     }
+
+    console.log("before fail",e);
     
     var f = document.getElementById(strId), style = window.getComputedStyle(f), top = style.getPropertyValue('color');
     var x = document.getElementsByTagName("STYLE");
@@ -135,6 +149,19 @@ function toggleClick(e){
 		"colorOn ", colorOn,
 		"colorOff ", colorOff, " current color ", cc);
 
+    // The fail loop of wasting time.
+    // Ask yourself, what point is there in looping through the array on click?
+    
+    // for (var i = 0; i < toggle.length; i++){
+    // 	if (toggle[i]){
+    // 	    document.getElementById(strId).style.color = colorOn;
+    // 	}
+    // 	else if (!toggle[i]){
+    // 	    document.getElementById(strId).style.color = colorOff;
+    // 	}
+    // }    
+
+    // The working if statement
     if (cc != colorOn){
 	document.getElementById(strId).style.color = colorOn;
 	console.log("Highlighting ON");
@@ -144,6 +171,11 @@ function toggleClick(e){
 	console.log("Highlighting OFF");
     }
 
+}
+
+// Get the type of Obj
+var toType = function(obj) {
+  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
 }
 
 function hexToRgb(hex, alpha) {
