@@ -1,4 +1,18 @@
 // Control ground overlays and marker overlays
+var customIcons = {
+    blue: {
+        icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png'
+    },
+    white: {
+        icon: 'http://maps.google.com/mapfiles/ms/icons/white.png'
+    },
+    green: {
+        icon: 'http://maps.google.com/mapfiles/ms/icons/green.png'
+    },
+    red: {
+        icon: 'http://maps.google.com/mapfiles/ms/icons/red.png'
+    }
+};
 
 function setCityMarkers(cityMarkers, cityData, mapdata) {
     for (var currIndex = 0; currIndex < cityData.length; currIndex++) {
@@ -13,7 +27,8 @@ function setCityMarkers(cityMarkers, cityData, mapdata) {
 	    map: mapdata,
 	    title : strTitle	    
 	});
-	
+
+	// Immediately display markers
 	cityMarkers.push(marker);
 	google.maps.event.addListener(marker, 'click', (function(marker, currIndex) {
 	    return function() {

@@ -1,6 +1,7 @@
 var mapdata, cityOverlay;
 
 var cityData = cityInfo;
+
 var infowindowData = $.getValues("js/infowindow.html");
 var navWidth="200px";
 var defaultPos = {
@@ -11,22 +12,18 @@ var defaultPos = {
 var toggle = [true, false, false, false, true];
 var battlefront = []; // Overlay
 var cityMarkers = []; // Regular Markers
+var cityStatus  = [];
 
 var endIndex = toggle.length - 1;
 
 // onload initialize map data and UI elements
 $(function() {
 
-    // for (var i = 0; i < toggle.length; i++){
-    // 	if (toggle[i]){
-    // 	    document.getElementById(strId).style.color = colorOn;
-    // 	}
-    // 	else if (!toggle[i]){
-    // 	    document.getElementById(strId).style.color = colorOff;
-    // 	}
-    // }    
-
-    //mapdata = new google.maps.Map($('.map-canvas')[0], {
+    cityStatus = new Array(cityData.length);
+    
+    for (var i = 0; i < cityStatus.length; i++){
+	cityStatus[i] = false;
+    }
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	styles: mapStyle,
 	center: defaultPos,
