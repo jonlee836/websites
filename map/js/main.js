@@ -12,18 +12,11 @@ var defaultPos = {
 var toggle = [true, false, false, false, true];
 var battlefront = []; // Overlay
 var cityMarkers = []; // Regular Markers
-var cityStatus  = [];
 
 var endIndex = toggle.length - 1;
 
 // onload initialize map data and UI elements
 $(function() {
-
-    cityStatus = new Array(cityData.length);
-    
-    for (var i = 0; i < cityStatus.length; i++){
-	cityStatus[i] = false;
-    }
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	styles: mapStyle,
 	center: defaultPos,
@@ -130,21 +123,15 @@ function toggleClick(e){
 	toggle[3] = !toggle[3];
 	break;
     case "Toggle Menu".toUpperCase():
-	console.log("before" ,toggle[endIndex]);
 	toggle[endIndex] = !toggle[endIndex];
-	console.log("after", toggle[endIndex]);
 	break;
     }
 
-    console.log("before fail",e);
-    
     var f = document.getElementById(strId), style = window.getComputedStyle(f), top = style.getPropertyValue('color');
     var x = document.getElementsByTagName("STYLE");
-    var cc = document.getElementById(strId).style.color;
 
-    console.log("div = ", strId, "top ", top, "style", x,
-		"colorOn ", colorOn,
-		"colorOff ", colorOff, " current color ", cc);
+    // current color
+    var cc = document.getElementById(strId).style.color;
 
     // The fail loop of wasting time.
     // Ask yourself, what point is there in looping through the array on click?
@@ -170,11 +157,12 @@ function toggleClick(e){
 
 }
 
-// Get the type of Obj
+// get the type of Obj
 var toType = function(obj) {
   return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
 }
 
+// hex color  converter
 function hexToRgb(hex, alpha) {
     hex   = hex.replace('#', '');
     var r = parseInt(hex.length == 3 ? hex.slice(0, 1).repeat(2) : hex.slice(0, 2), 16);
@@ -188,9 +176,8 @@ function hexToRgb(hex, alpha) {
     }
 }
 
-// Only apitalize the first letter of each word.
-function toTitleCase(str)
-{
+// only capitalize the first letter of each word.
+function toTitleCase(str){
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
