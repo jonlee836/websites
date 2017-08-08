@@ -102,11 +102,11 @@ function toggleClick(e){
     var str = getButtonStr(e);
     var strId = toTitleCase(str);
     
-    //    var colorOn  = hexToRgbA("#ffffff");
-    //    var colorOff = hexToRgbA("#818181");
+    var colorOn  = hexToRgb("#ffffff");
+    var colorOff = hexToRgb("#818181");
 
-    var colorOn  = "#ffffff";
-    var colorOff = "#818181";
+    //var colorOn  = "#ffffff";
+    //var colorOff = "#818181";
 
     switch(str.toUpperCase()){
 	
@@ -126,29 +126,24 @@ function toggleClick(e){
 	toggle[endIndex] = !toggle[endIndex];
 	break;
     }
-
-    // highlight clicked buttons
-    // I can only turn them on, how to turn off?
-    var f = document.getElementById(strId), style = window.getComputedStyle(f), top = style.getPropertyValue('color');
-
-    console.log("top ", top, "colorOn ", colorOn, "colorOff ", colorOff);
     
-    for (var i = 0; i < toggle.length; i++){
+    var f = document.getElementById(strId), style = window.getComputedStyle(f), top = style.getPropertyValue('color');
+    var x = document.getElementsByTagName("STYLE");
+    var cc = document.getElementById(strId).style.color;
 
-	// if it's true and has the incorrect highlighting color'
-	if (toggle[i] && top != colorOn){
-	    console.log("color on");
-	    document.getElementById(strId).style.color = colorOn;
-	    break;
-	}
+    console.log("div = ", strId, "top ", top, "style", x,
+		"colorOn ", colorOn,
+		"colorOff ", colorOff, " current color ", cc);
 
-	// if it's false and has highlighting on, revert back to original color'
-	else if (!toggle[i] && top == colorOn){
-	    document.getElementById(strId).style.color = colorOff;
-	    console.log("color off");
-	    break;
-	}
+    if (cc != colorOn){
+	document.getElementById(strId).style.color = colorOn;
+	console.log("Highlighting ON");
     }
+    else {
+	document.getElementById(strId).style.color = colorOff;
+	console.log("Highlighting OFF");
+    }
+
 }
 
 function hexToRgb(hex, alpha) {
@@ -186,8 +181,7 @@ function getButtonStr (e) {
 }
 
 // There has got to be a better way...
-window.onclick = function(event) {
-    
+window.onclick = function(event) {    
     // if toggleCondition is true don't hide navbar when you click outside it
     if (event.target.matches("button.nav-button") ||
 	event.target.matches("p")
@@ -207,11 +201,4 @@ window.onclick = function(event) {
 	    closeNav();
 	}
     }
-    $('#mySidenav').on('click', 'a', function() {
-	//console.log($(this).index());
-    });
-}
-
-window.onload = function(){
-
 }
