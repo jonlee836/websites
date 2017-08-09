@@ -1,4 +1,15 @@
 // Control ground overlays and marker overlays
+function toggleGroup(type) {
+    for (var i = 0; i < markerGroups[type].length; i++) {
+	var marker = markerGroups[type][i];
+	if (!marker.getVisible()) {
+	    marker.setVisible(true);
+	} else {
+	    marker.setVisible(false);
+	}
+    }
+}
+
 var customIcons = {
     blue: {
         icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png'
@@ -14,22 +25,25 @@ var customIcons = {
     }
 };
 
-function setCityMarkers(cityMarkers, cityData, mapdata) {
-    for (var currIndex = 0; currIndex < cityData.length; currIndex++) {
+function setMarkers(markerType, cityMarkers, cityWindowInfo, mapdata) {
+    
+    for (var currIndex = 0; currIndex < cityWindowInfo.length; currIndex++) {
 	
-	var strTitle = cityData[currIndex][0];	
+	var strTitle = cityWindowInfo[currIndex][0];	
+
 	var infowindow = new google.maps.InfoWindow({
 	    maxWidth: 250
 	});
 	
 	var marker = new google.maps.Marker({
-	    position: new google.maps.LatLng(cityData[currIndex][2], cityData[currIndex][3]),
+	    position: new google.maps.LatLng(cityWindowInfo[currIndex][2], cityWindowInfo[currIndex][3]),
 	    map: mapdata,
 	    title : strTitle	    
 	});
 
 	// Immediately display markers
-	cityMarkers.push(marker);
+	markers[markerType].push(marker);
+
 	google.maps.event.addListener(marker, 'click', (function(marker, currIndex) {
 	    return function() {
 		var htmlStr = setInfo(currIndex);
@@ -56,10 +70,10 @@ function setInfo(currIndex) {
 
     for (var i = 0; i < markerHtml.length; i++){
 	if (markerHtml[i] == 'title'){
-	    markerHtml[i] = cityData[currIndex][0];
+	    markerHtml[i] = cityWindowInfo[currIndex][0];
 	}
 	else if (markerHtml[i] == 'article'){
-	    markerHtml[i] = cityData[currIndex][1];
+	    markerHtml[i] = cityWindowInfo[currIndex][1];
 	}
 	strHtml = strHtml + markerHtml[i];
     }

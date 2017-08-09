@@ -38,6 +38,7 @@ body {
     font-size: 30px;
     cursor: pointer;
     float: left;
+    color: black;
 }
 
 .sidenav {

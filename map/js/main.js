@@ -1,8 +1,5 @@
 var mapdata, cityOverlay;
 
-var cityData = cityInfo;
-
-var infowindowData = $.getValues("js/infowindow.html");
 var navWidth="200px";
 var defaultPos = {
     lat: 48.75686777983242,
@@ -10,13 +7,20 @@ var defaultPos = {
 };
 
 var toggle = [true, false, false, false, true];
+
+var markers = {
+    'city': [],
+    'soviet': [],
+    'wehrmacht': []
+}
+
 var battlefront = []; // Overlay
-var cityMarkers = []; // Regular Markers
 
 var endIndex = toggle.length - 1;
 
 // onload initialize map data and UI elements
 $(function() {
+
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	styles: mapStyle,
 	center: defaultPos,
@@ -52,7 +56,7 @@ $(function() {
     // push  button divs to the top part of the map
     mapdata.controls[google.maps.ControlPosition.TOP_CENTER].push(ctrlDiv);
     $.getScript("js/overlays.js", function() {
-	setCityMarkers(cityMarkers, cityData, mapdata);
+	setMarkers('city', markers, cityWindowInfo, mapdata);
     });
     
     // initialize city markers
@@ -127,8 +131,8 @@ function toggleClick(e){
 	break;
     }
 
-    var f = document.getElementById(strId), style = window.getComputedStyle(f), top = style.getPropertyValue('color');
-    var x = document.getElementsByTagName("STYLE");
+    // var f = document.getElementById(strId), style = window.getComputedStyle(f), top = style.getPropertyValue('color');
+    // var x = document.getElementsByTagName("STYLE");
 
     // current color
     var cc = document.getElementById(strId).style.color;
