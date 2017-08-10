@@ -13,7 +13,7 @@ function toggleGroup(type) {
 
 var mapIcons = {
     city: {
-        icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png'
+        icon: '../images/blueicon_city.png'
     },
     soviet: {
         icon: 'http://maps.google.com/mapfiles/ms/icons/red.png'
@@ -23,6 +23,7 @@ var mapIcons = {
     },
 };
 
+// create markers for the city, red army, and wehrmacht
 function setMarkers(markerType, cityMarkers, cityWindowInfo, mapdata) {
 
     var mapIcon = mapIcons[markerType] || {};
