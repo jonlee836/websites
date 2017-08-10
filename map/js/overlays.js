@@ -77,6 +77,9 @@ function setMarkers(markerType, cityMarkers, cityWindowInfo, mapdata) {
     }
 }
 
+// info window appearance
+var infowindowData = $.getValues("js/infowindow.html");
+
 // read from html file
 function setInfo(currIndex) {
     var markerHtml = [];

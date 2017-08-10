@@ -20,6 +20,7 @@ var cityWindowInfo = [
     ]
 ]
 
+// this unique map style was created with https://snazzymaps.com/editor
 var mapStyle = [
     {
         "featureType": "administrative",
@@ -355,9 +356,6 @@ jQuery.extend({
 	return strRes;
     }
 });
-
-// info window appearance
-var infowindowData = $.getValues("js/infowindow.html");
 
 // remove things that look like spaces
 function sanitizeHtml (strArray){
