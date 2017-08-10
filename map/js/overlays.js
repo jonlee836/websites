@@ -30,7 +30,12 @@ var mapIcons = {
 function setMarkers(type, info, mapdata) {
 
     var mapIcon = mapIcons[type] || {};
-
+    var imgIcon = {
+	url: mapIcon.icon,
+	scaledSize: new google.maps.Size(30, 30),
+	origin: new google.maps.Point(0, 0),
+	anchor: new google.maps.Point(0, 15)
+    }
     for (var currIndex = 0; currIndex < info.length; currIndex++) {
 	
 	var strTitle = info[currIndex][0];
@@ -42,9 +47,10 @@ function setMarkers(type, info, mapdata) {
 	
 	var marker = new google.maps.Marker({
 	    position: new google.maps.LatLng(info[currIndex][2], info[currIndex][3]),
+	    size: new google.maps.Size(20,20),
 	    map: mapdata,
 	    title : strTitle,
-	    icon: mapIcon.icon
+	    icon: imgIcon
 	});
 
 	var infowindow = new SnazzyInfoWindow({

@@ -6,10 +6,6 @@ var defaultPos = {
     lng: 44.5469856262207
 };
 
-// Not sure if I need these anymore...
-var toggle = [true, false, false, false, true];
-var endIndex = toggle.length - 1;
-
 // Map mapMarkers to click on.
 var mapMarkers = {
     city: [],
@@ -22,6 +18,9 @@ var mapWindows = {
     soviet: [],
     wehrmacht: []
 }
+
+var toggle = [false, false, false, false, true];
+var endIndex = toggle.length - 1;
 
 // WW2 Stalingrad map overlay that appears when you click the 'Stalingrad' button.
 var battlefront = []; // Overlay
@@ -116,9 +115,6 @@ function toggleClick(e){
     var colorOn  = hexToRgb("#ffffff");
     var colorOff = hexToRgb("#818181");
 
-    //var colorOn  = "#ffffff";
-    //var colorOff = "#818181";
-
     switch(str.toUpperCase()){
 	
     case "The City".toUpperCase():
@@ -165,7 +161,6 @@ function toggleClick(e){
 	document.getElementById(strId).style.color = colorOff;
 	console.log("Highlighting OFF");
     }
-
 }
 
 // get the type of Obj
