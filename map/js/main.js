@@ -6,23 +6,25 @@ var defaultPos = {
     lng: 44.5469856262207
 };
 
+// Not sure if I need these anymore...
 var toggle = [true, false, false, false, true];
-
-var markers = {
-    'city': [],
-    'soviet': [],
-    'wehrmacht': []
-}
-
-var infowindows = {
-    'city': [],
-    'soviet': [],
-    'wehrmacht': []
-}
-
-var battlefront = []; // Overlay
-
 var endIndex = toggle.length - 1;
+
+// Map mapMarkers to click on.
+var mapMarkers = {
+    city: [],
+    soviet: [],
+    wehrmacht: []
+};
+
+var mapWindows = {
+    city: [],
+    soviet: [],
+    wehrmacht: []
+}
+
+// WW2 Stalingrad map overlay that appears when you click the 'Stalingrad' button.
+var battlefront = []; // Overlay
 
 // onload initialize map data and UI elements
 $(function() {
@@ -58,11 +60,21 @@ $(function() {
     $.getScript("js/mapButtons.js", function() {
     	OverlayCtrl(ctrlDiv, mapdata);
     });
-
-    // set markers
     mapdata.controls[google.maps.ControlPosition.TOP_CENTER].push(ctrlDiv);
+
+    // need region detection to determine whether or not to load it in english or russian
+    // local variables makes code more readable vs accessing global variables
+    // or.... you could just access everything global by key
+
+    // Does JS not care about an incorrect number of arguments being passed into a function??!?!?
+    var cityInfo = infoData['city'];
+    var sovietInfo = infoData['soviet'];
+    var wehrmachtData = infoData['wehrmacht'];
+    
+    // set mapMarkers
     $.getScript("js/overlays.js", function() {
-	setMarkers('city', markers, cityWindowInfo, mapdata);
+	setMarkers('city', cityInfo, mapdata);
+	setMarkers('soviet', sovietInfo, mapdata);
     });
 
     // get lat, lng

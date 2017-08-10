@@ -1,24 +1,4 @@
 // 0 = Name , 1 = description, 2 = lat, 3 = lng
-var cityWindowInfo = [
-    [
-	"Mamayev Kurgan",
-	"A strategic hill that splits the city into northern and southern halves. The sheer carnage that raged on the once steep slopes of Mamayev Kurgan reduced its overall height by several feet. Nothing would grow on the hill until spring of 1944.",
-	48.742295,
-	44.537050
-    ],
-    [
-	"Grain Elevator",
-	"One of the few buildings to survive the Luftwaffe's bombing campaign. Attempts to destroy the building with tank fire, artillery, and stukas proved futile. On Sept 16th, 1942 the Wehrmacht launched a direct assault on the green giant of Stalingrad.",
-	48.687818,
-	44.483573
-    ],
-    [
-	"Spartanovka",
-	"The Wehrmacht's encirclement of Stalingrad was complete with the capture of this northern village.",
-	48.8183777,
-	44.6062698
-    ]
-]
 
 // this unique map style was created with https://snazzymaps.com/editor
 var mapStyle = [

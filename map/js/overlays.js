@@ -1,13 +1,16 @@
 // Control ground overlays and marker overlays
 function toggleGroup(type) {
-    for (var i = 0; i < markers[type].length; i++) {
-	var marker = markers[type][i];
+    for (var i = 0; i < mapMarkers[type].length; i++) {
+
+	// I'm assuming marker is a reference here...'
+	var marker = mapMarkers[type][i];
+	console.log(marker)
 	if (!marker.getVisible()) {
 	    marker.setVisible(true);
 	} else {
 	    marker.setVisible(false);
 	}
-	infowindows[type][i].close();
+	mapWindows[type][i].close();
     }
 }
 
@@ -16,29 +19,29 @@ var mapIcons = {
         icon: '../images/blueicon_city.png'
     },
     soviet: {
-        icon: 'http://maps.google.com/mapfiles/ms/icons/red.png'
+        icon: '../images/icon_redarmy.png'
     },
     wehrmacht: {
-        icon: 'http://maps.google.com/mapfiles/ms/icons/green.png'
+        icon: '../images/icon_wehrmacht.png'
     },
 };
 
 // create markers for the city, red army, and wehrmacht
-function setMarkers(markerType, cityMarkers, cityWindowInfo, mapdata) {
+function setMarkers(type, info, mapdata) {
 
-    var mapIcon = mapIcons[markerType] || {};
-    
-    for (var currIndex = 0; currIndex < cityWindowInfo.length; currIndex++) {
+    var mapIcon = mapIcons[type] || {};
+
+    for (var currIndex = 0; currIndex < info.length; currIndex++) {
 	
-	var strTitle = cityWindowInfo[currIndex][0];	
-	var htmlStr = setInfo(currIndex);
+	var strTitle = info[currIndex][0];
+	var htmlStr = setInfo(currIndex, info);
 	
 	// var infowindow = new google.maps.InfoWindow({
 	//     maxWidth: 250
         // });
-
+	
 	var marker = new google.maps.Marker({
-	    position: new google.maps.LatLng(cityWindowInfo[currIndex][2], cityWindowInfo[currIndex][3]),
+	    position: new google.maps.LatLng(info[currIndex][2], info[currIndex][3]),
 	    map: mapdata,
 	    title : strTitle,
 	    icon: mapIcon.icon
@@ -51,6 +54,14 @@ function setMarkers(markerType, cityMarkers, cityWindowInfo, mapdata) {
 	    closeOnMapClick: true,
 	    closeWhenOthersOpen: true
 	});
+
+	if (type != 'city') {
+	    marker.setVisible(false);
+	}
+	
+	// push markers and corresponding info window into arrays for future use
+	mapMarkers[type].push(marker);
+	mapWindows[type].push(infowindow);
 	
 	// having htmlStr outside of google maps.event and settings the content inside
 	// "var infowindow using content: htmlStr"
@@ -71,32 +82,30 @@ function setMarkers(markerType, cityMarkers, cityWindowInfo, mapdata) {
 	// google maps cannot detect a click on the info window itself.
 	//     infowindow.close();
         // });
-
-	// push markers and corresponding info window into arrays for future use
-	markers[markerType].push(marker);
-	infowindows[markerType].push(infowindow);
     }
 }
 
 // info window appearance
-var infowindowData = $.getValues("js/infowindow.html");
+var infoHTML = $.getValues("js/infowindow.html");
 
 // read from html file
-function setInfo(currIndex) {
+function setInfo(currIndex, info) {
     var markerHtml = [];
     var strHtml = "";
 
-    // Apparently copy by reference is default when cloning arrays in javascript.
-    for (var i = 0; i < infowindowData.length; i++){
-	markerHtml[i] = infowindowData[i];
+    // Apparently copy by reference is default when cloning arrays in javascript.....
+    // This creates a new copy of the array and put it into a string.
+    // Then it will return the string which is then put into the info window
+    for (var i = 0; i < infoHTML.length; i++){
+	markerHtml[i] = infoHTML[i];
     }
 
     for (var i = 0; i < markerHtml.length; i++){
 	if (markerHtml[i] == 'title'){
-	    markerHtml[i] = cityWindowInfo[currIndex][0];
+	    markerHtml[i] = info[currIndex][0];
 	}
 	else if (markerHtml[i] == 'article'){
-	    markerHtml[i] = cityWindowInfo[currIndex][1];
+	    markerHtml[i] = info[currIndex][1];
 	}
 	strHtml = strHtml + markerHtml[i];
     }
