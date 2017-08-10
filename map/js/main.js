@@ -67,7 +67,6 @@ $(function() {
 
     // get lat, lng
     getclickPos();
-
 });
 
 // open navigation on nav button click
