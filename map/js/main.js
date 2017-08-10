@@ -42,8 +42,7 @@ $(function() {
 
     // setup overlay
     var cityOverlay = new google.maps.OverlayView();
-    //var infowindow = new SnazzyInfoWindow();
-    
+
     var imgbounds = new google.maps.LatLngBounds(
 	new google.maps.LatLng(49.005447494058096, 44.894256591796875),
 	new google.maps.LatLng(48.53843177405044, 44.33807373046875)

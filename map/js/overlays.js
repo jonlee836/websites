@@ -31,9 +31,10 @@ function setMarkers(markerType, cityMarkers, cityWindowInfo, mapdata) {
 	
 	var strTitle = cityWindowInfo[currIndex][0];	
 	var htmlStr = setInfo(currIndex);
-//	var infowindow = new google.maps.InfoWindow({
-//	    maxWidth: 250
-//	});
+	
+	// var infowindow = new google.maps.InfoWindow({
+	//     maxWidth: 250
+        // });
 
 	var marker = new google.maps.Marker({
 	    position: new google.maps.LatLng(cityWindowInfo[currIndex][2], cityWindowInfo[currIndex][3]),
@@ -63,12 +64,12 @@ function setMarkers(markerType, cityMarkers, cityWindowInfo, mapdata) {
 	// })(marker, currIndex));
 
 	// close infowindow when you click outside of it
-//	google.maps.event.addListener(mapdata, "click", function(event) {
+	// google.maps.event.addListener(mapdata, "click", function(event) {
 
-	    // interesting.... the infowindow appears to be a seperate DOM object since
-	    // google maps cannot detect a click on the info window itself.
-//	    infowindow.close();
-//	});
+	// interesting.... the infowindow appears to be a seperate DOM object since
+	// google maps cannot detect a click on the info window itself.
+	//     infowindow.close();
+        // });
 
 	// push markers and corresponding info window into arrays for future use
 	markers[markerType].push(marker);
@@ -76,6 +77,7 @@ function setMarkers(markerType, cityMarkers, cityWindowInfo, mapdata) {
     }
 }
 
+// read from html file
 function setInfo(currIndex) {
     var markerHtml = [];
     var strHtml = "";
