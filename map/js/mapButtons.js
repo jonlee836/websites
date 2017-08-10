@@ -1,3 +1,4 @@
+// controls map overlay
 function OverlayCtrl(ctrlDiv, mapdata) {
 
     // Set the center property upon construction

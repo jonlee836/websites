@@ -8,7 +8,7 @@ var cityWindowInfo = [
     ],
     [
 	"Grain Elevator",
-	"One of the few buildings to survive the Luftwaffe's bombing campaign. For 3 days it weathered a storm of direct hits from tanks, stukas, and artillery. On Sept 16th, 1942 the Wehrmacht launched a frontal assault against the green giant of Stalingrad.",
+	"One of the few buildings to survive the Luftwaffe's bombing campaign. For 3 days it weathered a storm of direct hits from tanks, stukas, and artillery. On Sept 16th, 1942 the Wehrmacht launched a direct attack on the green giant of Stalingrad.",
 	48.687818,
 	44.483573
     ],

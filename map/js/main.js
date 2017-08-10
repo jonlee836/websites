@@ -14,6 +14,12 @@ var markers = {
     'wehrmacht': []
 }
 
+var infowindows = {
+    'city': [],
+    'soviet': [],
+    'wehrmacht': []
+}
+
 var battlefront = []; // Overlay
 
 var endIndex = toggle.length - 1;
@@ -36,7 +42,8 @@ $(function() {
 
     // setup overlay
     var cityOverlay = new google.maps.OverlayView();
-
+    //var infowindow = new SnazzyInfoWindow();
+    
     var imgbounds = new google.maps.LatLngBounds(
 	new google.maps.LatLng(49.005447494058096, 44.894256591796875),
 	new google.maps.LatLng(48.53843177405044, 44.33807373046875)
@@ -53,24 +60,14 @@ $(function() {
     	OverlayCtrl(ctrlDiv, mapdata);
     });
 
-    // push  button divs to the top part of the map
+    // set markers
     mapdata.controls[google.maps.ControlPosition.TOP_CENTER].push(ctrlDiv);
     $.getScript("js/overlays.js", function() {
 	setMarkers('city', markers, cityWindowInfo, mapdata);
     });
-    
-    // initialize city markers
-    
-    //setCityMarkers();
-    
+
     // get lat, lng
     getclickPos();
-
-    // Show lat and lng of clicked position
-    mapdata.addListener('click', function(e){
-	var position = {lat: e.latLng.lat(), lng: e.latLng.lng()}
-	console.log(position);
-    });
 
 });
 
