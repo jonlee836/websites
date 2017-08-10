@@ -4,20 +4,20 @@
 var infoData_RUS = {
     city: [
 	[
-	    "Mamayev Kurgan",
-	    "A strategic hill that splits the city into northern and southern halves. The sheer carnage that raged on the once steep slopes of Mamayev Kurgan reduced its overall height by several feet. Nothing would grow on the hill until spring of 1944.",
+	    "Мамаев Курган",
+	    "Стратегический холм, разделяющий город на северный и южный половины. Явная резня, которая происходила на когдата крутых склонах Мамаева Кургана, уменьшила ее общую высоту на несколько футов. До весны 1944 года ничто не росло на холме.",
 	    48.742295,
 	    44.537050
 	],
 	[
-	    "Grain Elevator",
-	    "One of the few buildings to survive the Luftwaffe's bombing campaign. Attempts to destroy the building with tank fire, artillery, and stukas proved futile. On Sept 16th, 1942 the Wehrmacht launched a direct assault on the green giant of Stalingrad.",
+	    "Зерновой Лифт",
+	    "дно из немногих зданий, котороя выжило в бомбардировочной кампании Люфтваффе. Попытки разрушить здание танковым огнем, артиллерией и «Штуками» (Юнкерс Ю-87) были бесполезными. 16 сентября, 1942 года, Вермахт начал прямое нападение на зеленого гиганта Сталинграда.",
 	    48.687818,
 	    44.483573
 	],
 	[
-	    "Spartanovka",
-	    "The Wehrmacht's encirclement of Stalingrad was complete with the capture of this northern village.",
+	    "Спартановка",
+	    "Вермахтское окружение в Сталинграде завершилось захватом этой северной деревни.",
 	    48.8183777,
 	    44.6062698
 	]
@@ -25,8 +25,8 @@ var infoData_RUS = {
     
     soviet: [
 	[
-	    "Pavlov's House",
-	    "In late September 1942 a platoon of the 42nd Guards Regiment, 13th Guards Division, lead by Lieutenant Ivan F. Afanasiev captured this simple 4 story apartment building. Its defenders immediately began to put down barbed wire, trenches, and mines for the impending German counterattack. Despite its best efforts, the 6th Army could not root out the defenders nor could they destroy the building. Just 200 meters from the Volga, this humble apartment building would eventually become the only crossing point left for the Soviets.",
+	    "Дом Павлова",
+	    "В конце сентября 1942, в этот четырехэтажный жилой дом вошел взвод 42-го гвардейского полка, 13-й гвардейской дивизии под руководством лейтенанта Ивана Ф. Афанасьева. Его защитники немедленно начали сбивать колючую проволоку, траншеи, и мины для предстоящей Немецкой контратаки. Несмотря на все усилия, 6-я армия не смогла прогнать защитников и не могла разрушить здание. Всего лишь в 200 метрах от Волги, этот скромный многоквартирный дом стал единственным пропускным пунктом для Советов.",
 	    48.716093,
 	    44.531483
 	]
