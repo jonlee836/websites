@@ -39,7 +39,7 @@ function setMarkers(type, info, mapdata) {
     var imgIcon = {
 	scaledSize: new google.maps.Size(30, 30),
 	origin: new google.maps.Point(0, 0),
-	anchor: new google.maps.Point(0, 15),
+	anchor: new google.maps.Point(15, 35),
 	url: mapIcon.icon
     }
     
