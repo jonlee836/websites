@@ -4,7 +4,7 @@ function toggleGroup(type) {
 
 	// I'm assuming marker is a reference here...'
 	var marker = mapMarkers[type][i];
-	console.log(marker)
+
 	if (!marker.getVisible()) {
 	    marker.setVisible(true);
 	} else {

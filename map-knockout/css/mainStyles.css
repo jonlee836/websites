@@ -1,0 +1,112 @@
+#map {
+    float: center;
+    margin: 0 auto;
+    height: 700px;
+    width: 100%;
+}
+
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {    
+    font-family: 'Lato', sans-serif;
+    color: #676858;
+    font-weight: 10;
+}
+
+.app-title {
+    font-family: 'Special Elite', cursive;
+    float: center;
+    color: #053573;
+    font-size: 30px
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+}
+
+.button {
+    font-family: 'Special Elite', cursive;
+    font-size: 30px;
+    cursor: pointer;
+    float: left;
+    color: black;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow: hidden;
+    transition: 0.5s;
+    padding-top: 80px;
+}
+
+.nav-button {
+    width: 100%;
+    height: 15%;
+    margin-top: 5%;
+    margin-bottom: 20%;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 25px;
+    font-family: 'Special Elite', cursive;
+    color: #818181;
+    background-color: #111;
+    border: #111;
+    display: list-item;
+    transition: 0.3s;
+    outline: 0;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.text-muted {
+    color: #BCBBBB;
+}
+
+.text-thin {
+    color: #053573;
+    font-weight: 100;
+}
+
+.title-super {
+    font-size: 60px;
+}
+
+#Stalingrad_Button, #Volgagrad_Button {
+  background-color: #fff;
+  border: 2px solid #fff;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+  cursor: pointer;
+  float: left;
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+#Stalingrad_Button_Text, #Volgagrad_Button_Text {
+    color: rgb(25,25,25);
+    font-family: 'Special Elite', cursive;
+    font-size: 15px;
+    line-height: 25px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#Volgagrad_Button {
+  margin-left: 12px;
+}

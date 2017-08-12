@@ -1,0 +1,25 @@
+{
+  "name": "stalingrad",
+  "version": "1.0.0",
+  "description": "Historical WW2 locations of Stalingrad",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-uglify": "^3.0.0",
+    "ngmap": "^1.18.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonlee836/websites.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonlee836/websites/issues"
+  },
+  "homepage": "https://github.com/jonlee836/websites#readme"
+}
