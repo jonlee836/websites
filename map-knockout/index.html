@@ -5,7 +5,8 @@
     <meta name="description" content="Portfolio">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript">
     <meta name="author" content="Jon Lee">
-    <meta name="viewport" content="height=device-height, initial-scale=1">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -35,49 +36,42 @@
 
   <!-- This feels so wrong. -->
   <!-- infowindow.html -> object -> array -> replace content at matching indexes -> create marker's infowindow -->
-
   <body>
-    <div id="app" class="container">
-      <div class="row">	
-	<div class="col-md-12">
-	  <!--<div class="col-md-4" id="button">-->
-	  <div class="button" data-bind="click: openNav()">&#9776; The Eastern Front : Stalingrad</div>
-	</div>
-      </div>
+    <div class="button" data-bind="click: toggleNav">MENU</div>
 
-      <div class="row" id="map-container">
-	<!-- 4 maps of the city starting with august and ending with november. -->
-	<!-- When another month is clicked the current map hides and gets replaced by another js script. -->
-	<!-- initMap function injected with id="map" -->
+    <div id="map"></div>
 
-	<div id="map">
+    <div id="mySidenav" class="sidenav">
 
-	</div>
-      </div>
-      
-      <div id="mySidenav" class="sidenav">
-	<!-- Prevent unexpected reloads on click-->
-	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="javascript:void(0)" class="closebtn" data-bind="click: toggleNav">&times;</a>
 
-	<!-- The City Markers will be toggle on when the webpage loads. -->
-	<button class="nav-button" id="The City" style="color: #ffffff" onclick="toggleGroup('city')";>
-	  The City
-	</button>
-	<button class="nav-button" id="Red Army" onclick="toggleGroup('soviet')">
-	  Red Army
-	</button>
-	<button class="nav-button" id="Wehrmacht" onclick="toggleGroup('wehrmacht')">
-	  Wehrmacht
-	</button>
-	<button class="nav-button" id="About">
-	  About
-	</button>
-	
-	<button class="nav-button" id="Toggle Menu">
-	  Toggle Menu
+      <div data-bind="foreach: markerType">
+	<button class="nav-button" data-bind="click: $parent.navbtnToggle">
+	  <div data-bind="text: name"></div>
 	</button>
       </div>
-      
     </div>
+    
+    <!-- The City Markers will be toggle on when the webpage loads. -->
+
+
+    
+    <!-- <button class="nav-button" data-bind="click: navbtnToggle"> </button> -->
+    <!-- <button class="nav-button" id="The City" style="color: #ffffff" onclick="toggleGroup('city')";> -->
+    <!--   The City -->
+    <!-- </button> -->
+    <!-- <button class="nav-button" id="Red Army" onclick="toggleGroup('soviet')"> -->
+    <!--   Red Army -->
+    <!-- </button> -->
+    <!-- <button class="nav-button" id="Wehrmacht" onclick="toggleGroup('wehrmacht')"> -->
+    <!--   Wehrmacht -->
+    <!-- </button> -->
+    <!-- <button class="nav-button" id="About"> -->
+    <!--   About -->
+    <!-- </button> -->
+    <!-- <button class="nav-button" id="Toggle Menu"> -->
+    <!--   Toggle Menu -->
+    <!-- </button> -->
+
   </body>
 </html>

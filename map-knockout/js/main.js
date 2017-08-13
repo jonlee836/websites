@@ -25,15 +25,54 @@ var endIndex = toggle.length - 1;
 // WW2 Stalingrad map overlay that appears when you click the 'Stalingrad' button.
 var battlefront = []; // Overlay
 
-// onload initialize map data and UI elements
+// waits until DOM is fully loaded before executing
 $(function() {
+
+    var txtcolorOn  = hexToRgb("#ffffff");
+    var txtcolorOff = hexToRgb("#818181");
+
+    var onoff = ['White', 'Gray'];
+    // var onoff = [Grey, White];
+
+    var viewModel_nav = function() {
+	
+	this.markerType = ko.observableArray([
+	    { name: 'City', highlight: 0},
+	    { name: 'Red Army', highlight: 0},
+	    { name: 'Wehrmacht', highlight: 0},
+	    { name: 'About', highlight: 0},
+	    { name: 'Toggle Menu', highlight: 0}
+	]);
+	
+	this.toggleNav = function() {
+	    var navDom = document.getElementById("mySidenav");
+	    var currWidth = navDom.style.width;
+
+	    if(currWidth == navWidth){
+		navDom.style.width = 0;
+	    }
+	    else{
+		navDom.style.width = navWidth;
+	    }
+	};
+
+	this.navbtnToggle = function(data, index){
+	    if(this.toggleColor('Gray')){
+		this.toggleColor('White');
+	    }
+	    else{
+		this.toggleColor('Gray');
+	    }
+	};
+    };
+    ko.applyBindings(new viewModel_nav());
 
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	styles: mapStyle,	
 	center: defaultPos,
 	zoom: 12,
 	gestureHandling: 'gestures',
-	disableDefaultUI: false
+	disableDefaultUI: true
     });
     
     google.maps.event.addDomListener(window, 'load');
@@ -78,22 +117,6 @@ $(function() {
     getclickPos();
 });
 
-// open navigation on nav button click
-function openNav() {
-    // if it is open close it, the window.onclick stuff is so it doesn't close when you click inside the navbar
-    if(document.getElementById("mySidenav").style.width == navWidth){
-	closeNav();
-    }
-    // if it's not open, open it
-    else{
-	document.getElementById("mySidenav").style.width = navWidth;
-    }
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0px";
-}
-
 // recenter map to clicked location
 function getclickPos() {
     google.maps.event.addListener(mapdata, 'click', function(event) {
@@ -132,21 +155,6 @@ function toggleClick(e){
 	toggle[endIndex] = !toggle[endIndex];
 	break;
     }
-
-    var cc = document.getElementById(strId).style.color;
-    if (cc != colorOn){
-	document.getElementById(strId).style.color = colorOn;
-	console.log("Highlighting ON");
-    }
-    else {
-	document.getElementById(strId).style.color = colorOff;
-	console.log("Highlighting OFF");
-    }
-}
-
-// get the type of Obj
-var toType = function(obj) {
-  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
 }
 
 // hex color  converter
@@ -163,11 +171,15 @@ function hexToRgb(hex, alpha) {
     }
 }
 
+// get the type of Obj
+var toType = function(obj) {
+    return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+}
+
 // only capitalize the first letter of each word.
 function toTitleCase(str){
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
-
 
 // get the text of the button
 function getButtonStr (e) {
@@ -181,27 +193,4 @@ function getButtonStr (e) {
     }
 
     return str;
-}
-
-// There has got to be a better way...
-window.onclick = function(event) {    
-    // if toggleCondition is true don't hide navbar when you click outside it
-    if (event.target.matches("button.nav-button") ||
-	event.target.matches("p")
-       ){
-	toggleClick(event);
-    }
-    else if (toggle[endIndex]){
-	
-	// check if click is outside the nav bar
-	if(!event.target.matches(".button") &&
-	   !event.target.matches(".sidenav") &&
-	   !event.target.matches("p") &&
-	   !event.target.matches(".toggle-button-sidenav") &&
-	   !event.target.matches(".nav-button") &&
-	   document.getElementById("mySidenav").style.width === navWidth
-	  ){
-	    closeNav();
-	}
-    }
 }
