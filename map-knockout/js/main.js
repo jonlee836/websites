@@ -41,6 +41,7 @@ $(function() {
     var viewModel_nav = function() {
 	
 	//this.selectedColor = ko.observable(onoff[0]);
+	this.onoff = ['rgb(129,129,129)', 'rgb(255,255,255)'];
 	
 	this.markerType = ko.observableArray([
 	    { name: 'City',        active: ko.observable(0)},
@@ -62,9 +63,9 @@ $(function() {
 	    }
 	};
 
-	this.navbtnToggle = function(markerType){
-	    //markerType.active((markerType.active() + 1) % 2);
-	    markerType.active(!markerType.active());
+	this.navbtnToggle = function(index, data){
+	    console.log(index,data);
+	    data.active(1-data.active());
 	};
     };
     ko.applyBindings(new viewModel_nav());
