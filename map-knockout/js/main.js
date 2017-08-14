@@ -43,12 +43,11 @@ $(function() {
 	//this.selectedColor = ko.observable(onoff[0]);
 	
 	this.markerType = ko.observableArray([
-	    { name: 'City',        active: ko.observable(hlOff)},
-	    { name: 'Red Army',    active: ko.observable(hlOff)},
-	    { name: 'Wehrmacht',   active: ko.observable(hlOff)},
-	    { name: 'About',       active: ko.observable(hlOff)},
-	    { name: 'Toggle Menu', active: ko.observable(hlOff)},
-	    { hltxt: ['rgb(129,129,129)', 'rgb(255,255,255)'];}
+	    { name: 'City',        active: ko.observable(0)},
+	    { name: 'Red Army',    active: ko.observable(0)},
+	    { name: 'Wehrmacht',   active: ko.observable(0)},
+	    { name: 'About',       active: ko.observable(0)},
+	    { name: 'Toggle Menu', active: ko.observable(0)}
 	]);
 
 	this.toggleNav = function() {
@@ -64,20 +63,8 @@ $(function() {
 	};
 
 	this.navbtnToggle = function(markerType){
-	    // this.remainder((this.remainder() + 1) % 2);
-	    // this.selectedColor(onoff[this.remainder()]);
-	    // markerType.active((markerType.active() + 1) % 2);
-
-
-	    console.log("before click", markerType);
-	    if (markerType.active == hlOff){
-		console.log("changing state", markerType);
-		markerType.active(hlOn);
-	    }
-	    else{
-		markerType.active(hlOff);
-	    }
-	    console.log("after click", markerType);
+	    //markerType.active((markerType.active() + 1) % 2);
+	    markerType.active(!markerType.active());
 	};
     };
     ko.applyBindings(new viewModel_nav());

@@ -73,6 +73,15 @@ body {
     transition: 0.3s;
     outline: 0;
 }
+
+.hltxtON {
+    color: #ffffff;
+}
+
+.hltxtOFF {
+    color: #818181;
+}
+
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}

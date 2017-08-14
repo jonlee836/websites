@@ -56,7 +56,7 @@
       <!-- data-bind="click: $parent.navbtnToggle.bind($parent, $data, $index())"-->
       <div data-bind="foreach: markerType">	
 	<button class="nav-button" data-bind="click: $parent.navbtnToggle">
-	  <div data-bind="style:{color: active()}, text: name"></div>
+	  <div data-bind="css: { hltxtON: active() == true, hltxtOFF: active() == false}, text: name"></div>
 	</button>
       </div>
     </div>
