@@ -37,13 +37,13 @@ $(function() {
     var viewModel_nav = function() {
 	
 	//this.selectedColor = ko.observable(onoff[0]);
-
+	
 	this.markerType = ko.observableArray([
-	    { name: 'City', status: 'rgb(129,129,129)'},
-	    { name: 'Red Army', status: 'rgb(129,129,129)'},
-	    { name: 'Wehrmacht', status: 'rgb(129,129,129)'},
-	    { name: 'About', status: 'rgb(129,129,129)'},
-	    { name: 'Toggle Menu', status: 'rgb(129,129,129)'}
+	    { name: 'City',        active: ko.observable(false)},
+	    { name: 'Red Army',    active: ko.observable(false)},
+	    { name: 'Wehrmacht',   active: ko.observable(false)},
+	    { name: 'About',       active: ko.observable(false)},
+	    { name: 'Toggle Menu', active: ko.observable(false)}
 	]);
 
 	this.toggleNav = function() {
@@ -58,13 +58,11 @@ $(function() {
 	    }
 	};
 
-	this.navbtnToggle = function(data, index){
+	this.navbtnToggle = function(markerType){
 	    // this.remainder((this.remainder() + 1) % 2);
 	    // this.selectedColor(onoff[this.remainder()]);
-	    data['status'] = (data['status'] + 1) % 2;
-	    var foo = String(data);
-	    console.log(index, foo);
-
+	    markerType.active(!markerType.active());
+	    console.log(markerType.active());
 	};
 
 

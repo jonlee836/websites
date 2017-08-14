@@ -43,19 +43,21 @@
 
     <div id="mySidenav" class="sidenav">
 
-      <!-- the X button -->
+      <!-- the X button -->      
       <a href="javascript:void(0)" class="closebtn" data-bind="click: toggleNav">&times;</a>
-      <div data-bind="foreach: markerType">
 
-	<!-- The first argument to `.bind()` will be the value of `this` when the function is evaluated, the second argument -->
-	<!-- to bind will be the first to the function, third to bind second to function etc. ko style is to refer to the -->
-	<!-- current element's data by `this`. -->
-	<!-- $parent and $data are the same thing?-->
-	
-	<!-- data-bind="click: $parent.navbtnToggle.bind($parent, $data, $index())"-->
 
-	<button class="nav-button" data-bind="click: $parent.navbtnToggle.bind($parent, $data, $index())">
-	  <div data-bind="style:{color:$parent.selectedColor}, text: name"></div>
+      
+      <!-- The first argument to `.bind()` will be the value of `this` when the function is evaluated, the second argument -->
+      <!-- to bind will be the first to the function, third to bind second to function etc. ko style is to refer to the -->
+      <!-- current element's data by `this`. -->
+      <!-- $parent and $data are the same thing?-->
+      
+      <!-- data-bind="click: $parent.navbtnToggle.bind($parent, $data, $index())"-->
+      <div data-bind="foreach: markerType">	
+	<button class="nav-button" data-bind="click: $parent.navbtnToggle">
+
+	  <div data-bind="style:{color: active()}, text: name"></div>
 	</button>
       </div>
     </div>
