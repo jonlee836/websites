@@ -32,6 +32,10 @@ $(function() {
     var txtcolorOff = hexToRgb("#818181");
 
     var onoff = ['rgb(129,129,129)', 'rgb(255,255,255)'];
+
+    var hlOn = 'rgb(255,255,255)';
+    var hlOff = 'rgb(129,129,129)';
+
     // var onoff = [Grey, White];
 
     var viewModel_nav = function() {
@@ -39,11 +43,12 @@ $(function() {
 	//this.selectedColor = ko.observable(onoff[0]);
 	
 	this.markerType = ko.observableArray([
-	    { name: 'City',        active: ko.observable(false)},
-	    { name: 'Red Army',    active: ko.observable(false)},
-	    { name: 'Wehrmacht',   active: ko.observable(false)},
-	    { name: 'About',       active: ko.observable(false)},
-	    { name: 'Toggle Menu', active: ko.observable(false)}
+	    { name: 'City',        active: ko.observable(hlOff)},
+	    { name: 'Red Army',    active: ko.observable(hlOff)},
+	    { name: 'Wehrmacht',   active: ko.observable(hlOff)},
+	    { name: 'About',       active: ko.observable(hlOff)},
+	    { name: 'Toggle Menu', active: ko.observable(hlOff)},
+	    { hltxt: ['rgb(129,129,129)', 'rgb(255,255,255)'];}
 	]);
 
 	this.toggleNav = function() {
@@ -61,11 +66,19 @@ $(function() {
 	this.navbtnToggle = function(markerType){
 	    // this.remainder((this.remainder() + 1) % 2);
 	    // this.selectedColor(onoff[this.remainder()]);
-	    markerType.active(!markerType.active());
-	    console.log(markerType.active());
+	    // markerType.active((markerType.active() + 1) % 2);
+
+
+	    console.log("before click", markerType);
+	    if (markerType.active == hlOff){
+		console.log("changing state", markerType);
+		markerType.active(hlOn);
+	    }
+	    else{
+		markerType.active(hlOff);
+	    }
+	    console.log("after click", markerType);
 	};
-
-
     };
     ko.applyBindings(new viewModel_nav());
 
