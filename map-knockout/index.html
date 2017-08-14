@@ -46,8 +46,8 @@
       <a href="javascript:void(0)" class="closebtn" data-bind="click: toggleNav">&times;</a>
 
       <div data-bind="foreach: markerType">
-	<button class="nav-button" data-bind="click: $parent.navbtnToggle">
-	  <div data-bind="text: name"></div>
+	<button class="nav-button" data-bind="click: $parent.navbtnToggle.bind($data, $index())">
+	  <div data-bind="style:{color:$parent.selectedColor}, text: name"></div>
 	</button>
       </div>
     </div>

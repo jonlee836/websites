@@ -31,17 +31,20 @@ $(function() {
     var txtcolorOn  = hexToRgb("#ffffff");
     var txtcolorOff = hexToRgb("#818181");
 
-    var onoff = ['White', 'Gray'];
+    var onoff = ['rgb(255,255,255)', 'rgb(129,129,129)'];
     // var onoff = [Grey, White];
 
     var viewModel_nav = function() {
-	
+
+	this.remainder = ko.observable(0);
+	this.selectedColor = ko.observable(onoff[1]);
+
 	this.markerType = ko.observableArray([
-	    { name: 'City', highlight: 0},
-	    { name: 'Red Army', highlight: 0},
-	    { name: 'Wehrmacht', highlight: 0},
-	    { name: 'About', highlight: 0},
-	    { name: 'Toggle Menu', highlight: 0}
+	    { name: 'City'},
+	    { name: 'Red Army'},
+	    { name: 'Wehrmacht'},
+	    { name: 'About'},
+	    { name: 'Toggle Menu'}
 	]);
 	
 	this.toggleNav = function() {
@@ -57,12 +60,10 @@ $(function() {
 	};
 
 	this.navbtnToggle = function(data, index){
-	    if(this.toggleColor('Gray')){
-		this.toggleColor('White');
-	    }
-	    else{
-		this.toggleColor('Gray');
-	    }
+
+	    // How to toggle the text on and off?
+	    
+	    console.log(data, index);
 	};
     };
     ko.applyBindings(new viewModel_nav());
