@@ -30,7 +30,6 @@ $(function() {
 
     var viewModel_nav = function() {
 	
-	//this.selectedColor = ko.observable(onoff[0]);
 	this.onoff = ['rgb(129,129,129)', 'rgb(255,255,255)'];
 	
 	this.markerType = ko.observableArray([
