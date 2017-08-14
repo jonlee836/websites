@@ -28,16 +28,6 @@ var battlefront = []; // Overlay
 // waits until DOM is fully loaded before executing
 $(function() {
 
-    var txtcolorOn  = hexToRgb("#ffffff");
-    var txtcolorOff = hexToRgb("#818181");
-
-    var onoff = ['rgb(129,129,129)', 'rgb(255,255,255)'];
-
-    var hlOn = 'rgb(255,255,255)';
-    var hlOff = 'rgb(129,129,129)';
-
-    // var onoff = [Grey, White];
-
     var viewModel_nav = function() {
 	
 	//this.selectedColor = ko.observable(onoff[0]);
