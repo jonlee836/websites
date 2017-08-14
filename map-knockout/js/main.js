@@ -37,14 +37,17 @@ $(function() {
     var viewModel_nav = function() {
 
 	this.remainder = ko.observable(0);
-	this.selectedColor = ko.observable(onoff[1]);
+	this.selectedColor = ko.observable(onoff[0]);
+	
+	//this.remainder = ko.observable(0);
+	//this.selectedColor = ko.observable(onoff[0]);
 
 	this.markerType = ko.observableArray([
-	    { name: 'City'},
-	    { name: 'Red Army'},
-	    { name: 'Wehrmacht'},
-	    { name: 'About'},
-	    { name: 'Toggle Menu'}
+	    { name: 'City', status: 0},
+	    { name: 'Red Army', status: 0},
+	    { name: 'Wehrmacht', status: 0},
+	    { name: 'About', status: 0},
+	    { name: 'Toggle Menu', status: 0}
 	]);
 	
 	this.toggleNav = function() {
@@ -60,10 +63,10 @@ $(function() {
 	};
 
 	this.navbtnToggle = function(data, index){
+	    this.remainder((this.remainder() + 1) % 2);
+	    this.selectedColor(onoff[this.remainder()]);
 
-	    // How to toggle the text on and off?
-	    
-	    console.log(data, index);
+	    console.log(index, data);
 	};
     };
     ko.applyBindings(new viewModel_nav());
