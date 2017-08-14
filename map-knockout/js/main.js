@@ -31,25 +31,21 @@ $(function() {
     var txtcolorOn  = hexToRgb("#ffffff");
     var txtcolorOff = hexToRgb("#818181");
 
-    var onoff = ['rgb(255,255,255)', 'rgb(129,129,129)'];
+    var onoff = ['rgb(129,129,129)', 'rgb(255,255,255)'];
     // var onoff = [Grey, White];
 
     var viewModel_nav = function() {
-
-	this.remainder = ko.observable(0);
-	this.selectedColor = ko.observable(onoff[0]);
 	
-	//this.remainder = ko.observable(0);
 	//this.selectedColor = ko.observable(onoff[0]);
 
 	this.markerType = ko.observableArray([
-	    { name: 'City', status: 0},
-	    { name: 'Red Army', status: 0},
-	    { name: 'Wehrmacht', status: 0},
-	    { name: 'About', status: 0},
-	    { name: 'Toggle Menu', status: 0}
+	    { name: 'City', status: 'rgb(129,129,129)'},
+	    { name: 'Red Army', status: 'rgb(129,129,129)'},
+	    { name: 'Wehrmacht', status: 'rgb(129,129,129)'},
+	    { name: 'About', status: 'rgb(129,129,129)'},
+	    { name: 'Toggle Menu', status: 'rgb(129,129,129)'}
 	]);
-	
+
 	this.toggleNav = function() {
 	    var navDom = document.getElementById("mySidenav");
 	    var currWidth = navDom.style.width;
@@ -63,11 +59,15 @@ $(function() {
 	};
 
 	this.navbtnToggle = function(data, index){
-	    this.remainder((this.remainder() + 1) % 2);
-	    this.selectedColor(onoff[this.remainder()]);
+	    // this.remainder((this.remainder() + 1) % 2);
+	    // this.selectedColor(onoff[this.remainder()]);
+	    data['status'] = (data['status'] + 1) % 2;
+	    var foo = String(data);
+	    console.log(index, foo);
 
-	    console.log(index, data);
 	};
+
+
     };
     ko.applyBindings(new viewModel_nav());
 
