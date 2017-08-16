@@ -25,39 +25,40 @@ var endIndex = toggle.length - 1;
 // WW2 Stalingrad map overlay that appears when you click the 'Stalingrad' button.
 var battlefront = []; // Overlay
 
+var viewModel = function() {
+    
+    this.onoff = ['rgb(129,129,129)', 'rgb(255,255,255)'];
+    
+    this.markerType = ko.observableArray([
+	{ name: 'City',        active: ko.observable(0), type: 'city'},
+	{ name: 'Red Army',    active: ko.observable(0), type: 'soviet'},
+	{ name: 'Wehrmacht',   active: ko.observable(0), type: 'wehrmacht'},
+	{ name: 'About',       active: ko.observable(0)},
+	{ name: 'Toggle Menu', active: ko.observable(0)}
+    ]);
+
+    this.toggleNav = function() {
+	var navDom = document.getElementById("mySidenav");
+	var currWidth = navDom.style.width;
+
+	if(currWidth == navWidth){
+	    navDom.style.width = 0;
+	}
+	else{
+	    navDom.style.width = navWidth;
+	}
+    };
+
+    this.navbtnToggle = function(index, data){
+	var type = data['type'];
+	console.log(type);
+	toggleGroup(type);
+	data.active(1-data.active());
+    };
+};
+
 // waits until DOM is fully loaded before executing
 $(function() {
-
-    var viewModel_nav = function() {
-	
-	this.onoff = ['rgb(129,129,129)', 'rgb(255,255,255)'];
-	
-	this.markerType = ko.observableArray([
-	    { name: 'City',        active: ko.observable(0)},
-	    { name: 'Red Army',    active: ko.observable(0)},
-	    { name: 'Wehrmacht',   active: ko.observable(0)},
-	    { name: 'About',       active: ko.observable(0)},
-	    { name: 'Toggle Menu', active: ko.observable(0)}
-	]);
-
-	this.toggleNav = function() {
-	    var navDom = document.getElementById("mySidenav");
-	    var currWidth = navDom.style.width;
-
-	    if(currWidth == navWidth){
-		navDom.style.width = 0;
-	    }
-	    else{
-		navDom.style.width = navWidth;
-	    }
-	};
-
-	this.navbtnToggle = function(index, data){
-	    console.log(index,data);
-	    data.active(1-data.active());
-	};
-    };
-    ko.applyBindings(new viewModel_nav());
 
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	styles: mapStyle,	
@@ -107,6 +108,8 @@ $(function() {
 
     // get lat, lng
     getclickPos();
+
+    ko.applyBindings(new viewModel());
 });
 
 // recenter map to clicked location

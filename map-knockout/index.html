@@ -15,13 +15,13 @@
     <link href="http://fonts.googleapis.com/css?family=Lato:100,300" rel="stylesheet" type="text/css">		
     <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">    
 
+    
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsi39sTkfejYHtOuj0AMCVSET6VxH_qBI"></script>
 
     <script type="text/javascript" src="js/knockout-min.js"></script>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 
     <script src="js/snazzy-info-window.min.js"></script>
-
     <script src="js/info_ENG.js"></script>
     <script src="js/info_RUS.js"></script>
     
@@ -30,8 +30,6 @@
     <script src="js/citydata.js"></script>
     <script src="js/main.js"></script>
 
-    <!-- Documentation for snazzy api -->
-    <!-- https://github.com/atmist/snazzy-info-window -->
   </head>
 
   <!-- This feels so wrong. -->
@@ -46,12 +44,13 @@
       <!-- X button (close Sidenav) -->      
       <a href="javascript:void(0)" class="closebtn" data-bind="click: toggleNav">&times;</a>
 
-      <!--  Sidenav buttons -->
+      <!--  Create array of Sidenav buttons -->
       <div data-bind="foreach: markerType">	
 	<button class="nav-button" data-bind="click: $parent.navbtnToggle.bind($parent, $index(), $data)">
 	  <div data-bind="style: {color: $parent.onoff[active()]}, text: name"></div>
 	</button>
       </div>
+      
     </div>
     
     <!-- The City Markers will be toggle on when the webpage loads. -->
