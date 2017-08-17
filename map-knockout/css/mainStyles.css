@@ -32,7 +32,7 @@
     cursor: pointer;
 }
 
-.container .buttonDisplayOverlays {
+.container .btnMap {
     padding-left: 25px;
     display: inline-block;
     font-family: 'Special Elite', cursive;
@@ -43,7 +43,7 @@
     cursor: pointer;
 }
 
-.buttonDisplayOverlays p {
+.btnMap p {
     color: rgb(14, 40, 77);
 }
 

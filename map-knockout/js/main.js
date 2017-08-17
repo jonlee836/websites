@@ -20,9 +20,14 @@ var mapWindows = {
 }
 
 var viewModel = function() {
-    
+
     this.onoff = ['rgb(129,129,129)', 'rgb(255,255,255)'];
 
+    this.mapType = ko.observableArray([
+	{city: 'Stalingrad', active: ko.observable(1)},
+	{city: 'Volgagrad', active: ko.observable(0)}
+    ]);
+    
     this.markerType = ko.observableArray([
 	{ name: 'City',        active: ko.observable(1), type: 'city'},
 	{ name: 'Red Army',    active: ko.observable(0), type: 'soviet'},
@@ -31,6 +36,11 @@ var viewModel = function() {
 	{ name: 'Toggle Menu', active: ko.observable(0), type: 'toggle'} 
     ]);
 
+    this.toggleMap = function() {
+	
+    };
+    
+    // show/hide navigation bar
     this.toggleNav = function() {
 	var navDom = document.getElementById("mySidenav");
 	var currWidth = navDom.style.width;
@@ -43,15 +53,13 @@ var viewModel = function() {
 	}
     };
 
+    // show/hide map marker layer
     this.navbtnToggle = function(index, data){
 	var type = data['type'];
 
 	toggleGroup(type);            // toggle marker layer
 	data.active(1-data.active()); // toggle button highglight
     };
-
-    this.displayStalingrad = ko.observable(false);
-    this.displayVolgagrad = ko.observable(false);
 
     $('body').click(function(e) {
 	console.log("array ", e.originalEvent.path);
