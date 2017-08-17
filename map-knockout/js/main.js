@@ -19,22 +19,16 @@ var mapWindows = {
     wehrmacht: []
 }
 
-var toggle = [false, false, false, false, true];
-var endIndex = toggle.length - 1;
-
-// WW2 Stalingrad map overlay that appears when you click the 'Stalingrad' button.
-var battlefront = []; // Overlay
-
 var viewModel = function() {
     
     this.onoff = ['rgb(129,129,129)', 'rgb(255,255,255)'];
-    
+
     this.markerType = ko.observableArray([
-	{ name: 'City',        active: ko.observable(0), type: 'city'},
+	{ name: 'City',        active: ko.observable(1), type: 'city'},
 	{ name: 'Red Army',    active: ko.observable(0), type: 'soviet'},
 	{ name: 'Wehrmacht',   active: ko.observable(0), type: 'wehrmacht'},
-	{ name: 'About',       active: ko.observable(0)},
-	{ name: 'Toggle Menu', active: ko.observable(0)}
+	{ name: 'About',       active: ko.observable(0), type: 'about'},
+	{ name: 'Toggle Menu', active: ko.observable(0), type: 'toggle'} 
     ]);
 
     this.toggleNav = function() {
@@ -51,15 +45,30 @@ var viewModel = function() {
 
     this.navbtnToggle = function(index, data){
 	var type = data['type'];
-	console.log(type);
-	toggleGroup(type);
-	data.active(1-data.active());
+
+	toggleGroup(type);            // toggle marker layer
+	data.active(1-data.active()); // toggle button highglight
     };
+
+    this.displayStalingrad = ko.observable(false);
+    this.displayVolgagrad = ko.observable(false);
+
+    $('body').click(function(e) {
+	console.log("array ", e.originalEvent.path);
+	
+	if(e.target.parentElement.id != 'mySidenav'&&
+	   e.target.id != 'mySidenav'
+	  ){
+	    console.log(e.originalEvent.path[0]);
+	    console.log(e.originalEvent.path[1]);
+	    console.log(e.originalEvent.path[2]);
+	}
+    });  
 };
 
 // waits until DOM is fully loaded before executing
 $(function() {
-
+    
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	styles: mapStyle,	
 	center: defaultPos,
@@ -89,7 +98,7 @@ $(function() {
     $.getScript("js/mapButtons.js", function() {
     	OverlayCtrl(ctrlDiv, mapdata);
     });
-    mapdata.controls[google.maps.ControlPosition.TOP_LEFT].push(ctrlDiv);
+    mapdata.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(ctrlDiv);
 
     // need region detection to determine whether or not to load it in english or russian
     // local variables makes code more readable vs accessing global variables
@@ -98,12 +107,13 @@ $(function() {
     // Does JS not care about an incorrect number of arguments being passed into a function??!?!?
     var cityInfo = infoData['city'];
     var sovietInfo = infoData['soviet'];
-    var wehrmachtData = infoData['wehrmacht'];
-    
+    var wehrmachtInfo = infoData['wehrmacht'];
+
     // set mapMarkers
     $.getScript("js/overlays.js", function() {
 	setMarkers('city', cityInfo, mapdata);
 	setMarkers('soviet', sovietInfo, mapdata);
+	setMarkers('wehrmacht', wehrmachtInfo, mapdata);
     });
 
     // get lat, lng
@@ -121,71 +131,4 @@ function getclickPos() {
 	//	mapdata.panTo(new google.maps.LatLng(lat, lng));
 	//	mapdata.setCenter(new google.maps.LatLng(lat, lng));
     });
-}
-
-// toggle button click
-function toggleClick(e){
-
-    var str = getButtonStr(e);
-    var strId = toTitleCase(str);
-    
-    var colorOn  = hexToRgb("#ffffff");
-    var colorOff = hexToRgb("#818181");
-
-    switch(str.toUpperCase()){
-	
-    case "The City".toUpperCase():
-	toggle[0] = !toggle[0];
-	break;
-    case "Red Army".toUpperCase():
-	toggle[1] = !toggle[1];
-	break;
-    case "Wehrmacht".toUpperCase():
-	toggle[2] = !toggle[2];
-	break;
-    case "About".toUpperCase():
-	toggle[3] = !toggle[3];
-	break;
-    case "Toggle Menu".toUpperCase():
-	toggle[endIndex] = !toggle[endIndex];
-	break;
-    }
-}
-
-// hex color  converter
-function hexToRgb(hex, alpha) {
-    hex   = hex.replace('#', '');
-    var r = parseInt(hex.length == 3 ? hex.slice(0, 1).repeat(2) : hex.slice(0, 2), 16);
-    var g = parseInt(hex.length == 3 ? hex.slice(1, 2).repeat(2) : hex.slice(2, 4), 16);
-    var b = parseInt(hex.length == 3 ? hex.slice(2, 3).repeat(2) : hex.slice(4, 6), 16);
-    if ( alpha ) {
-	return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
-    }
-    else {
-	return 'rgb(' + r + ', ' + g + ', ' + b + ')';
-    }
-}
-
-// get the type of Obj
-var toType = function(obj) {
-    return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
-}
-
-// only capitalize the first letter of each word.
-function toTitleCase(str){
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-}
-
-// get the text of the button
-function getButtonStr (e) {
-    var str = "";
-
-    if (e.target.matches("nav-button")){
-	str = e.target.firstElementChild.innerHTML;
-    }
-    else{
-	str = e.target.innerText;
-    }
-
-    return str;
 }

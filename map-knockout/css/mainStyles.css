@@ -1,14 +1,6 @@
-
 @media screen and (max-height: 800px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
-}
-
-#map {
-    float: center;
-    margin: 0 auto;
-    height: 100%;
-    width: 100%;
 }
 
 *{
@@ -18,14 +10,61 @@
     box-sizing: border-box;
 }
 
-container {
+#top-menu {
+    background-color: rgba(176, 176, 176, 0.24);
+    border-bottom: 4px solid ##051a4d;
+    height: 30px;
+    width: 525px;
+    position: absolute;
+    z-index: 5;
+}
+
+.container .buttonMenu {
+    padding-left: 25px;
+    padding-right: 50px;
+    display: inline-block;
+    font-family: 'Special Elite', cursive;
+    font-size: 25px;
+    background-color: rgba(0, 0, 0, 0);
+    font-color:black;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.container .buttonDisplayOverlays {
+    padding-left: 25px;
+    display: inline-block;
+    font-family: 'Special Elite', cursive;
+    font-size: 25px;
+    background-color: rgba(0, 0, 0, 0);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.buttonDisplayOverlays p {
+    color: rgb(14, 40, 77);
+}
+
+#mySidenav {
+    z-index: 6;
+}
+
+#map {
+    overflow: hidden;
+    float: center;
+    margin: 0 auto;
+    height: 100%;
     width: 100%;
 }
 
-body {    
+body {
+    position: relative;
     font-family: 'Lato', sans-serif;
     color: #676858;
     font-weight: 10;
+    overflow: hidden;
 }
 
 .app-title {
@@ -42,25 +81,17 @@ body {
     font-size: 36px;
 }
 
-.button {
-    font-family: 'Special Elite', cursive;
-    font-size: 30px;
-    cursor: pointer;
-    float: left;
-    color: black;
-}
-
 .sidenav {
+    padding-top: 35px;
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 6;
     top: 0;
     left: 0;
     background-color: #111;
     overflow: hidden;
     transition: 0.5s;
-    padding-top: 80px;
 }
 
 .nav-button {

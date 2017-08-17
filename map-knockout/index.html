@@ -15,7 +15,6 @@
     <link href="http://fonts.googleapis.com/css?family=Lato:100,300" rel="stylesheet" type="text/css">		
     <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">    
 
-    
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsi39sTkfejYHtOuj0AMCVSET6VxH_qBI"></script>
 
     <script type="text/javascript" src="js/knockout-min.js"></script>
@@ -35,12 +34,26 @@
   <!-- This feels so wrong. -->
   <!-- infowindow.html -> object -> array -> replace content at matching indexes -> create marker's infowindow -->
   <body>
-    <div class="button" data-bind="click: toggleNav">MENU</div>
 
-    <div id="map"></div>
+    <div id="top-menu" >
+      <div class="container">
+	<div class="buttonMenu" data-bind="click: toggleNav">
+	  &#9776;MENU
+	</div>
 
+	<div data-bind="click: toggleOverlay">
+	  <div class="buttonDisplayOverlays" data-bind="click: displayStalingrad">
+	    <p>STALINGRAD</p>
+	  </div>
+	  <div class="buttonDisplayOverlays" data-bind="click: displayVolgagrad">
+	    <p>VOLGAGRAD</p>
+	  </div>
+	</div>
+	
+      </div>
+    </div>
+    <div id="map"></div>    
     <div id="mySidenav" class="sidenav">
-
       <!-- X button (close Sidenav) -->      
       <a href="javascript:void(0)" class="closebtn" data-bind="click: toggleNav">&times;</a>
 
@@ -50,7 +63,6 @@
 	  <div data-bind="style: {color: $parent.onoff[active()]}, text: name"></div>
 	</button>
       </div>
-      
     </div>
     
     <!-- The City Markers will be toggle on when the webpage loads. -->

@@ -1,16 +1,18 @@
 // Control ground overlays and marker overlays
 function toggleGroup(type) {
-    for (var i = 0; i < mapMarkers[type].length; i++) {
+    if (type != 'about' && type != 'toggle'){
+	for (var i = 0; i < mapMarkers[type].length; i++) {
 
-	// I'm assuming marker is a reference here...'
-	var marker = mapMarkers[type][i];
+	    // I'm assuming marker is a reference here...'
+	    var marker = mapMarkers[type][i];
 
-	if (!marker.getVisible()) {
-	    marker.setVisible(true);
-	} else {
-	    marker.setVisible(false);
+	    if (!marker.getVisible()) {
+		marker.setVisible(true);
+	    } else {
+		marker.setVisible(false);
+	    }
+	    mapWindows[type][i].close();
 	}
-	mapWindows[type][i].close();
     }
 }
 
@@ -70,29 +72,8 @@ function setMarkers(type, info, mapdata) {
 	}
 	
 	// push markers and corresponding info window into arrays for future use
-
 	mapMarkers[type].push(marker);
 	mapWindows[type].push(infowindow);
-	
-	// having htmlStr outside of google maps.event and settings the content inside
-	// "var infowindow using content: htmlStr"
-	// sets the marker info as cityWindowInfo[lastIndex] for all of them, why is this?
-
-	// google.maps.event.addListener(marker, 'click', (function(marker, currIndex) {
-	//     return function() {
-	// 	var htmlStr = setInfo(currIndex);
-	// 	infowindow.setContent(htmlStr);
-	// 	infowindow.open(map, marker);
-	//     }
-	// })(marker, currIndex));
-
-	// close infowindow when you click outside of it
-	// google.maps.event.addListener(mapdata, "click", function(event) {
-
-	// interesting.... the infowindow appears to be a seperate DOM object since
-	// google maps cannot detect a click on the info window itself.
-	//     infowindow.close();
-        // });
     }
 }
 
