@@ -1,7 +1,7 @@
 var mapdata, cityOverlay;
 
 var togglebtn = false;
-var navWidth="200px";
+var navWidth = "200px";
 var defaultPos = {
     lat: 48.75686777983242,
     lng: 44.52157974243164
@@ -25,23 +25,7 @@ ko.bindingHandlers.clickOutside = {
 
 	var fn = ko.utils.unwrapObservable(valueAccessor());
 
-	var navDom = document.getElementById("mySidenav");
-	var currWidth = document.getElementById("mySidenav").offsetWidth;
-	var toggleStatus = viewModel.markerType()[4].active();
-
 	$('html').on('click', function(e) {
-	    console.log("LOG*******");
-	    
-	    console.log("e", e);
-	    console.log("element", element);
-	    console.log("e.target", e.target);
-
-	    // console.log("this.markerType", a);
-	    console.log("navDom", navDom);
-	    console.log("navDom.offsetWidth", navDom.offsetWidth);
-	    console.log("toggle status", viewModel.markerType()[4].active());
-	    console.log("currWidth", document.getElementById("mySidenav").style.width);
-
 	    if (!($.contains(element, e.target) || element === e.target) &&
 		!($.contains(e.target, "closeButton"))) {
 		fn();
@@ -85,48 +69,21 @@ var viewModel = function() {
 	document.getElementById("mySidenav").style.width = navWidth;
     }
     this.closeNav = function(){
-	document.getElementById("mySidenav").style.width = "0px";
+	document.getElementById("mySidenav").style.width = 0;
     }
     
     // outside click detection
     this.clickOutside = function(data) {
-	console.log("DATA", data);
+
 	var toggleIndex = this.markerType().length - 1;
 	var toggleStatus = this.markerType()[toggleIndex].active();
-	
-	var navDom = document.getElementById("mySidenav");
+
 	var curroffsetWidth = document.getElementById("mySidenav").offsetWidth;
 	var currWidth = document.getElementById("mySidenav").style.width;
 
-
-	console.log("currWidth", currWidth, "curroffsetWidth", curroffsetWidth, "navWidth", navWidth);
-	console.log("navDom.offsetWidth", navDom.offsetWidth);
-
-	// backup
-	//if (toggleStatus == 0 && curroffsetWidth != 0){
-	//document.getElementById("mySidenav").style.width = "0px";
 	if (toggleStatus == 0 && curroffsetWidth != 0){
-	    document.getElementById("mySidenav").style.width = "0px";
-	    console.log("      CLOSE NAVBAR - STATUS : ", toggleStatus,  " curroffsetWidth : ", curroffsetWidth, "currWidth : ", currWidth, " navWidth : ", navWidth);
+	    document.getElementById("mySidenav").style.width = 0;
 	}
-	console.log("END********");
-	//console.log("this.markerType", a);
-	//console.log("navDom", navDom);
-	//console.log("currWidth", currWidth);
-
-	// if click detected outside mySidenav
-	// if toggle is 0 and mySidenav is open, close it
-	
-	// if (a == 0 && currWidth == navWidth){
-	//     navDom.style.width = "0px";
-	// }
-
-	// How to access markerType[1] and see if active is 0 or 1?
-	
-	//console.log("foo", this.markerType[this.markerType.length-1].active.F);
-	//console.log("foo", this.markerType[this.markerType.length-1].active[Symbol("_latestValue")]);
-	//console.log("foo", this.markerType[this.markerType.length-1].active["Symbol(_latestValue)"]);
-	//console.log("foo", this.markerType[this.markerType.length-1].active.Symbol(_latestValue));
     };
 
     // X button sidenav click show/hide navigation bar
