@@ -14,12 +14,12 @@
     background-color: rgba(176, 176, 176, 0.24);
     border-bottom: 4px solid ##051a4d;
     height: 30px;
-    width: 525px;
+    width: 360px;
     position: absolute;
     z-index: 5;
 }
 
-.container .buttonMenu {
+.container .btnMenu {
     padding-left: 25px;
     padding-right: 50px;
     display: inline-block;

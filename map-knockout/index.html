@@ -37,18 +37,21 @@
 
     <div id="top-menu" >
       <div class="container">
-	<div class="buttonMenu" data-bind="click: toggleNav">
+	<div class="btnMenu" data-bind="click: toggleNav">
 	  &#9776;MENU
 	</div>
 
-	<div data-bind="foreach: mapType">
-	  <div class="btnMap" data-bind="click: $parent.toggleMap.bind($parent, $index(), $data)">
-	    <p data-bind="text: city"></p>
-	  </div>
-	</div>
+	<!-- <div class="btnMap"> -->
+	<!--   <p>foo</p> -->
+	<!-- </div> -->
 
+	<div class="btnMap" data-bind="click: toggleMap">
+	  <p data-bind="text: currMap"></p>
+	</div>
+      
       </div>
     </div>
+
     <div id="map"></div>    
     <div id="mySidenav" class="sidenav">
       <!-- X button (close Sidenav) -->      

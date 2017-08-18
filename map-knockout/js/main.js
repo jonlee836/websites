@@ -23,9 +23,11 @@ var viewModel = function() {
 
     this.onoff = ['rgb(129,129,129)', 'rgb(255,255,255)'];
 
+    this.currMap = ko.observable("Stalingrad");
+
     this.mapType = ko.observableArray([
-	{city: 'Stalingrad', active: ko.observable(1)},
-	{city: 'Volgagrad', active: ko.observable(0)}
+	'Stalingrad',
+	'Volgagrad'
     ]);
     
     this.markerType = ko.observableArray([
@@ -36,8 +38,15 @@ var viewModel = function() {
 	{ name: 'Toggle Menu', active: ko.observable(0), type: 'toggle'} 
     ]);
 
-    this.toggleMap = function() {
-	
+    this.toggleMap = function(index, data) {
+	console.log(data.target.innerHTML);
+	var currCity = data.target.innerHTML;
+	if(currCity == "Stalingrad"){
+	    data.target.innerHTML = "Volgagrad";
+	}
+	else{
+	    data.target.innerHTML = "Stalingrad";
+	}
     };
     
     // show/hide navigation bar
@@ -62,14 +71,14 @@ var viewModel = function() {
     };
 
     $('body').click(function(e) {
-	console.log("array ", e.originalEvent.path);
+	//console.log("array ", e.originalEvent.path);
 	
 	if(e.target.parentElement.id != 'mySidenav'&&
 	   e.target.id != 'mySidenav'
 	  ){
-	    console.log(e.originalEvent.path[0]);
-	    console.log(e.originalEvent.path[1]);
-	    console.log(e.originalEvent.path[2]);
+	    // console.log(e.originalEvent.path[0]);
+	    // console.log(e.originalEvent.path[1]);
+	    // console.log(e.originalEvent.path[2]);
 	}
     });  
 };
