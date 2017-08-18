@@ -71,7 +71,7 @@ var viewModel = function() {
     this.closeNav = function(){
 	document.getElementById("mySidenav").style.width = 0;
     }
-    
+
     // outside click detection
     this.clickOutside = function(data) {
 
@@ -81,6 +81,7 @@ var viewModel = function() {
 	var curroffsetWidth = document.getElementById("mySidenav").offsetWidth;
 	var currWidth = document.getElementById("mySidenav").style.width;
 
+	// This is the weirdest shit, it can't detect the navBar being 200px wide?!?!?'
 	if (toggleStatus == 0 && curroffsetWidth != 0){
 	    document.getElementById("mySidenav").style.width = 0;
 	}
@@ -92,7 +93,7 @@ var viewModel = function() {
 	var currWidth = navDom.style.width;
 
 	if(currWidth == navWidth){
-	    navDom.style.width = "0px";
+	    navDom.style.width = 0;
 	}
 	else{
 	    navDom.style.width = navWidth;
