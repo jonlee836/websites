@@ -22,11 +22,30 @@ var mapWindows = {
 
 ko.bindingHandlers.clickOutside = {
     init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+
 	var fn = ko.utils.unwrapObservable(valueAccessor());
 
+	var navDom = document.getElementById("mySidenav");
+	var currWidth = document.getElementById("mySidenav").offsetWidth;
+	var toggleStatus = viewModel.markerType()[4].active();
+
 	$('html').on('click', function(e) {
-	    if (!($.contains(element, e.target) || element === e.target))
+	    console.log("LOG*******");
+	    
+	    console.log("e", e);
+	    console.log("element", element);
+	    console.log("e.target", e.target);
+
+	    // console.log("this.markerType", a);
+	    console.log("navDom", navDom);
+	    console.log("navDom.offsetWidth", navDom.offsetWidth);
+	    console.log("toggle status", viewModel.markerType()[4].active());
+	    console.log("currWidth", document.getElementById("mySidenav").style.width);
+
+	    if (!($.contains(element, e.target) || element === e.target) &&
+		!($.contains(e.target, "closeButton"))) {
 		fn();
+	    }
 	});
     },
 }
@@ -62,11 +81,48 @@ var viewModel = function() {
 	}
     };
 
+    this.openNav = function(){	
+	document.getElementById("mySidenav").style.width = navWidth;
+    }
+    this.closeNav = function(){
+	document.getElementById("mySidenav").style.width = "0px";
+    }
+    
     // outside click detection
     this.clickOutside = function(data) {
-	console.log($(this)[0].markerType);
-	console.log("foo", this.markerType.Symbol);
+	console.log("DATA", data);
+	var toggleIndex = this.markerType().length - 1;
+	var toggleStatus = this.markerType()[toggleIndex].active();
+	
+	var navDom = document.getElementById("mySidenav");
+	var curroffsetWidth = document.getElementById("mySidenav").offsetWidth;
+	var currWidth = document.getElementById("mySidenav").style.width;
 
+
+	console.log("currWidth", currWidth, "curroffsetWidth", curroffsetWidth, "navWidth", navWidth);
+	console.log("navDom.offsetWidth", navDom.offsetWidth);
+
+	// backup
+	//if (toggleStatus == 0 && curroffsetWidth != 0){
+	//document.getElementById("mySidenav").style.width = "0px";
+	if (toggleStatus == 0 && curroffsetWidth != 0){
+	    document.getElementById("mySidenav").style.width = "0px";
+	    console.log("      CLOSE NAVBAR - STATUS : ", toggleStatus,  " curroffsetWidth : ", curroffsetWidth, "currWidth : ", currWidth, " navWidth : ", navWidth);
+	}
+	console.log("END********");
+	//console.log("this.markerType", a);
+	//console.log("navDom", navDom);
+	//console.log("currWidth", currWidth);
+
+	// if click detected outside mySidenav
+	// if toggle is 0 and mySidenav is open, close it
+	
+	// if (a == 0 && currWidth == navWidth){
+	//     navDom.style.width = "0px";
+	// }
+
+	// How to access markerType[1] and see if active is 0 or 1?
+	
 	//console.log("foo", this.markerType[this.markerType.length-1].active.F);
 	//console.log("foo", this.markerType[this.markerType.length-1].active[Symbol("_latestValue")]);
 	//console.log("foo", this.markerType[this.markerType.length-1].active["Symbol(_latestValue)"]);
@@ -79,7 +135,7 @@ var viewModel = function() {
 	var currWidth = navDom.style.width;
 
 	if(currWidth == navWidth){
-	    navDom.style.width = 0;
+	    navDom.style.width = "0px";
 	}
 	else{
 	    navDom.style.width = navWidth;
@@ -87,7 +143,6 @@ var viewModel = function() {
     };
 
     // Because active is observable you can modify it with knockoutJS
-    
     // show/hide map marker layer
     this.navbtnToggle = function(index, data){
 	var type = data['type'];
@@ -96,22 +151,7 @@ var viewModel = function() {
 	data.active(1-data.active()); // toggle button highglight
     };
 
-    this.toggleMenu = function(data){
-	console.log("knockout", data);
-    }
-    // detect outside menu click, how to do this with knockoutJS though instead of jquery?
-    // $("body > div").click(function() {
-    // 	if ($(this).attr("id") == "mySidenav") {
-	    
-    // 	} else {
-	    
-    // 	}
-    // });
 };
-
-function findtag(compare, str) {
-    
-}
 
 // waits until DOM is fully loaded before executing
 $(function() {

@@ -44,10 +44,6 @@
     cursor: pointer;
 }
 
-#mySidenav {
-    z-index: 6;
-}
-
 #map {
     overflow: hidden;
     float: center;
@@ -81,7 +77,7 @@ body {
 .sidenav {
     padding-top: 35px;
     height: 100%;
-    width: 0;
+    width: 0px;
     position: fixed;
     z-index: 6;
     top: 0;
