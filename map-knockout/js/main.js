@@ -161,19 +161,11 @@ $(function() {
 	setMarkers('wehrmacht', wehrmachtInfo, mapdata);
     });
 
-    // get lat, lng
-    getclickPos();
+    $.getScript("js/google-maps-tools.js", function() {
+	getClickInfo(mapdata);	
+    });
+
 
     ko.applyBindings(new viewModel());
 });
 
-// recenter map to clicked location
-function getclickPos() {
-    google.maps.event.addListener(mapdata, 'click', function(event) {
-	var lat = event.latLng.lat();
-	var lng = event.latLng.lng();
-	console.log(lat, lng);
-	//	mapdata.panTo(new google.maps.LatLng(lat, lng));
-	//	mapdata.setCenter(new google.maps.LatLng(lat, lng));
-    });
-}
