@@ -42,13 +42,13 @@ var viewModel = function() {
 	'Volgagrad'
     ]);
     
-    this.markerType = [
+    this.markerType = ko.observableArray([
 	{ name: 'City',        active: ko.observable(1), type: 'city'},
 	{ name: 'Red Army',    active: ko.observable(0), type: 'soviet'},
 	{ name: 'Wehrmacht',   active: ko.observable(0), type: 'wehrmacht'},
 	{ name: 'About',       active: ko.observable(0), type: 'about'},
-	{ name: 'Toggle Menu', active: ko.observable(0), type: 'toggle'} 
-    ];
+	{ name: 'Toggle Menu', active: ko.observable(0), type: 'toggle'}
+    ]);
 
     this.toggleMap = function(index, data) {
 	
@@ -64,7 +64,13 @@ var viewModel = function() {
 
     // outside click detection
     this.clickOutside = function(data) {
-	console.log("foo", this.markerType[this.markerType.length-1]);
+	console.log($(this)[0].markerType);
+	console.log("foo", this.markerType.Symbol);
+
+	//console.log("foo", this.markerType[this.markerType.length-1].active.F);
+	//console.log("foo", this.markerType[this.markerType.length-1].active[Symbol("_latestValue")]);
+	//console.log("foo", this.markerType[this.markerType.length-1].active["Symbol(_latestValue)"]);
+	//console.log("foo", this.markerType[this.markerType.length-1].active.Symbol(_latestValue));
     };
 
     // X button sidenav click show/hide navigation bar
@@ -86,7 +92,6 @@ var viewModel = function() {
     this.navbtnToggle = function(index, data){
 	var type = data['type'];
 
-	console.log(data);
 	toggleGroup(type);            // toggle marker layer
 	data.active(1-data.active()); // toggle button highglight
     };
