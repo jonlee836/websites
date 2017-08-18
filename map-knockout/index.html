@@ -48,23 +48,27 @@
 	<div class="btnMap" data-bind="click: toggleMap">
 	  <p data-bind="text: currMap"></p>
 	</div>
-      
+	
       </div>
     </div>
 
-    <div id="map"></div>    
-    <div id="mySidenav" class="sidenav">
-      <!-- X button (close Sidenav) -->      
-      <a href="javascript:void(0)" class="closebtn" data-bind="click: toggleNav">&times;</a>
+    <div id="map"></div>
 
-      <!--  Create array of Sidenav buttons -->
-      <div data-bind="foreach: markerType">	
-	<button class="nav-button" data-bind="click: $parent.navbtnToggle.bind($parent, $index(), $data)">
-	  <div data-bind="style: {color: $parent.onoff[active()]}, text: name"></div>
-	</button>
+    <!-- detect outside clicks -->
+    <div data-bind="clickOutside: clickOutside.bind($data)">
+      <div id="mySidenav" class="sidenav">
+	<!-- X button (close Sidenav) -->      
+	<a href="javascript:void(0)" class="closebtn" data-bind="click: toggleNav">&times;</a>
+
+	<!--  Create array of Sidenav buttons -->
+	<div data-bind="foreach: markerType">	
+	  <button class="nav-button" data-bind="click: $parent.navbtnToggle.bind($parent, $index(), $data)">
+	    <div data-bind="style: {color: $parent.onoff[active()]}, text: name"></div>
+	  </button>
+	</div>
+	
       </div>
     </div>
-    
     <!-- The City Markers will be toggle on when the webpage loads. -->
     
     <!-- <button class="nav-button" data-bind="click: navbtnToggle"> </button> -->

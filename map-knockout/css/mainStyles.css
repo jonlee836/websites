@@ -14,7 +14,7 @@
     background-color: rgba(176, 176, 176, 0.24);
     border-bottom: 4px solid ##051a4d;
     height: 30px;
-    width: 360px;
+    width: 400px;
     position: absolute;
     z-index: 5;
 }
@@ -24,9 +24,9 @@
     padding-right: 50px;
     display: inline-block;
     font-family: 'Special Elite', cursive;
-    font-size: 25px;
+    font-size: 30px;
     background-color: rgba(0, 0, 0, 0);
-    font-color:black;
+    color:black;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
@@ -36,7 +36,7 @@
     padding-left: 25px;
     display: inline-block;
     font-family: 'Special Elite', cursive;
-    font-size: 25px;
+    font-size: 30px;
     background-color: rgba(0, 0, 0, 0);
     text-align: center;
     text-decoration: none;

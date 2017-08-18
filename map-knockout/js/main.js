@@ -1,5 +1,6 @@
 var mapdata, cityOverlay;
 
+var togglebtn = false;
 var navWidth="200px";
 var defaultPos = {
     lat: 48.75686777983242,
@@ -19,8 +20,19 @@ var mapWindows = {
     wehrmacht: []
 }
 
-var viewModel = function() {
+ko.bindingHandlers.clickOutside = {
+    init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+	var fn = ko.utils.unwrapObservable(valueAccessor());
 
+	$('html').on('click', function(e) {
+	    if (!($.contains(element, e.target) || element === e.target))
+		fn();
+	});
+    },
+}
+
+var viewModel = function() {
+    
     this.onoff = ['rgb(129,129,129)', 'rgb(255,255,255)'];
 
     this.currMap = ko.observable("Stalingrad");
@@ -30,17 +42,18 @@ var viewModel = function() {
 	'Volgagrad'
     ]);
     
-    this.markerType = ko.observableArray([
+    this.markerType = [
 	{ name: 'City',        active: ko.observable(1), type: 'city'},
 	{ name: 'Red Army',    active: ko.observable(0), type: 'soviet'},
 	{ name: 'Wehrmacht',   active: ko.observable(0), type: 'wehrmacht'},
 	{ name: 'About',       active: ko.observable(0), type: 'about'},
 	{ name: 'Toggle Menu', active: ko.observable(0), type: 'toggle'} 
-    ]);
+    ];
 
     this.toggleMap = function(index, data) {
-	console.log(data.target.innerHTML);
+	
 	var currCity = data.target.innerHTML;
+
 	if(currCity == "Stalingrad"){
 	    data.target.innerHTML = "Volgagrad";
 	}
@@ -48,8 +61,13 @@ var viewModel = function() {
 	    data.target.innerHTML = "Stalingrad";
 	}
     };
-    
-    // show/hide navigation bar
+
+    // outside click detection
+    this.clickOutside = function(data) {
+	console.log("foo", this.markerType[this.markerType.length-1]);
+    };
+
+    // X button sidenav click show/hide navigation bar
     this.toggleNav = function() {
 	var navDom = document.getElementById("mySidenav");
 	var currWidth = navDom.style.width;
@@ -62,26 +80,33 @@ var viewModel = function() {
 	}
     };
 
+    // Because active is observable you can modify it with knockoutJS
+    
     // show/hide map marker layer
     this.navbtnToggle = function(index, data){
 	var type = data['type'];
 
+	console.log(data);
 	toggleGroup(type);            // toggle marker layer
 	data.active(1-data.active()); // toggle button highglight
     };
 
-    $('body').click(function(e) {
-	//console.log("array ", e.originalEvent.path);
-	
-	if(e.target.parentElement.id != 'mySidenav'&&
-	   e.target.id != 'mySidenav'
-	  ){
-	    // console.log(e.originalEvent.path[0]);
-	    // console.log(e.originalEvent.path[1]);
-	    // console.log(e.originalEvent.path[2]);
-	}
-    });  
+    this.toggleMenu = function(data){
+	console.log("knockout", data);
+    }
+    // detect outside menu click, how to do this with knockoutJS though instead of jquery?
+    // $("body > div").click(function() {
+    // 	if ($(this).attr("id") == "mySidenav") {
+	    
+    // 	} else {
+	    
+    // 	}
+    // });
 };
+
+function findtag(compare, str) {
+    
+}
 
 // waits until DOM is fully loaded before executing
 $(function() {
