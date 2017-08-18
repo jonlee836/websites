@@ -32,7 +32,7 @@
     cursor: pointer;
 }
 
-.container .btnMap {
+.btnMap {
     padding-left: 25px;
     display: inline-block;
     font-family: 'Special Elite', cursive;
@@ -40,11 +40,8 @@
     background-color: rgba(0, 0, 0, 0);
     text-align: center;
     text-decoration: none;
-    cursor: pointer;
-}
-
-.btnMap p {
     color: rgb(14, 40, 77);
+    cursor: pointer;
 }
 
 #mySidenav {
