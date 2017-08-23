@@ -1,68 +1,110 @@
 // get click position info
 var TILE_SIZE = 256;
+var mapEvents = [
+    { event: 'bounds_changed', active: 0},
+    { event: 'center_changed', active: 0},
+    { event: 'click', active: 0},
+    { event: 'dblclick', active: 0},
+    { event: 'drag', active: 0},
+    { event: 'dragend', active: 0},
+    { event: 'dragstart', active: 0},
+    { event: 'heading_changed', active: 0},
+    { event: 'idle', active: 0},
+    { event: 'maptypeid_changed', active: 0},
+    { event: 'mouseout', active: 0},
+    { event: 'mouseover', active: 0},
+    { event: 'projection_changed', active: 0},
+    { event: 'resize', active: 0},
+    { event: 'rightclick', active: 0},
+    { event: 'tilesloaded', active: 0},
+    { event: 'tilt_changed', active: 0},
+    { event: 'zoom_changed', active: 0}
+];
 
-function getClickInfo(mapdata) {
+function getInfo(mapdata){
+
+    mapEvents.forEach(function(obj) {
+	google.maps.event.addListener(mapdata, obj.event, function(event){
+	    obj.active = 1 - obj.active;
+	    console.log(obj.event, obj.active);
+	});
+
+    });
+}
+
+function getMouseMove(event) {
+
     var x = window.innerWidth;
     var y = window.innerHeight;
 
-    google.maps.event.addListener(mapdata, 'click', function(event) {
+    console.log(event);
+    var lat = event.latLng.lat();
+    var lng = event.latLng.lng();
+    var zoom = mapdata.getZoom();
+    var scale = 1 << zoom;
 
-	var lat = event.latLng.lat();
-	var lng = event.latLng.lng();
-	var zoom = mapdata.getZoom();
-	var scale = 1 << zoom;
+    var worldCoordinate = latlng2xy(lat, lng);
 
-        var worldCoordinate = latlng2xy(lat, lng);
+    var pixelCoordinate = new google.maps.Point(
+        Math.floor(worldCoordinate.x * scale),
+        Math.floor(worldCoordinate.y * scale));
 
-        var pixelCoordinate = new google.maps.Point(
-            Math.floor(worldCoordinate.x * scale),
-            Math.floor(worldCoordinate.y * scale));
+    var tileCoordinate = new google.maps.Point(
+        Math.floor(worldCoordinate.x * scale / TILE_SIZE),
+        Math.floor(worldCoordinate.y * scale / TILE_SIZE));
 
-        var tileCoordinate = new google.maps.Point(
-            Math.floor(worldCoordinate.x * scale / TILE_SIZE),
-            Math.floor(worldCoordinate.y * scale / TILE_SIZE));
+    var boundPoints = getBounds(mapdata);
+    console.clear();
+    
+    console.log(x, " X ", y);
+    console.log("scale", scale);
+    console.log("zoom", zoom);
+    
+    console.log("default center", getDefaultCenterPoint());
+    console.log("lat/lng", lat, lng);
+    console.log("pixelCoordinate", pixelCoordinate.x, pixelCoordinate.y);
+    console.log("tileCoordinate", tileCoordinate.x, tileCoordinate.y);
 
-	console.clear();
-	
-	console.log("scale", scale);
-	console.log("zoom", zoom);
-	console.log("lat/lng", lat, lng);
-	console.log("pixelCoordinate", pixelCoordinate.x, pixelCoordinate.y);
-	console.log("tileCoordinate", tileCoordinate.x, tileCoordinate.y);
-	console.log("bounds Yc = North East", mapdata.getBounds().b);
-	console.log("bounds bd = South West", mapdata.getBounds().f);
+    console.log("Yc", boundPoints[0]);
+    console.log("bd", boundPoints[1]);
+    //console.log("bounds Yc = North East", mapdata.getBounds().b);
+    //console.log("bounds bd = South West", mapdata.getBounds().f);
 
-	console.log(x, " X ", y);
-	console.log("event", event);
+    
+    console.log("event", event);
+}
 
-	console.log("default center", getDefaultCenterPoint());
-	console.log("current center", getCurrCenterPoint());
-    });
+function getDrag(event){
+    
+}
 
-    google.maps.event.addListener(mapdata, 'idle', function(event){
+// google.maps.event.addListener(mapdata, 'mousemove', function(event){
+// 	getMouseMove(event);
+// });
 
-	console.log("Idle");
-	console.log("bounds", mapdata.getBounds());
+//    console.log("Idle");
+//    console.log("bounds", mapdata.getBounds());
 
-    });
-
+function getBounds(mapdata){
+    var ne = mapdata.getBounds().b;
+    var sw = mapdata.getBounds().f;
+    
+    var bounds = [ne, sw];
+    
+    return bounds;
 }
 
 function getDefaultCenterPoint(){
     return defaultPos;
 }
-function getCurrCenterPoint(){
+
+// Remove you have to actually move the mouse
+function getCurrCenterPoint(mapdata){
 
     var lat = mapdata.getCenter().lat();
     var lng = mapdata.getCenter().lat();
 
     return {lat, lng};
-}
-
-function getAllEvents(mapdata){
-    console.log("bounds bd", mapdata);
-    //    console.log("bounds Yc", mapdata.getBounds().b);
-    //    console.log("bounds bd", mapdata.getBounds().f);
 }
 
 function latlng2xy (lat,lng){
@@ -79,5 +121,5 @@ function latlng2xy (lat,lng){
 }
 
 function draggableRect(mapdata){
-
+    
 }

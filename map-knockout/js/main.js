@@ -166,14 +166,12 @@ $(function() {
 
     // display map info on click in console
     $.getScript("js/google-maps-tools.js", function() {
-	getClickInfo(mapdata);	
+	getInfo(mapdata);	
     });
 
     var point = mapdata.data.map.center;
     var lat = point.lat;
     var lng = point.lng;
     
-    console.log("on load", lat(), lng(), "default center", defaultPos);
-
     ko.applyBindings(new viewModel());
 });
