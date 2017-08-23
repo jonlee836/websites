@@ -35,22 +35,18 @@ ko.bindingHandlers.clickOutside = {
 }
 
 var viewModel = function() {
-    
-    this.onoff = ['rgb(129,129,129)', 'rgb(255,255,255)'];
 
     this.currMap = ko.observable("Stalingrad");
 
-    this.mapType = ko.observableArray([
-	'Stalingrad',
-	'Volgagrad'
-    ]);
+    this.onoff = ["rgb(129,129,129)", "rgb(255,255,255)"];
+    this.setNameColor = ko.observable("rgb(126, 0, 0)");
     
     this.markerType = ko.observableArray([
 	{ name: 'City',        active: ko.observable(1), type: 'city'},
 	{ name: 'Red Army',    active: ko.observable(0), type: 'soviet'},
 	{ name: 'Wehrmacht',   active: ko.observable(0), type: 'wehrmacht'},
 	{ name: 'About',       active: ko.observable(0), type: 'about'},
-	{ name: 'Toggle Menu', active: ko.observable(0), type: 'toggle'}
+	{ name: 'Toggle Menu', active: ko.observable(1), type: 'toggle'}
     ]);
 
     this.toggleMap = function(index, data) {
@@ -59,18 +55,13 @@ var viewModel = function() {
 
 	if(currCity == "Stalingrad"){
 	    data.target.innerHTML = "Volgagrad";
+	    this.setNameColor("rgb(9, 31, 53)");
 	}
 	else{
 	    data.target.innerHTML = "Stalingrad";
+	    this.setNameColor("rgb(127, 0, 0)");
 	}
     };
-
-    this.openNav = function(){	
-	document.getElementById("mySidenav").style.width = navWidth;
-    }
-    this.closeNav = function(){
-	document.getElementById("mySidenav").style.width = 0;
-    }
 
     // outside click detection
     this.clickOutside = function(data) {
@@ -87,16 +78,23 @@ var viewModel = function() {
 	}
     };
 
+    this.openNav = function(){	
+	document.getElementById("mySidenav").style.width = navWidth;
+    }
+    this.closeNav = function(){
+	document.getElementById("mySidenav").style.width = 0;
+    }
+
     // X button sidenav click show/hide navigation bar
     this.toggleNav = function() {
 	var navDom = document.getElementById("mySidenav");
 	var currWidth = navDom.style.width;
 
 	if(currWidth == navWidth){
-	    navDom.style.width = 0;
+	    this.closeNav();
 	}
 	else{
-	    navDom.style.width = navWidth;
+	    this.openNav();
 	}
     };
 
@@ -105,13 +103,13 @@ var viewModel = function() {
     this.navbtnToggle = function(index, data){
 	var type = data['type'];
 
-	toggleGroup(type);            // toggle marker layer
+	toggleGroup(type);            // toggle marker layer overlays.js
 	data.active(1-data.active()); // toggle button highglight
     };
 
 };
 
-// waits until DOM is fully loaded before executing
+// waits until DOM is fully loaded before executing google maps
 $(function() {
     
     mapdata = new google.maps.Map(document.getElementById('map'), {
@@ -161,11 +159,10 @@ $(function() {
 	setMarkers('wehrmacht', wehrmachtInfo, mapdata);
     });
 
+    // display map info on click in console
     $.getScript("js/google-maps-tools.js", function() {
-	getClickInfo(mapdata);	
+	getClickInfo(mapdata.getZoom());	
     });
-
 
     ko.applyBindings(new viewModel());
 });
-

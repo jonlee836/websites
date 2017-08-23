@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/mainStyles.css">
-    
-    <link href="http://fonts.googleapis.com/css?family=Lato:100,300" rel="stylesheet" type="text/css">		
+
     <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">    
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsi39sTkfejYHtOuj0AMCVSET6VxH_qBI"></script>
@@ -41,12 +40,13 @@
 	  &#9776;MENU
 	</div>
 
-	<div class="btnMap" data-bind="click: toggleMap">
-	  <p data-bind="text: currMap"></p>
+	<div class="btnMap" data-bind="click: toggleMap.bind($data)">
+	    <p data-bind="style: {color: setNameColor()}, text: currMap"></p>
+	  </div>
 	</div>
 	
-      </div>
     </div>
+    
 
     <div id="map"></div>
 
@@ -54,15 +54,19 @@
     <div data-bind="clickOutside: clickOutside.bind($data)">
       <div id="mySidenav" class="sidenav">
 	<!-- X button (close Sidenav) -->
-
-	  <a href="javascript:void(0)" id="closeButton" class="closebtn" data-bind="click: closeNav">&times;</a>
-
+	
+	<a href="javascript:void(0)" id="closeButton" class="closebtn" data-bind="click: closeNav">&times;</a>
+	
 	<!--  Create array of Sidenav buttons -->
-	<div data-bind="foreach: markerType">	
+	<div data-bind="foreach: markerType">
+
+	  <!-- apply navbtnToggle function to each button. change state of active -->
 	  <button class="nav-button" data-bind="click: $parent.navbtnToggle.bind($parent, $index(), $data)">
+
+	    <!-- Use the value of markerType[active()] as the index for onoff[color1, color2] -->
 	    <div data-bind="style: {color: $parent.onoff[active()]}, text: name"></div>
-	  </button>
-	</div>
+	    </button>
+	  </div>
 	
       </div>
     </div>
