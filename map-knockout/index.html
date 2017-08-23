@@ -47,14 +47,14 @@
 	
     </div>
     
-
+    
     <div id="map"></div>
 
     <!-- detect outside clicks -->
     <div data-bind="clickOutside: clickOutside.bind($data)">
       <div id="mySidenav" class="sidenav">
+
 	<!-- X button (close Sidenav) -->
-	
 	<a href="javascript:void(0)" id="closeButton" class="closebtn" data-bind="click: closeNav">&times;</a>
 	
 	<!--  Create array of Sidenav buttons -->
@@ -64,12 +64,12 @@
 	  <button class="nav-button" data-bind="click: $parent.navbtnToggle.bind($parent, $index(), $data)">
 
 	    <!-- Use the value of markerType[active()] as the index for onoff[color1, color2] -->
-	    <div data-bind="style: {color: $parent.onoff[active()]}, text: name"></div>
-	    </button>
-	  </div>
-	
+	    <div data-bind="style: {color: $parent.onoff[active()]}, text: name">  </div>	  
+	  </button>
+	</div>
       </div>
     </div>
+
     <!-- The City Markers will be toggle on when the webpage loads. -->
     
     <!-- <button class="nav-button" data-bind="click: navbtnToggle"> </button> -->
