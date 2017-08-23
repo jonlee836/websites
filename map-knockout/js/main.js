@@ -61,6 +61,7 @@ var viewModel = function() {
 	    data.target.innerHTML = "Stalingrad";
 	    this.setNameColor("rgb(127, 0, 0)");
 	}
+	console.log(currCity, this.setNameColor());
     };
 
     // outside click detection

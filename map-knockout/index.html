@@ -19,7 +19,10 @@
     <script type="text/javascript" src="js/knockout-min.js"></script>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 
+    <!-- 3rd party js plugin for easy customization of google-maps info windows -->
     <script src="js/snazzy-info-window.min.js"></script>
+
+    <!-- Switch to Russian -->
     <script src="js/info_ENG.js"></script>
     <script src="js/info_RUS.js"></script>
 
@@ -41,7 +44,7 @@
 	</div>
 
 	<div class="btnMap" data-bind="click: toggleMap.bind($data)">
-	    <p data-bind="style: {color: setNameColor()}, text: currMap"></p>
+	    <div data-bind="style: {color: setNameColor()}, text: currMap"></div>
 	  </div>
 	</div>
 	
@@ -64,7 +67,7 @@
 	  <button class="nav-button" data-bind="click: $parent.navbtnToggle.bind($parent, $index(), $data)">
 
 	    <!-- Use the value of markerType[active()] as the index for onoff[color1, color2] -->
-	    <div data-bind="style: {color: $parent.onoff[active()]}, text: name">  </div>	  
+	    <div data-bind="style: {color: $parent.onoff[active()]}, text: name"></div>	  
 	  </button>
 	</div>
       </div>

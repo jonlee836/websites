@@ -29,7 +29,7 @@ function getClickInfo() {
 	console.log("pixelCoordinate", pixelCoordinate);
 	console.log("tileCoordinate", tileCoordinate);
 	
-	//	mapdata.panTo(new google.maps.LatLng(lat, lng));
+	// mapdata.panTo(new google.maps.LatLng(lat, lng));
     });
 }
 
@@ -38,6 +38,7 @@ function latlng2pixelxy (lat,lng){
 
     // Truncating to 0.9999 effectively limits latitude to 89.189. This is
     // about a third of a tile past the edge of the world tile.
+
     siny = Math.min(Math.max(siny, -0.9999), 0.9999);
 
     return new google.maps.Point(
