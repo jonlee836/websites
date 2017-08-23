@@ -29,14 +29,14 @@ function getClickInfo(mapdata) {
 	console.log("lat/lng", lat, lng);
 	console.log("pixelCoordinate", pixelCoordinate.x, pixelCoordinate.y);
 	console.log("tileCoordinate", tileCoordinate.x, tileCoordinate.y);
-	console.log("bounds Yc", mapdata.getBounds().b);
-	console.log("bounds bd", mapdata.getBounds().f);
+	console.log("bounds Yc = North East", mapdata.getBounds().b);
+	console.log("bounds bd = South West", mapdata.getBounds().f);
 
 	console.log(x, " X ", y);
 	console.log("event", event);
 
-	console.log(getDefaultCenterPoint());
-	console.log(getCurrCenterPoint());
+	console.log("default center", getDefaultCenterPoint());
+	console.log("current center", getCurrCenterPoint());
     });
 
     google.maps.event.addListener(mapdata, 'idle', function(event){
