@@ -38,18 +38,14 @@
   <body>
 
     <div id="top-menu" >
-      <div class="container">
-	<div class="btnMenu" data-bind="click: toggleNav">
-	  &#9776;MENU
-	</div>
+      <div class="btnMenu" data-bind="click: toggleNav">
+	&#9776;MENU
+      </div>
 
-	<div class="btnMap" data-bind="click: toggleMap.bind($data)">
-	    <div data-bind="style: {color: setNameColor()}, text: currMap"></div>
-	  </div>
-	</div>
-	
+      <div class="btnMap" data-bind="click: toggleMap.bind($data)">
+	<div data-bind="style: {color: setNameColor()}, text: currMap"></div>
+      </div>
     </div>
-    
     
     <div id="map"></div>
 

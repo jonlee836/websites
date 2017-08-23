@@ -1,7 +1,6 @@
 var mapdata, cityOverlay;
-
-var togglebtn = false;
 var navWidth = "200px";
+
 var defaultPos = {
     lat: 48.75686777983242,
     lng: 44.52157974243164
@@ -20,6 +19,8 @@ var mapWindows = {
     wehrmacht: []
 }
 
+var clickCount = 1;
+
 ko.bindingHandlers.clickOutside = {
     init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
 
@@ -37,10 +38,8 @@ ko.bindingHandlers.clickOutside = {
 var viewModel = function() {
 
     this.currMap = ko.observable("Stalingrad");
+    this.setNameColor = ko.observable("rgb(127, 0, 0)");
 
-    this.onoff = ["rgb(129,129,129)", "rgb(255,255,255)"];
-    this.setNameColor = ko.observable("rgb(126, 0, 0)");
-    
     this.markerType = ko.observableArray([
 	{ name: 'City',        active: ko.observable(1), type: 'city'},
 	{ name: 'Red Army',    active: ko.observable(0), type: 'soviet'},
@@ -48,6 +47,8 @@ var viewModel = function() {
 	{ name: 'About',       active: ko.observable(0), type: 'about'},
 	{ name: 'Toggle Menu', active: ko.observable(1), type: 'toggle'}
     ]);
+
+    this.onoff = ["rgb(129,129,129)", "rgb(255,255,255)"];
 
     this.toggleMap = function(index, data) {
 	
@@ -61,7 +62,6 @@ var viewModel = function() {
 	    data.target.innerHTML = "Stalingrad";
 	    this.setNameColor("rgb(127, 0, 0)");
 	}
-	console.log(currCity, this.setNameColor());
     };
 
     // outside click detection
@@ -112,6 +112,8 @@ var viewModel = function() {
 
 // waits until DOM is fully loaded before executing google maps
 $(function() {
+
+    var clickCount = 1;
     
     mapdata = new google.maps.Map(document.getElementById('map'), {
 	styles: mapStyle,	
@@ -139,9 +141,11 @@ $(function() {
     var ctrlDiv = document.createElement('div');
     ctrlDiv.index = 1;
     ctrlDiv.style['padding-top'] = '1px';
+
     $.getScript("js/mapButtons.js", function() {
     	OverlayCtrl(ctrlDiv, mapdata);
     });
+
     mapdata.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(ctrlDiv);
 
     // need region detection to determine whether or not to load it in english or russian
@@ -162,8 +166,14 @@ $(function() {
 
     // display map info on click in console
     $.getScript("js/google-maps-tools.js", function() {
-	getClickInfo(mapdata.getZoom());	
+	getClickInfo(mapdata);	
     });
+
+    var point = mapdata.data.map.center;
+    var lat = point.lat;
+    var lng = point.lng;
+    
+    console.log("on load", lat(), lng(), "default center", defaultPos);
 
     ko.applyBindings(new viewModel());
 });

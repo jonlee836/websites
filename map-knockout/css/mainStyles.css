@@ -11,17 +11,24 @@
 }
 
 #top-menu {
-    background-color: rgba(176, 176, 176, 0.24);
+    background-color: rgba(176, 176, 176, 0);
     border-bottom: 4px solid ##051a4d;
-    height: 30px;
-    width: 400px;
+    height: 35px;
+    width: 100%;
     position: absolute;
     z-index: 5;
 }
 
-.container .btnMenu {
-    padding-left: 25px;
-    padding-right: 50px;
+#top-menu .container {
+    margin: 0px 0px 0px 0px;
+    width: 100%;
+    height: inherit;
+}
+
+.btnMenu {
+    padding-left: 40px;
+    padding-right: 10px;
+    margin-right: 65px;
     display: inline-block;
     font-family: 'Special Elite', cursive;
     font-size: 30px;
@@ -33,7 +40,7 @@
 }
 
 .btnMap {
-    padding-left: 25px;
+    padding-left: 10px;
     display: inline-block;
     font-family: 'Special Elite', cursive;
     font-size: 30px;

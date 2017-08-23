@@ -1,19 +1,18 @@
 // get click position info
-
 var TILE_SIZE = 256;
 
-function getClickInfo() {
+function getClickInfo(mapdata) {
+    var x = window.innerWidth;
+    var y = window.innerHeight;
 
-    var infoArray = [];
     google.maps.event.addListener(mapdata, 'click', function(event) {
 
 	var lat = event.latLng.lat();
 	var lng = event.latLng.lng();
-
 	var zoom = mapdata.getZoom();
 	var scale = 1 << zoom;
 
-        var worldCoordinate = latlng2pixelxy(lat, lng);
+        var worldCoordinate = latlng2xy(lat, lng);
 
         var pixelCoordinate = new google.maps.Point(
             Math.floor(worldCoordinate.x * scale),
@@ -23,17 +22,50 @@ function getClickInfo() {
             Math.floor(worldCoordinate.x * scale / TILE_SIZE),
             Math.floor(worldCoordinate.y * scale / TILE_SIZE));
 
+	console.clear();
+	
 	console.log("scale", scale);
 	console.log("zoom", zoom);
 	console.log("lat/lng", lat, lng);
-	console.log("pixelCoordinate", pixelCoordinate);
-	console.log("tileCoordinate", tileCoordinate);
-	
-	// mapdata.panTo(new google.maps.LatLng(lat, lng));
+	console.log("pixelCoordinate", pixelCoordinate.x, pixelCoordinate.y);
+	console.log("tileCoordinate", tileCoordinate.x, tileCoordinate.y);
+	console.log("bounds Yc", mapdata.getBounds().b);
+	console.log("bounds bd", mapdata.getBounds().f);
+
+	console.log(x, " X ", y);
+	console.log("event", event);
+
+	console.log(getDefaultCenterPoint());
+	console.log(getCurrCenterPoint());
     });
+
+    google.maps.event.addListener(mapdata, 'idle', function(event){
+
+	console.log("Idle");
+	console.log("bounds", mapdata.getBounds());
+
+    });
+
 }
 
-function latlng2pixelxy (lat,lng){
+function getDefaultCenterPoint(){
+    return defaultPos;
+}
+function getCurrCenterPoint(){
+
+    var lat = mapdata.getCenter().lat();
+    var lng = mapdata.getCenter().lat();
+
+    return {lat, lng};
+}
+
+function getAllEvents(mapdata){
+    console.log("bounds bd", mapdata);
+    //    console.log("bounds Yc", mapdata.getBounds().b);
+    //    console.log("bounds bd", mapdata.getBounds().f);
+}
+
+function latlng2xy (lat,lng){
     var siny = Math.sin(lat * Math.PI / 180);
 
     // Truncating to 0.9999 effectively limits latitude to 89.189. This is
@@ -44,4 +76,8 @@ function latlng2pixelxy (lat,lng){
     return new google.maps.Point(
         TILE_SIZE * (0.5 + lng / 360),
         TILE_SIZE * (0.5 - Math.log((1 + siny) / (1 - siny)) / (4 * Math.PI)));
+}
+
+function draggableRect(mapdata){
+
 }
