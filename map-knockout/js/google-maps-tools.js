@@ -1,34 +1,33 @@
 // get click position info
 var TILE_SIZE = 256;
 var mapEvents = [
-    { event: 'bounds_changed', active: 0},
-    { event: 'center_changed', active: 0},
-    { event: 'click', active: 0},
-    { event: 'dblclick', active: 0},
-    { event: 'drag', active: 0},
-    { event: 'dragend', active: 0},
-    { event: 'dragstart', active: 0},
-    { event: 'heading_changed', active: 0},
-    { event: 'idle', active: 0},
-    { event: 'maptypeid_changed', active: 0},
-    { event: 'mouseout', active: 0},
-    { event: 'mouseover', active: 0},
-    { event: 'projection_changed', active: 0},
-    { event: 'resize', active: 0},
-    { event: 'rightclick', active: 0},
-    { event: 'tilesloaded', active: 0},
-    { event: 'tilt_changed', active: 0},
-    { event: 'zoom_changed', active: 0}
+    { event: 'bounds_changed', active: 0, prev: 0 },
+    { event: 'center_changed', active: 0, prev: 0 },
+    { event: 'click', active: 0, prev: 0 },
+    { event: 'dblclick', active: 0, prev: 0 },
+    { event: 'drag', active: 0, prev: 0 },
+    { event: 'dragend', active: 0, prev: 0 },
+    { event: 'dragstart', active: 0, prev: 0 },
+    { event: 'heading_changed', active: 0, prev: 0 },
+    { event: 'idle', active: 0, prev: 0 },
+    { event: 'maptypeid_changed', active: 0, prev: 0 },
+    { event: 'mouseout', active: 0, prev: 0 },
+    { event: 'mouseover', active: 0, prev: 0 },
+    { event: 'mousemove', active: 0, prev: 0 },
+    { event: 'projection_changed', active: 0, prev: 0 },
+    { event: 'resize', active: 0, prev: 0 },
+    { event: 'rightclick', active: 0, prev: 0 },
+    { event: 'tilesloaded', active: 0, prev: 0 },
+    { event: 'tilt_changed', active: 0, prev: 0 },
+    { event: 'zoom_changed', active: 0, prev: 0 }
 ];
 
 function getInfo(mapdata){
-
     mapEvents.forEach(function(obj) {
 	google.maps.event.addListener(mapdata, obj.event, function(event){
 	    obj.active = 1 - obj.active;
-	    console.log(obj.event, obj.active);
+	    console.log(obj.event, obj.active, obj.prev);
 	});
-
     });
 }
 

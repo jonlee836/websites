@@ -36,17 +36,31 @@
   <!-- This feels so wrong. -->
   <!-- infowindow.html -> object -> array -> replace content at matching indexes -> create marker's infowindow -->
   <body>
-
+    
     <div id="top-menu" >
       <div class="btnMenu" data-bind="click: toggleNav">
 	&#9776;MENU
       </div>
 
-      <div class="btnMap" data-bind="click: toggleMap.bind($data)">
-	<div data-bind="style: {color: setNameColor()}, text: currMap"></div>
+      <div class="btnMap" data-bind="click: toggleMap.bind($data)">	
+	<p data-bind="style: {color: setNameColor()}, text: currMap"></p>
+      </div>
+
+      <div class="btnMap" data-bind="click: toggleMonitor">
+	Monitor
+      </div>
+
+      <div class="row">
+	<div class="container">
+	  <div class="sidenavMonitor" data-bind="if: displayMessage">
+	    <div data-bind="foreach: eventDetect">
+	      <p data-bind="style: $parent.{color: active < 1 ? 'gray' : 'white' }, text: event"></p>
+	    </div>
+	  </div>
+	</div>
       </div>
     </div>
-    
+
     <div id="map"></div>
 
     <!-- detect outside clicks -->

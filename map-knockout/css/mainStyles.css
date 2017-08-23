@@ -19,12 +19,6 @@
     z-index: 5;
 }
 
-#top-menu .container {
-    margin: 0px 0px 0px 0px;
-    width: 100%;
-    height: inherit;
-}
-
 .btnMenu {
     padding-left: 40px;
     padding-right: 10px;
@@ -71,7 +65,7 @@ body {
     font-family: 'Special Elite', cursive;
     float: center;
     color: #053573;
-    font-size: 30px
+    font-size: 30px;
 }
 
 .closebtn {
@@ -92,6 +86,34 @@ body {
     background-color: #111;
     overflow: hidden;
     transition: 0.5s;
+}
+
+.sidenavMonitor {
+    width: 400px;
+    background-color: rgb(0, 23, 38);
+    border-color: black;
+    /* border-radius: 20px; */
+    height: auto;
+    position: absolute;
+    transition: 0.5s;
+}
+
+.sidenavMonitor p {
+    padding-left: 10px;
+    padding-top: 2px;
+    color: beige;
+    font-size: 20px;
+    position: initial;
+}
+
+#pointInfo {
+    width: auto;
+    height: auto;
+}
+
+#pointInfo p {
+    font-size: 20px;
+    font-color: #ffffff;
 }
 
 .nav-button {
