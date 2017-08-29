@@ -1,6 +1,7 @@
 // Control ground overlays and marker overlays
-function toggleGroup(type) {
-    if (type != 'about' && type != 'toggle'){
+function toggleGroup(type, data) {
+
+    if (type != 'toggle' && type != 'about'){
 	for (var i = 0; i < mapMarkers[type].length; i++) {
 
 	    // I'm assuming marker is a reference here...'
@@ -16,6 +17,40 @@ function toggleGroup(type) {
     }
 }
 
+// about button
+function aboutButton(data, event){
+
+    // lets me have about-modal pop up on load
+    var aboutBtn = document.getElementById("About");
+    var aboutSpan = document.getElementsByClassName("about-close")[0];
+    var aboutModal = document.getElementById("aboutId");
+
+    // open on about button click
+    aboutBtn.onclick = function(){
+	aboutModal.style.display = "block";
+    }
+
+    // close on about X button click
+    aboutSpan.onclick = function() {
+	aboutModal.style.display = "none";
+    }
+
+    // close on clicking outside the modal
+    window.onclick = function(event){
+	if (event.target == aboutModal){
+	    aboutModal.style.display = "none";
+	}
+    }
+
+    if (arguments.length == 2){
+
+	// if state of about is 0 or null
+	if(!data.active()){
+	    aboutModal.style.display = "none";
+	}
+    }
+}
+
 // switch between english and russian layout
 function toggleLanguage(type) {
     
@@ -23,19 +58,21 @@ function toggleLanguage(type) {
 
 var mapIcons = {
     city: {
-        icon: '../images/blueicon_city.png'
+        icon: 'images/blueicon_city.png'
     },
     soviet: {
-        icon: '../images/icon_redarmy.png'
+        icon: 'images/icon_redarmy.png'
     },
     wehrmacht: {
-        icon: '../images/icon_wehrmacht.png'
+        icon: 'images/icon_wehrmacht.png'
     },
 };
 
 // create markers for the city, red army, and wehrmacht
 function setMarkers(type, info, mapdata) {
 
+    var markPos;
+    var centerPos;
     var mapIcon = mapIcons[type] || {};
     
     var imgIcon = {
@@ -50,26 +87,46 @@ function setMarkers(type, info, mapdata) {
 	var strTitle = info[currIndex][0];
 	var htmlStr = setInfo(currIndex, info);
 	
+	var markLat = info[currIndex][2];
+	var markLng = info[currIndex][3];
+	
 	var marker = new google.maps.Marker({
-	    position: new google.maps.LatLng(info[currIndex][2], info[currIndex][3]),
+	    position: new google.maps.LatLng(markLat, markLng),
 	    size: new google.maps.Size(20,20),
-	    map: mapdata,
 	    title : strTitle,
-	    icon: imgIcon
+	    icon: imgIcon,
+	    map: mapdata
 	});
-
+		
 	// call snazzy-info-window.js
 	var infowindow = new SnazzyInfoWindow({
 	    marker: marker,
 	    content: htmlStr,
 	    openOnMarkerClick: true,
+	    panOnOpen: false,
 	    closeOnMapClick: true,
 	    closeWhenOthersOpen: true
 	});
 
+	// onload have the city markers be visible.
 	if (type != 'city') {
 	    marker.setVisible(false);
 	}
+
+	$.getScript("js/google-maps-tools.js", function() {
+	    centerPos = getBounds(mapdata);
+
+	    //getInfo(mapdata);
+	});
+
+	// on mouse click center the screen around the marker.
+	google.maps.event.addListener(marker, "click", function () {
+            mapdata.setCenter(this.getPosition());
+
+	    setTimeout(function(){
+		mapdata.panBy(0, -200);		
+	    }, 1);
+	});
 	
 	// push markers and corresponding info window into arrays for future use
 	mapMarkers[type].push(marker);

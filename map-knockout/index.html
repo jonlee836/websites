@@ -46,22 +46,44 @@
 	<p data-bind="style: {color: setNameColor()}, text: currMap"></p>
       </div>
 
-      <div class="btnMap" data-bind="click: toggleMonitor">
-	Monitor
-      </div>
+      <!-- <div class="btnMap" data-bind="click: toggleMonitor"> -->
+      <!-- 	Monitor -->
+      <!-- </div> -->
 
-      <div class="row">
-	<div class="container">
-	  <div class="sidenavMonitor" data-bind="if: displayMessage">
-	    <div data-bind="foreach: eventDetect">
-	      <p data-bind="style: $parent.{color: active < 1 ? 'gray' : 'white' }, text: event"></p>
-	    </div>
-	  </div>
-	</div>
-      </div>
+      <!-- <div class="row"> -->
+      <!-- 	<div class="container"> -->
+      <!-- 	  <div id="eventMap" class="sidenavMonitor" data-bind="if: displayMessage"> -->
+      <!-- 	    <div data-bind="mapEvents: detectMouseEvents.bind"> -->
+
+      <!-- 	      <div data-bind="foreach: eventDetect"> -->
+      <!-- 		<div data-bind="value: active"> -->
+      <!-- 		  <p data-bind="style: {color: $parent.onoff[active()]} , text: event"></p> -->
+      <!-- 		</div> -->
+
+      <!-- 	      </div> -->
+      <!-- 	    </div> -->
+      <!-- 	  </div> -->
+      <!-- 	</div> -->
+      <!-- </div> -->
     </div>
 
+    <!-- google-maps canvas -->
     <div id="map"></div>
+
+    <!-- The About Modal -->
+    <div id="aboutId" class="about-modal">
+
+      <!-- Modal content -->
+      <div class="about-content">
+
+	<!-- X close button -->
+	<span class="about-close">&times;</span>
+	
+	<h1>Created by Jon Lee</h1>
+	<article>This is a google maps overlay with key landmarks from the battle of Stalingrad. If you would like to contribute historical information to this project please contact me at jonlee836@gmail.com! </article>
+	<h2>Last updated 8/28/2017</h2>
+      </div>
+    </div>
 
     <!-- detect outside clicks -->
     <div data-bind="clickOutside: clickOutside.bind($data)">
@@ -73,8 +95,11 @@
 	<!--  Create array of Sidenav buttons -->
 	<div data-bind="foreach: markerType">
 
+	  <!-- NOTE : Having id: name being parent means clicking -->
+	  <!-- the text or deadzone between text and button will trigger navbtnToggle-->
+	  
 	  <!-- apply navbtnToggle function to each button. change state of active -->
-	  <button class="nav-button" data-bind="click: $parent.navbtnToggle.bind($parent, $index(), $data)">
+	  <button class="nav-button" data-bind="attr: {id: name}, click: $parent.navbtnToggle.bind($parent, $index(), $data)">
 
 	    <!-- Use the value of markerType[active()] as the index for onoff[color1, color2] -->
 	    <div data-bind="style: {color: $parent.onoff[active()]}, text: name"></div>	  

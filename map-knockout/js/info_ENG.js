@@ -25,7 +25,7 @@ var infoData = {
     soviet: [
 	[
 	    "Pavlov's House",
-	    "In late September 1942 a platoon of the 42nd Guards Regiment, 13th Guards Division, lead by Lieutenant Ivan F. Afanasiev captured this simple 4 story apartment building. Its defenders immediately began to put down barbed wire, trenches, and mines for the impending German counterattack. Despite its best efforts, the 6th Army could not root out the defenders nor could they destroy the building. Just 200 meters from the Volga, this humble apartment building would eventually become the only crossing point left for the Soviets.",
+	    "In late September 1942 a platoon of the 42nd Guards Regiment, 13th Guards Division, lead by Lieutenant Ivan F. Afanasiev captured this apartment building. Just 200 meters from the Volga, this humble apartment building would eventually become the only crossing point left for the Soviets.",
 	    48.716093,
 	    44.531483
 	]

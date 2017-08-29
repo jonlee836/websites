@@ -1,37 +1,74 @@
-// get click position info
+// // get click position info
 var TILE_SIZE = 256;
 var mapEvents = [
-    { event: 'bounds_changed', active: 0, prev: 0 },
-    { event: 'center_changed', active: 0, prev: 0 },
-    { event: 'click', active: 0, prev: 0 },
-    { event: 'dblclick', active: 0, prev: 0 },
-    { event: 'drag', active: 0, prev: 0 },
-    { event: 'dragend', active: 0, prev: 0 },
-    { event: 'dragstart', active: 0, prev: 0 },
-    { event: 'heading_changed', active: 0, prev: 0 },
-    { event: 'idle', active: 0, prev: 0 },
-    { event: 'maptypeid_changed', active: 0, prev: 0 },
-    { event: 'mouseout', active: 0, prev: 0 },
-    { event: 'mouseover', active: 0, prev: 0 },
-    { event: 'mousemove', active: 0, prev: 0 },
-    { event: 'projection_changed', active: 0, prev: 0 },
-    { event: 'resize', active: 0, prev: 0 },
-    { event: 'rightclick', active: 0, prev: 0 },
-    { event: 'tilesloaded', active: 0, prev: 0 },
-    { event: 'tilt_changed', active: 0, prev: 0 },
-    { event: 'zoom_changed', active: 0, prev: 0 }
+    { event: 'bounds_changed', active: 0 },
+    { event: 'center_changed', active: 0 },
+    { event: 'click', active: 0 },
+    { event: 'dblclick', active: 0 },
+    { event: 'drag', active: 0 },
+    { event: 'dragend', active: 0 },
+    { event: 'dragstart', active: 0 },
+    { event: 'heading_changed', active: 0 },
+    { event: 'idle', active: 0 },
+    { event: 'maptypeid_changed', active: 0 },
+    { event: 'mousedown', active: 0 },
+    { event: 'mouseout', active: 0 },
+    { event: 'mouseover', active: 0 },
+    { event: 'mousemove', active: 0 },
+    { event: 'mouseup', active: 0 },
+    { event: 'projection_changed', active: 0 },
+    { event: 'removefeature', active: 0 },
+    { event: 'removeproperty', active: 0 },
+    { event: 'resize', active: 0 },
+    { event: 'rightclick', active: 0 },
+    { event: 'setgeometry', active: 0 },
+    { event: 'setproperty', active: 0 },
+    { event: 'tilesloaded', active: 0 },
+    { event: 'tilt_changed', active: 0 },
+    { event: 'zoom_changed', active: 0 }
 ];
 
 function getInfo(mapdata){
     mapEvents.forEach(function(obj) {
+	
 	google.maps.event.addListener(mapdata, obj.event, function(event){
+
 	    obj.active = 1 - obj.active;
-	    console.log(obj.event, obj.active, obj.prev);
+	    console.log(obj.event);
+//	    print_eventInfo();
+
+	    var eventCheck = setTimeout(function(){
+
+		if (obj.active == 1){
+		    obj.active = 0;
+		}
+	    }, 200);
+
 	});
+
     });
 }
 
-function getMouseMove(event) {
+function print_eventInfo(){
+    mapEvents.forEach(function(obj){
+	console.log(obj.event, obj.active);
+    });
+}
+
+function getInfo_OnMouse(mapdata){
+
+    // google.maps.event.addListener(mapdata, 'mousemove', function(event){
+    // 	getCoordinates(event);
+    // });
+    
+    google.maps.event.addListener(mapdata, 'click', function(event){
+	getCoordinates(event);
+
+    });
+
+}
+
+function getCoordinates(event) {
 
     var x = window.innerWidth;
     var y = window.innerHeight;
@@ -53,6 +90,7 @@ function getMouseMove(event) {
         Math.floor(worldCoordinate.y * scale / TILE_SIZE));
 
     var boundPoints = getBounds(mapdata);
+
     console.clear();
     
     console.log(x, " X ", y);
@@ -64,13 +102,14 @@ function getMouseMove(event) {
     console.log("pixelCoordinate", pixelCoordinate.x, pixelCoordinate.y);
     console.log("tileCoordinate", tileCoordinate.x, tileCoordinate.y);
 
-    console.log("Yc", boundPoints[0]);
-    console.log("bd", boundPoints[1]);
+    var ne = boundPoints[0].getNorthEast();
+    var sw = boundPoints[1].getSouthWest();
+    
+    console.log("North East", ne.lat(), ne.lng());
+    console.log("South West", sw.lat(), sw.lng());
+    
     //console.log("bounds Yc = North East", mapdata.getBounds().b);
     //console.log("bounds bd = South West", mapdata.getBounds().f);
-
-    
-    console.log("event", event);
 }
 
 function getDrag(event){
@@ -85,9 +124,12 @@ function getDrag(event){
 //    console.log("bounds", mapdata.getBounds());
 
 function getBounds(mapdata){
-    var ne = mapdata.getBounds().b;
-    var sw = mapdata.getBounds().f;
+
+    console.log(mapdata);
     
+    var ne = mapdata.getBounds();
+    var sw = mapdata.getBounds();
+
     var bounds = [ne, sw];
     
     return bounds;

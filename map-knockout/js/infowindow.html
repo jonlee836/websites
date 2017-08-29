@@ -11,6 +11,7 @@
     <style>
       .si-wrapper-top {
       max-width: 500px;
+      max-height: 500px;
       }
       .gm-style .gm-style-iw {
       background-color: #fff;
@@ -19,7 +20,7 @@
 
       .gm-style .gm-style-iw .info-window {
       padding: 0;
-      height: 100%;
+      max-height: 500px;
       }
       
       .info-window info-header {
@@ -46,32 +47,31 @@
 
       .si-content h1 {
       margin: auto;
-      }
-
-      <!-- .gm-style .gm-style-iw { -->
-      <!-- background-color: #3C61AD !important; -->
-      <!-- top: 0 !important; -->
-      <!-- left: 0 !important; -->
-      <!-- width: 100% !important; -->
-      <!-- height: 100% !important; -->
-      <!-- min-height: 120px !important; -->
-      <!-- padding-top: 10px; -->
-      <!-- display: block !important; -->
-      <!-- }	 -->
-      
+      }      
     </style>
   </head>
+
   <body>
-      <div class="info-window">
-	<h1 id="info-header">
-	  <b>
-	    title
-	  </b>
-	</h1>
-	<article>
-	  article
-	</article>
-      </div>
+    <div class="info-window">
+      <h1 id="info-header">
+	<b>
+	  title
+	</b>
+      </h1>
+      <article>
+	article
+      </article>
+
     </div>
+
+    <script>
+      $('#lightSlider').lightSlider({
+      gallery: true,
+      loop: true,
+      slideMargin: 0,
+      thumbItem: 9
+      });
+    </script>
+    
   </body>
 </html>
