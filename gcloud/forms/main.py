@@ -1,6 +1,7 @@
 #!/usr/bin/python2.7
 
 import webapp2
+import checkMonthDayYear as mdy
 
 formsearch="""
 <form action="https://www.google.com/search">
@@ -68,7 +69,15 @@ class MainPage(webapp2.RequestHandler):
         self.response.write(formbirthday)
         
     def post(self):
-        self.response.out.write("foo")
+        user_month = mdy.valid_month(self.request.get('month'))
+        user_day = mdy.valid_day(self.request.get('day'))
+        user_year = mdy.valid_year(self.request.get('year'))
+
+        # if any input is invalid resubmit form
+        if not(user_month and user_day and user_year):
+            self.response.write(formbirthday)
+        else:
+            self.response.out.write("Valid")
         
 # sends request, how the browser requests information
 class TestHandler(webapp2.RequestHandler):
