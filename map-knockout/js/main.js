@@ -154,12 +154,6 @@ var viewModel = function() {
 	var a = this.displayMessage();
 	this.displayMessage(1 - a );
     };
-
-    // initialize aboutButton
-    $.getScript("js/overlays.js", function(event){
-	aboutButton(event);      // toggle marker layer overlays.js	    
-    });
-
 };
 
 // waits until DOM is fully loaded before executing google maps
