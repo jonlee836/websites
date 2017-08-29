@@ -45,13 +45,13 @@ formbirthday="""
 What is your birthday?
 <br>
 <label> Month
-<input type="text" name="month"
+<input type="text" name="month" value="%(month)s">
 </label>
 <label> Day
-<input type="text" name="day"
+<input type="text" name="day" value="%(day)s">
 </label>
 <label> Year
-<input type="text" name="year"
+<input type="text" name="year" value="%(year)s">
 </label>
 <div style="color: red">%(error)s</div>
 <br>
@@ -63,30 +63,37 @@ What is your birthday?
 class MainPage(webapp2.RequestHandler):
 
     # string substitution on error string
-    def write_form(self, error=""):
-        self.response.out.write(formbirthday % {"error": error})
-        
+    def write_form(self, error="", month="", day="", year=""):
+        self.response.out.write(formbirthday % {"error": error,
+                                                "month": month,
+                                                "day": day,
+                                                "year": year})
     def get(self):
         
         self.response.write(formradio)
         self.response.write(formsearch)
         self.response.write(formdropdown)
-        self.write_form()        
+        
+        self.write_form()
+        
         #self.response.headers['Content-Type'] = 'text/plain'
         
     def post(self):
         
-        user_month = mdy.valid_month(self.request.get('month'))
-        user_day = mdy.valid_day(self.request.get('day'))
-        user_year = mdy.valid_year(self.request.get('year'))
+        user_month = self.request.get('month')
+        user_day = self.request.get('day')
+        user_year = self.request.get('year')
 
+        month = mdy.valid_month(user_month)
+        day = mdy.valid_day(user_day)
+        year = mdy.valid_year(user_year)
+        
         # if any input is invalid resubmit form
-        if not(user_month and user_day and user_year):
-            #self.response.write(formbirthday)
+        if not(month and day and year):
             self.write_form("valid month / day/ year required")
         else:
             self.response.out.write("Valid")
-        
+            
 # sends request, how the browser requests information
 class TestHandler(webapp2.RequestHandler):
     def post(self):
