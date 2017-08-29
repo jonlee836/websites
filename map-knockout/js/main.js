@@ -114,7 +114,6 @@ var viewModel = function() {
     // Because active is observable you can modify it with knockoutJS.
     // Show/hide map marker layer on button click.    
     this.navbtnToggle = function(index, data){
-	this.checkEvents();
 
 	// current clicked button
 	var type = data['type'];

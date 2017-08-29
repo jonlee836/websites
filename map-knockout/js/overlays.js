@@ -45,6 +45,7 @@ function aboutButton(data, event){
     if (arguments.length == 2){
 
 	// if state of about is 0 or null
+	
 	if(!data.active()){
 	    aboutModal.style.display = "none";
 	}
