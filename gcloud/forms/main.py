@@ -73,7 +73,7 @@ class MainPage(webapp2.RequestHandler):
         self.response.write(formradio)
         self.response.write(formsearch)
         self.response.write(formdropdown)
-        
+                
         self.write_form()
         
         #self.response.headers['Content-Type'] = 'text/plain'
@@ -87,10 +87,10 @@ class MainPage(webapp2.RequestHandler):
         month = mdy.valid_month(user_month)
         day = mdy.valid_day(user_day)
         year = mdy.valid_year(user_year)
-        
+
         # if any input is invalid resubmit form
         if not(month and day and year):
-            self.write_form("valid month / day/ year required")
+            self.write_form("valid month / day/ year required", user_month, user_day, user_year)
         else:
             self.response.out.write("Valid")
             

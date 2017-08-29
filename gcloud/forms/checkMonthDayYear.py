@@ -12,6 +12,12 @@ months = ['January',
           'December']
 
 def valid_month(month):
+    if month and month.isdigit():
+        m = int(month)
+        if 1 <= m <= 12:
+            mStr = months[m-1]
+            return mStr
+        
     for foo in months:
         if foo.lower() == month.lower():
             return month.title()
