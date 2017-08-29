@@ -53,7 +53,7 @@ What is your birthday?
 <label> Year
 <input type="text" name="year"
 </label>
-
+<div style="color: red">%(error)s</div>
 <br>
 <input type="submit">
 </form>
@@ -61,21 +61,29 @@ What is your birthday?
 
 # what the user sees on page load
 class MainPage(webapp2.RequestHandler):
+
+    # string substitution on error string
+    def write_form(self, error=""):
+        self.response.out.write(formbirthday % {"error": error})
+        
     def get(self):
-        #self.response.headers['Content-Type'] = 'text/plain'
+        
         self.response.write(formradio)
         self.response.write(formsearch)
         self.response.write(formdropdown)
-        self.response.write(formbirthday)
+        self.write_form()        
+        #self.response.headers['Content-Type'] = 'text/plain'
         
     def post(self):
+        
         user_month = mdy.valid_month(self.request.get('month'))
         user_day = mdy.valid_day(self.request.get('day'))
         user_year = mdy.valid_year(self.request.get('year'))
 
         # if any input is invalid resubmit form
         if not(user_month and user_day and user_year):
-            self.response.write(formbirthday)
+            #self.response.write(formbirthday)
+            self.write_form("valid month / day/ year required")
         else:
             self.response.out.write("Valid")
         
