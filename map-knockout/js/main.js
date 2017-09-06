@@ -128,23 +128,21 @@ var viewModel = function() {
 	});
     };
 
-    // get array of google-map-events
-
     // Not sure how to subscribe the event changes in mapEvents[] with eventDetect[]
     var eventDetect = [];
     
-    $.getScript("js/google-maps-tools.js", function(event){
-	var i = 0;
-	this.eventDetect = mapEvents.length;
+    // $.getScript("js/google-maps-tools.js", function(event){
+    // 	var i = 0;
+    // 	this.eventDetect = mapEvents.length;
 
-	mapEvents.forEach(function(obj) {
-	    var foo = { event: ko.observable(obj.event),
-			active: ko.observable(obj.active),
-		      };
-	    eventDetect[i] = foo;
-	    i++;
-	});
-    });
+    // 	mapEvents.forEach(function(obj) {
+    // 	    var foo = { event: ko.observable(obj.event),
+    // 			active: ko.observable(obj.active),
+    // 		      };
+    // 	    eventDetect[i] = foo;
+    // 	    i++;
+    // 	});
+    // });
     
     this.eventDetect = ko.observableArray(eventDetect);
     this.displayMessage = ko.observable(0);    
@@ -156,49 +154,54 @@ var viewModel = function() {
     };
 };
 
-// waits until DOM is fully loaded before executing google maps
-$(function() {
+function initMap(){
 
-    var clickCount = 1;
-    
-    mapdata = new google.maps.Map(document.getElementById('map'), {
-	// use snazzy-maps mapStyle 
-	styles: mapStyle,	
-	center: defaultPos,
-	zoom: 12,
-	gestureHandling: 'gestures',
-	disableDefaultUI: true
-    });
-    
-    google.maps.event.addDomListener(window, 'load');
+    // waits until DOM is fully loaded before executing google maps
 
-    // setup overlay
-    var cityOverlay = new google.maps.OverlayView();
 
-    var imgbounds = new google.maps.LatLngBounds(
-	new google.maps.LatLng(49.005447494058096, 44.894256591796875),
-	new google.maps.LatLng(48.53843177405044, 44.33807373046875)
-    );
-    
-    cityOverlay = new google.maps.GroundOverlay('http://i.imgur.com/pyjuLfd.jpg', imgbounds);
-    cityOverlay.setMap(mapdata);
+    // definitely a better way of doing this....
+    $.getScript("js/snazzy-info-window.min.js", function(){
 
-    var cityInfo = infoData['city'];
-    var sovietInfo = infoData['soviet'];
-    var wehrmachtInfo = infoData['wehrmacht'];
+	var clickCount = 1;
+	
+	mapdata = new google.maps.Map(document.getElementById('map'), {
+	    // use snazzy-maps mapStyle 
+	    styles: mapStyle,	
+	    center: defaultPos,
+	    zoom: 12,
+	    gestureHandling: 'gestures',
+	    disableDefaultUI: true
+	});
+	
+	google.maps.event.addDomListener(window, 'load');
 
-    // set mapMarkers
-    $.getScript("js/overlays.js", function() {
-	setMarkers('city', cityInfo, mapdata);
-	setMarkers('soviet', sovietInfo, mapdata);
-	setMarkers('wehrmacht', wehrmachtInfo, mapdata);
-    });
+	// setup overlay
+	var cityOverlay = new google.maps.OverlayView();
 
-    // display map info on click in console
-    $.getScript("js/google-maps-tools.js", function() {
-	getInfo_OnMouse(mapdata);
-	//getInfo(mapdata);
+	var imgbounds = new google.maps.LatLngBounds(
+	    new google.maps.LatLng(49.005447494058096, 44.894256591796875),
+	    new google.maps.LatLng(48.53843177405044, 44.33807373046875)
+	);
+	
+	cityOverlay = new google.maps.GroundOverlay('http://i.imgur.com/pyjuLfd.jpg', imgbounds);
+	cityOverlay.setMap(mapdata);
+
+	var cityInfo = infoData['city'];
+	var sovietInfo = infoData['soviet'];
+	var wehrmachtInfo = infoData['wehrmacht'];
+
+	// set mapMarkers
+	$.getScript("js/overlays.js", function() {
+	    setMarkers('city', cityInfo, mapdata);
+	    setMarkers('soviet', sovietInfo, mapdata);
+	    setMarkers('wehrmacht', wehrmachtInfo, mapdata);
+	});
+
     });
 
     ko.applyBindings(new viewModel());
-});
+}
+
+function mapError(){
+    alert("Google Maps is offline");
+}
