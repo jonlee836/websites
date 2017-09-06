@@ -54,7 +54,7 @@ function aboutButton(data, event){
 }
 
 function searchButton(data, event){
-    
+    console.log(data,event);
 }
 
 // switch between english and russian layout
