@@ -75,7 +75,7 @@ var mapIcons = {
 };
 
 // create markers for the city, red army, and wehrmacht
-function setMarkers(type, info, mapdata) {
+function setMarkers(type, info, mapdata, siteNames) {
 
     var markPos;
     var centerPos;
@@ -95,6 +95,11 @@ function setMarkers(type, info, mapdata) {
 	
 	var markLat = info[currIndex][2];
 	var markLng = info[currIndex][3];
+
+	var locStr = new Object();
+
+	locStr.location = strTitle;
+	siteNames.push(locStr);
 	
 	var marker = new google.maps.Marker({
 	    position: new google.maps.LatLng(markLat, markLng),

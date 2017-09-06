@@ -20,14 +20,14 @@
 }
 
 .btnMenu {
-    padding-left: 40px;
+    padding-left: 15px;
     padding-right: 10px;
-    margin-right: 65px;
+    margin-right: 40px;
     display: inline-block;
     font-family: 'Special Elite', cursive;
     font-size: 30px;
     background-color: rgba(0, 0, 0, 0);
-    color:black;
+    color: black;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
@@ -113,7 +113,7 @@ body {
     padding-left: 10px;
     padding-top: 2px;
     color: #818181;
-    font-size: 20px;
+    font-size: 16px;
     position: initial;
     transition: 2s;
 }
@@ -126,6 +126,10 @@ body {
 #pointInfo p {
     font-size: 20px;
     font-color: #ffffff;
+}
+
+#filterSearch {
+    
 }
 
 .nav-button {

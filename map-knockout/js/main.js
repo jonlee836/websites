@@ -19,6 +19,8 @@ var mapWindows = {
     wehrmacht: []
 }
 
+var siteNames = [];
+
 var clickCount = 1;
 
 ko.bindingHandlers.clickOutside = {
@@ -43,7 +45,6 @@ var viewModel = function() {
     this.toggleSearch = ko.observable(0);
     
     this.markerType = ko.observableArray([
-	{ name: 'Search...',   active: ko.observable(0), type: 'search'},
 	{ name: 'City',        active: ko.observable(1), type: 'city'},
 	{ name: 'Red Army',    active: ko.observable(0), type: 'soviet'},
 	{ name: 'Wehrmacht',   active: ko.observable(0), type: 'wehrmacht'},
@@ -126,7 +127,7 @@ var viewModel = function() {
 	if (type == 'search'){
 	    var a = this.toggleSearch;
 	    this.toggleSearch(1 - a);
-	    console.log("search clicked");
+	    searchButton(data, event);
 	}
 	else{
 	    // check if marker or aboutButton
@@ -137,10 +138,9 @@ var viewModel = function() {
 	}
     };
 
-    // Not sure how to subscribe the event changes in mapEvents[] with eventDetect[]
-    var eventDetect = [];
+    // Not sure how to subscribe the event changes in mapEvents[] with markerName[]
     
-    this.eventDetect = ko.observableArray(eventDetect);
+    this.siteNames = ko.observableArray(siteNames);
     this.displayMessage = ko.observable(0);    
 
     // toggle button for google map events
@@ -150,11 +150,12 @@ var viewModel = function() {
     };
 };
 
+function searchButton(data, event){
+    console.log(data,event);
+}
+
 function initMap(){
-
     // waits until DOM is fully loaded before executing google maps
-
-
     // definitely a better way of doing this....
     $.getScript("js/snazzy-info-window.min.js", function(){
 
@@ -188,13 +189,11 @@ function initMap(){
 
 	// set mapMarkers
 	$.getScript("js/overlays.js", function() {
-	    setMarkers('city', cityInfo, mapdata);
-	    setMarkers('soviet', sovietInfo, mapdata);
-	    setMarkers('wehrmacht', wehrmachtInfo, mapdata);
+	    setMarkers('city', cityInfo, mapdata, siteNames);
+	    setMarkers('soviet', sovietInfo, mapdata, siteNames);
+	    setMarkers('wehrmacht', wehrmachtInfo, mapdata, siteNames);
 	});
-
     });
-
     ko.applyBindings(new viewModel());
 }
 

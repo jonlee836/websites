@@ -41,29 +41,6 @@
 	&#9776;MENU
       </div>
 
-      <div class="btnMap" data-bind="click: toggleMap.bind($data)">	
-	<p data-bind="style: {color: setNameColor()}, text: currMap"></p>
-      </div>
-
-      <div class="btnMap" data-bind="click: toggleMonitor">
-	Filter
-      </div>
-
-      <div class="row">
-      	<div class="container">
-      	  <div id="eventMap" class="sidenavMonitor" data-bind="if: displayMessage">
-      	    <div data-bind="mapEvents: detectMouseEvents.bind">
-
-      	      <div data-bind="foreach: eventDetect">
-      		<div data-bind="value: active">
-      		  <p data-bind="style: {color: $parent.onoff[active()]} , text: event"></p>
-      		</div>
-
-      	      </div>
-      	    </div>
-      	  </div>
-      	</div>
-      </div>
     </div>
 
     <!-- google-maps canvas -->
@@ -88,33 +65,34 @@
       <!-- detect outside clicks -->
       <div data-bind="clickOutside: clickOutside.bind($data)">
 
-	<div id="searchFilter">
-	  <div data-bind="if: toggleSearch">
-	    <div class="searchNav">
-	      Hello
+	<div id="mySidenav" class="sidenav">
+
+	  <!-- X button (close Sidenav) -->
+	  <a href="javascript:void(0)" id="closeButton" class="closebtn" data-bind="click: closeNav">&times;</a>
+
+	  <!-- filter -->
+	  <button class="nav-button">
+	    <div id="filterSearch">
+	      <p>Search...</p>
 	    </div>
-	  </div>
+      	    <div id="eventMap" class="sidenavMonitor" data-bind="if: displayMessage">
+      	      <div data-bind="mapEvents: detectMouseEvents.bind">
+      		<div data-bind="foreach: siteNames">
+      		  <p data-bind="text: location"></p>
+      		</div>
+      	      </div>
+	    </div>
+	  </button>
 	  
-	  <div id="mySidenav" class="sidenav">
-
-	    <!-- X button (close Sidenav) -->
-	    <a href="javascript:void(0)" id="closeButton" class="closebtn" data-bind="click: closeNav">&times;</a>
-	    
-	    <!--  Create array of Sidenav buttons -->
-	    <div data-bind="foreach: markerType">
-
-	      <!-- NOTE : Having id: name being parent means clicking -->
-	      <!-- the text or deadzone between text and button will trigger navbtnToggle-->
-	      
-	      <!-- apply navbtnToggle function to each button. change state of active -->
-	      <button class="nav-button" data-bind="attr: {id: name}, click: $parent.navbtnToggle.bind($parent, $index(), $data)">
-
-		<!-- Use the value of markerType[active()] as the index for onoff[color1, color2] -->
-		<div data-bind="style: {color: $parent.onoff[active()]}, text: name"></div>	  
-	      </button>
-	    </div>
+	  <!--  Create array of Sidenav buttons -->
+	  <div data-bind="foreach: markerType">
+	    <button class="nav-button" data-bind="attr: {id: name}, click: $parent.navbtnToggle.bind($parent, $index(), $data)">
+	      <!-- Use the value of markerType[active()] as the index for onoff[color1, color2] -->
+	      <div data-bind="style: {color: $parent.onoff[active()]}, text: name"></div>
+	    </button>
 	  </div>
 	</div>
       </div>
+
   </body>
 </html>
