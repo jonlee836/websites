@@ -141,12 +141,12 @@ var viewModel = function() {
     // Not sure how to subscribe the event changes in mapEvents[] with markerName[]
     
     this.siteNames = ko.observableArray(siteNames);
-    this.displayMessage = ko.observable(0);    
+    this.filterToggle = ko.observable(0);
 
     // toggle button for google map events
-    this.toggleMonitor = function(data) {
-	var a = this.displayMessage();
-	this.displayMessage(1 - a );
+    this.filterClick = function(data) {
+	var a = this.filterToggle();
+	this.filterToggle(1 - a );
     };
 };
 

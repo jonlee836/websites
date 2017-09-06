@@ -71,18 +71,23 @@
 	  <a href="javascript:void(0)" id="closeButton" class="closebtn" data-bind="click: closeNav">&times;</a>
 
 	  <!-- filter -->
-	  <button class="nav-button">
+	  <button class="nav-button search" data-bind="click: filterClick">
 	    <div id="filterSearch">
-	      <p>Search...</p>
+	      <p>Search...</p>	      
 	    </div>
-      	    <div id="eventMap" class="sidenavMonitor" data-bind="if: displayMessage">
+	  </button>
+
+	  <div id="filterNames" class="sidenavMonitor" data-bind="if: filterToggle">
+	    <div class="filterContainer">
       	      <div data-bind="mapEvents: detectMouseEvents.bind">
       		<div data-bind="foreach: siteNames">
-      		  <p data-bind="text: location"></p>
+		  <button class="filter-button">
+      		    <p data-bind="text: location"></p>
+		  </button>
       		</div>
       	      </div>
 	    </div>
-	  </button>
+	  </div>
 	  
 	  <!--  Create array of Sidenav buttons -->
 	  <div data-bind="foreach: markerType">

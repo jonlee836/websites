@@ -99,23 +99,23 @@ body {
     transition: all 0.5s ease;
 }
 
-.sidenavMonitor {
-    width: 400px;
-    background-color: rgb(0, 23, 38);
-    border-color: black;
-    /* border-radius: 20px; */
-    height: auto;
-    position: absolute;
-    transition: 0.5s;
+.filterContainer {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    background-color: rgb(17, 17, 17);
+    border-color: rgb(255, 255, 255);
 }
 
-.sidenavMonitor p {
-    padding-left: 10px;
-    padding-top: 2px;
-    color: #818181;
-    font-size: 16px;
-    position: initial;
-    transition: 2s;
+.sidenavMonitor {
+    width: -webkit-fill-available;
+    background-color: rgb(17, 17, 17);
+    border-color: rgb(255, 255, 255);
+    /* border-radius: 20px; */
+    height: auto;
+    transition: 0.5s;
+    position: absolute;
+    margin-top: -10px;
+    padding-top: 20px;
 }
 
 #pointInfo {
@@ -149,6 +149,31 @@ body {
     display: list-item;
     transition: 0.3s;
     outline: 0;
+}
+
+.filter-button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin: 0px auto 0px auto;
+    color: #818181;
+    border: #111;
+    background-color: #111111;
+    border-color: #111111;
+    font-size: 18px;
+    position: initial;
+    width: -webkit-fill-available;
+    transition: 1;
+    font-family: 'Special Elite', cursive;
+}
+.filter-button p {
+    margin: 0px 0px 0px 0px;
+}
+
+.search {
+    text-align: -webkit-center;
+    margin-bottom: -10px;
 }
 
 .text-muted {
