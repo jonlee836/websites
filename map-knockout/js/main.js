@@ -6,21 +6,6 @@ var defaultPos = {
     lng: 44.52157974243164
 };
 
-// Map mapMarkers to click on.
-var mapMarkers = {
-    city: [],
-    soviet: [],
-    wehrmacht: []
-};
-
-var mapWindows = {
-    city: [],
-    soviet: [],
-    wehrmacht: []
-}
-
-var siteNames = [];
-
 var clickCount = 1;
 
 ko.bindingHandlers.clickOutside = {
@@ -38,6 +23,24 @@ ko.bindingHandlers.clickOutside = {
 }
 
 var viewModel = function() {
+
+    // inside scope of viewModel, regular this is the scope of binding in HTML
+    var self = this;
+
+    // Map mapMarkers to click on.
+    var mapMarkers = {
+	city: [],
+	soviet: [],
+	wehrmacht: []
+    };
+
+    var mapWindows = {
+	city: [],
+	soviet: [],
+	wehrmacht: []
+    }
+
+    var siteNames = [];
 
     this.onoff = ["rgb(129,129,129)", "rgb(255,255,255)"];
     this.currMap = ko.observable("Volgagrad");
@@ -137,7 +140,7 @@ var viewModel = function() {
 	    // check if marker or aboutButton
 	    $.getScript("js/overlays.js", function(event){
 		aboutButton(data, event);
-		toggleGroup(type, data);      // toggle marker layer overlays.js	    
+		toggleGroup(type, data, mapWindows, mapMarkers);      // toggle marker layer overlays.js	    
 	    });
 	}
     };
@@ -164,64 +167,96 @@ var viewModel = function() {
 
 	    // set mapMarkers and collect monument titles from each type
 	    $.getScript("js/overlays.js", function() {
-		setMarkers('city', cityInfo, mapdata, siteNames);
-		setMarkers('soviet', sovietInfo, mapdata, siteNames);
-		setMarkers('wehrmacht', wehrmachtInfo, mapdata, siteNames);
+		setMarkers('city', cityInfo, mapdata, mapWindows, mapMarkers, siteNames);
+		setMarkers('soviet', sovietInfo, mapdata, mapWindows, mapMarkers, siteNames);
+		setMarkers('wehrmacht', wehrmachtInfo, mapdata, mapWindows, mapMarkers, siteNames);
 	    });
-
-	    
 	});
     }
-    // for (var i = 0; i < this.mapMarkers.length; i++) {
-    //     var mtype = this.mapMarkers[i];
-    
-    //     for (var k = 0; k < this.mtype.length; k++){
-		
-    //     }
-    // }
 
     this.initMap();
     
-    this.siteNames = ko.observableArray(siteNames);
     this.filterToggle = ko.observable(0);
 
     // toggle button for google map events
     this.filterClick = function(data) {
 	var a = this.filterToggle();
 	this.filterToggle(1 - a );
-	console.log(this.filterToggle());
     };
 
-    this.animateMarker = function() {
-	console.log(this);
-        this.populateInfoWindow(this, this.largeInfoWindow);
-        this.setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout((function() {
-            this.setAnimation(null);
-        }).bind(this), 1400);
-    };
+    this.goToMarker = function(index, data){
 
-    // this.myLocationsFilter = ko.computed(function() {
+	jQuery.each(mapMarkers, function(i, obj){
+	    for (var currIndex = 0; currIndex < obj.length; currIndex++){
+
+		var tmpMark = obj[currIndex];
+
+		if (tmpMark.title == index.location){
+		    console.log(tmpMark);
+		    if (!tmpMark.getVisible()){
+			obj[currIndex].setVisible(true);
+		    }
+		    google.maps.event.trigger(tmpMark, 'click');
+		}
+	    }
+	});
+    }
+
+    this.locationNames = ko.observableArray(siteNames);
+    
+    this.locationFilter = ko.computed(function(index, data){
+
+	var res = [];
+	var currSearch = this.searchOption();
+
+	for (var i = 0; i < siteNames.length; i++){
+	    
+	    var tempObj = new Object(siteNames[i]);
+	    var currStr = tempObj.location;
+	    
+	    if (currStr.toLowerCase().includes(currSearch.toLowerCase())){
+		res.push(tempObj);
+		console.log(res[i]);
+	    }
+	}
+
+	if(currSearch != "" && currSearch != "..."){
+	    res.slice(0, res.length);
+	    for (var i = 0; i < siteNames.length; i++){
+		var tempObj = new Object(siteNames[i]);
+		res.push(tempObj);
+	    }
+	}
+	else{
+	    
+	}
+	return res;
+    }, this);
+    
+    
+    
+    // this.locationFilter = ko.computed(function() {
     //     var result = [];
-    //     for (var i = 0; i < this.mapMarkers.length; i++) {
-    //         var mtype = this.mapMarkers[i];
-
-    // 	    for (var k = 0; k < this.mtype.length; k++){
-
-    // 		var tmark = mtype
-    // 		if (markerLocation.title.toLowerCase().includes(this.searchOption().toLowerCase())) {
-    //                 result.push(markerLocation);
-    //                 this.markers[i].setVisible(true);
-    // 		}
-    // 		else {
-    //                 this.markers[i].setVisible(false);
-    // 		}
-		
-    // 	    }
+    //     for (var i = 0; i < this.markers.length; i++) {
+    //         var markerLocation = this.markers[i];
+    //         if (markerLocation.title.toLowerCase().includes(this.searchOption().toLowerCase())) {
+    //             result.push(markerLocation);
+    //             this.markers[i].setVisible(true);
+    //         } else {
+    //             this.markers[i].setVisible(false);
+    //         }
     //     }
     //     return result;
     // }, this);
-
+    
+    // this.populateAndBounceMarker = function() {
+    //     self.populateInfoWindow(this, self.largeInfoWindow);
+    //     this.setAnimation(google.maps.Animation.BOUNCE);
+    //     setTimeout((function() {
+    //         this.setAnimation(null);
+    //     }).bind(this), 1400);
+    // };
+    
 };
 
 function searchButton(data, event){

@@ -1,5 +1,5 @@
 // Control ground overlays and marker overlays
-function toggleGroup(type, data) {
+function toggleGroup(type, data, mapWindows, mapMarkers) {
 
     if (type != 'toggle' && type != 'about'){
 	for (var i = 0; i < mapMarkers[type].length; i++) {
@@ -10,7 +10,8 @@ function toggleGroup(type, data) {
 	    if (!marker.getVisible()) {
 		marker.setVisible(true);
 		marker.setAnimation(google.maps.Animation.DROP);
-	    } else {
+	    }
+	    else {
 		marker.setVisible(false);
 	    }
 	    mapWindows[type][i].close();
@@ -75,7 +76,7 @@ var mapIcons = {
 };
 
 // create markers for the city, red army, and wehrmacht
-function setMarkers(type, info, mapdata, siteNames) {
+function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames) {
 
     var markPos;
     var centerPos;

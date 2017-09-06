@@ -179,6 +179,7 @@ body {
     color: #818181;
     border: #111;
     background-color: #111111;
+    text-align: -webkit-center;
     border-color: #111111;
     font-size: 18px;
     position: initial;
@@ -192,6 +193,7 @@ body {
 
 .search {
     align-items: center;
+    font-size: 14px;
     width: -webkit-fill-available;
     text-align: -webkit-center;
     border: #111111;

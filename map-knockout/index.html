@@ -86,10 +86,10 @@
 
 	    <div class="filterContainer">
       	      <div data-bind="mapEvents: detectMouseEvents.bind">
-      		<div data-bind="foreach: siteNames">
-		  <button class="filter-button">
-      		    <p data-bind="text: location, click: $parent.animateMarker"></p>
-		  </button>
+      		<div data-bind="foreach: locationNames">
+		  <a href="#" class="filter-button">
+      		    <p data-bind="text: location, click: $parent.goToMarker"></p>
+		  </a>
       		</div>
       	      </div>
 	    </div>
