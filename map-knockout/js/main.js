@@ -202,7 +202,6 @@ var viewModel = function() {
 	    }
 	});
     }
-
     this.locationNames = ko.observableArray(siteNames);
     
     this.locationFilter = ko.computed(function(index, data){
