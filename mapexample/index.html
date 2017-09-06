@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Place Autocomplete Museum Search</title>
+    <meta name="description" content="Google map with search capabilities to find museums in every city and plan your visit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js"></script>
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/mapapp.js"></script>
+
+  </head>
+
+  <body style="margin:0px; padding:0px;" onload="initialize()">
+
+    <div class="wrapper">
+      <div id="findmuseums">
+	Find museums in:
+      </div>
+
+      <div id="locationField">
+	<input id="autocomplete" placeholder="Enter a city" type="text" />
+      </div>
+
+      <div id="controls">
+	<select id="country">
+          <option value="all">All</option>
+          <option value="au">Australia</option>
+          <option value="br">Brazil</option>
+          <option value="ca">Canada</option>
+          <option value="fr">France</option>
+          <option value="de">Germany</option>
+          <option value="mx">Mexico</option>
+          <option value="nz">New Zealand</option>
+          <option value="it">Italy</option>
+          <option value="za">South Africa</option>
+          <option value="es">Spain</option>
+          <option value="pt">Portugal</option>
+          <option value="us" selected>U.S.A.</option>
+          <option value="uk">United Kingdom</option>
+	</select>
+      </div>
+    </div>
+    <div id="map-canvas"></div>
+
+    <div id="listing">
+      <table id="resultsTable">
+	<tbody id="results"></tbody>
+      </table>
+    </div>
+
+    <!-- display info in the popup window of every marker! -->
+    <div id="info-content" data-bind="visible: infoWindowcontent">
+      <ul data-bind="foreach: infoPlaces"> </ul>
+      <img width="20" height="20" src="" alt="museum icon" data-bind="attr: {src: icon}"> 
+      <h3 data-bind="text: name">  </h3>
+      <p data-bind="text: phone"> </p>
+      <p data-bind="text: adress">  </p>
+      <p data-bind="text: website">  </p>
+      
+
+    </div>
+
+    <!-- Here is a block to display from Wiki Api -->
+    <div id="wikipedia-container" data-bind="visible: wikiHeader">
+      <button data-bind="click: sortItems">Sort</button>
+      <!--<p class="close" data-bind="click: closeWiki"> X </p>-->
+      <h3>Useful Wiki Links</h3>
+      <span data-bind="text: wikiError"></span>
+      <ul data-bind="foreach: wikiArray">
+	<li><a data-bind="attr: {href:url}, text: article"></a></li>
+      </ul>
+    </div>
+    
+    <!-- Mobile list of results, mobile navigation buttons, hidden until media query is activated  -->
+    <div class="mobilewrapper" data-bind="visible: mobblock">
+      <div class="mobilebutton" data-bind="click: mobileToggleMusList">
+      </div>
+      
+    </div>
+    <div class="mobilewrapperwiki" data-bind="visible: mobblock">
+      <div class="mobilebuttonwiki" data-bind="click: mobileToggleList">
+      </div> 
+    </div> 
+
+    <div class="mobileresults" data-bind="visible: mobileShow() === true">
+      <div data-bind="visible: wikiHeader">
+	<button data-bind="click: sortItems">Sort</button>
+	<h3>Useful Wiki Links</h3>
+	<span data-bind="text: wikiError"></span>
+	<ul data-bind="foreach: wikiArray">
+	  <li><a data-bind="attr: {href:url}, text: article"></a></li>
+	</ul>
+      </div>
+    </div>
+
+    <div class="mobmuseumresults" data-bind="visible: mobileMusShow() === true">
+      <ul data-bind="foreach: museumResults">
+	<div data-bind="click: $parent.goToMarker"> 
+	  <img style="cursor:pointer" src="" alt="marker" data-bind="attr: {src: markerPic}"> 
+	  <li data-bind="text: name"></li>
+	</div>
+      </ul>
+
+    </div>
+  </body>
+</html>

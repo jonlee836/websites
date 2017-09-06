@@ -1,0 +1,332 @@
+html, body, #map-canvas {
+  height: 100%;
+  margin: 0px;
+  padding: 0px
+}
+
+table {
+  font-size: 12px;
+}
+
+body {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+}
+
+#listing {
+  position: absolute;
+  width: 250px;
+  height: 100%;
+  overflow: auto;
+  right: 0px;
+  top: 0px;
+  cursor: pointer;
+  overflow-x: hidden;
+}
+
+#findmuseums {
+  position: absolute;
+  left: 40px;
+  width: 60%;
+  font-size: 18px;
+  padding: 20px;
+  padding-left: 5px;
+  z-index: 5;
+  color: #f9f043;
+  font-weight: bold;
+}
+
+#locationField {
+  position: absolute;
+  width: 240px;
+  height: 40px;
+  left: 45px;
+  top: 48px;
+  z-index: 5;
+}
+
+#locationField input {
+ font-size: 14px;
+ font-weight: bold;
+}
+
+#controls {
+  position: absolute;
+  left: 320px;
+  width: 140px;
+  top: 48px;
+  z-index: 5;
+}
+
+#autocomplete {
+  width: 100%;
+}
+
+#country {
+  width: 100%;
+}
+
+.placeIcon {
+  width: 20px;
+  height: 34px;
+  margin: 4px;
+}
+
+#resultsTable {
+  border-collapse: collapse;
+  width: 240px;
+}
+
+#rating {
+  font-size: 13px;
+}
+
+#results {
+ color: #FFF;
+ font-size: 15px;
+ font-weight: bold;
+}
+
+.iw_table_row {
+  height: 18px;
+}
+
+.iw_attribute_name {
+  font-weight: bold;
+  text-align: right;
+}
+
+.iw_table_icon {
+  text-align: right;
+}
+
+.wrapper {
+ background-color: rgba(31,81,22, .5);
+ border-bottom: 4px solid #f9f043;
+ height: 90px;
+ width: 60%;
+ position: absolute;
+ z-index: 5;
+} 
+
+#wikipedia-container {
+  position: absolute;
+  top: 100px;
+  width:230px;
+  padding:10px;
+  margin-right: 10px;
+  background-color: rgba(255,255,255, .7);
+  height: 70%;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+#wikipedia-container ul {
+  list-style-type: none;
+}
+
+#wikipedia-container li {
+  border-bottom: #999 dotted 1px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+#wikipedia-container a {
+  text-decoration: none;
+  color: #006838;
+  font-weight: bold;
+}
+
+#wikipedia-container h3 {
+  padding-left: 40px;
+  color: #f26522;
+}
+
+#info-content h3 {
+  color: #f26522;
+}
+#infowindow h3 {
+  color: #f26522;
+}
+
+/* Below are styles for mobile buttons and list-results */
+
+.mobilebutton {
+  display: none;
+  width: 26px;
+  height: 26px;
+  background-color: rgba(255, 255, 255, .9);
+  float: right;
+  cursor: pointer;
+  border-radius: 4px; 
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAvUlEQVRIS2NkIAEYGRl5MDIyNgC1sANx49mzZzcC6f/EGMFIjCIkC8zR1F8g1kK8FuGxAN19BC3EahEJFhBtIYpFFFhA0EKwRVS0AKeFjEBL9gJTkhMxiYJcNf///9/HaGxsTFTyJNcSmD6QRZeAHF1KDSKg/zJR+YgajoBbhCsIgbkfrIZSeWSLsAXhZaBFelCLKJJHCTp0V8N8Aws6SuRHLULJc6QE7WjQjQYdPA3Qr6yjW+lNz/poeFV8AEZ8wHjRw/i5AAAAAElFTkSuQmCC');
+}
+
+.mobilebuttonwiki {
+  display: none;
+  width: 26px;
+  height: 26px;
+  position: fixed;
+  cursor: pointer;
+  border-radius: 4px;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACMUlEQVRIS93US0hVQRzHcQUzdOFjUxapqWm0UWoTBIkomrjR1MiNWhESZBSKiSVBWBAhCGILQxeKYKUh4iIEJSzEIEqMEizEqykIErURUhT6/mSODLf7OAiCOPBh5szMmf+Z1wkN2eUUusvjh+yfAOUs1VGv5XrL8x9ctOonKL9DJeJM/TJ5F2pwwOq7Ve8sUQYPt3EVK7iEaayjHg34jlws4DRe4i+u4DPOmPeryZ+jAx/tPYimYh4R0Gx+ma/RV/3AYRwz9QfJf+IyNFMn3TBBzjoV3pvcSsMt1KHZevEO5RZoJk9wDRXIsvqoOI52dPsLcIKGGfN1KeSbpmMkuQcbSMYUqjBmBUinPALNUku7lXwd01Hqs5GPYWuAJsqN6IGCn7PaVHyKcGi228lXgBJa+zGIIqvvIcoeaI8K8MZq0z5p83OgwxEwQJgZSMcwCdpMJ3VS0Ppn4r1VX0i51tTb4/u9yQ/o9RCPoWVxUh+FUgyg2KrXbNWm5XMVQMfUg99IwBp0ALSpS9CZP4lZHMEkjkP3wlUAdepFGa5DS6PjN2e8IH8GXap7iMFd78H1HOhnp3XWF39FHr4gFasmSCx5Ij7gAjSb/1KgAGr7hlPQcdVt1iVUeoT7GEIUsnwNrrpgv+ub9GmDLpj2QL8SJa27yjqe+l282mkAre0idOb1A7TTax7OIx46BD5TsBnoJf2uP0EXyU66zWkmuL/xgy6R3xfdNriZgduxdrxEezvAPyxQaRmuqQxYAAAAAElFTkSuQmCC');
+}
+
+.mobilewrapper {
+  width: 28px;
+  height: 28px;
+  display: none;
+  background-color: rgba(255,255,255, .7);
+  position: absolute;
+  top: 110px;
+  right: 13px;
+  padding: 5px;
+  border: 2px solid #f26522;
+  border-radius: 5px;
+ }
+
+ .mobilewrapperwiki {
+  width: 28px;
+  height: 28px;
+  display: none;
+  background-color: rgba(255,255,255, .7);
+  position: absolute;
+  top: 110px;
+  left: 13px;
+  padding: 5px;
+  border: 2px solid #f26522;
+  border-radius: 5px;
+ }
+/* for wikipedia mobile results */
+.mobileresults {
+  display: none;
+  position: fixed;
+  top: 160px;
+  left: 10px;
+  padding-right: 5px;
+  background-color: rgba(250,250,250, .9);
+  max-width: 490px;
+  padding: 10px;
+  overflow: auto;
+  height: 75%;
+}
+
+.mobileresults a {
+  text-decoration: none;
+  color: #006838;
+  overflow: hidden;
+}
+
+.mobileresults ul {
+  list-style-type: none;
+}
+
+.mobileresults h3 {
+  padding-left: 20px;
+  color: #f26522;
+}
+
+.mobileresults li {
+  border-bottom: #999 dotted 1px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.mobmuseumresults {
+  display: none;
+  position: fixed;
+  top: 160px;
+  right: 10px;
+  background-color: rgba(250,250,250, .1);
+  max-width: 490px;
+  overflow: auto;
+  height: 75%;
+
+}
+
+.mobmuseumresults ul {
+  list-style-type: none;
+  background-color: rgba(250,250,250, .9);
+  padding-bottom: 10px;
+  margin-top: -10px;
+  padding-top: 15px;
+  bottom: 100px;
+}
+
+.mobmuseumresults li {
+ margin-left: 30px;
+ border-bottom: #999 dotted 1px;
+ padding-right: 10px;
+}
+
+.mobmuseumresults img {
+  margin-bottom: -25px;
+}
+
+
+
+
+
+/* Styles for media devices */
+
+@media only screen and (max-width: 775px) {
+  
+  #listing {
+    top: 100px;
+    height: 80%;
+  }  
+
+  .wrapper {
+    width: 100%;
+  }
+
+  #wikipedia-container {
+    display: none;
+  }
+
+  #listing {
+    display: none;
+  }
+
+  .mobilebutton {
+    display: block;
+  }
+
+  .mobilebuttonwiki {
+    display: block;
+  }
+
+  .mobilewrapper {
+    display: block;
+  }
+
+  .mobilewrapperwiki {
+    display: block;
+  }
+  .mobmuseumresults {
+    display: block;
+  }
+
+  .mobileresults {
+    display: block;
+  }
+  
+
+}  
+@media only screen and (max-width: 499px) {
+  #locationField {
+    left: 20px;
+  }
+  #controls {
+    left: 170px;
+    top: 20px;
+  }
+  #findmuseums {
+    left: 15px;
+  }
+  .mobilebuttonwiki {
+    margin-bottom: 2px;
+  }
+}
+
+

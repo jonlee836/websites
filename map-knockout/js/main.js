@@ -172,17 +172,6 @@ function initMap(){
 	
 	google.maps.event.addDomListener(window, 'load');
 
-	// setup overlay
-	var cityOverlay = new google.maps.OverlayView();
-
-	var imgbounds = new google.maps.LatLngBounds(
-	    new google.maps.LatLng(49.005447494058096, 44.894256591796875),
-	    new google.maps.LatLng(48.53843177405044, 44.33807373046875)
-	);
-	
-	cityOverlay = new google.maps.GroundOverlay('http://i.imgur.com/pyjuLfd.jpg', imgbounds);
-	cityOverlay.setMap(mapdata);
-
 	var cityInfo = infoData['city'];
 	var sovietInfo = infoData['soviet'];
 	var wehrmachtInfo = infoData['wehrmacht'];
@@ -199,4 +188,8 @@ function initMap(){
 
 function mapError(){
     alert("Google Maps is offline");
+}
+
+function runApp(){
+    
 }
