@@ -43,6 +43,7 @@ var viewModel = function() {
     this.currMap = ko.observable("Volgagrad");
     this.setNameColor = ko.observable("rgb(9, 31, 53)");
     this.toggleSearch = ko.observable(0);
+    this.searchOption = ko.observable("");
     
     this.markerType = ko.observableArray([
 	{ name: 'City',        active: ko.observable(1), type: 'city'},
@@ -161,14 +162,23 @@ var viewModel = function() {
 	    var sovietInfo = infoData['soviet'];
 	    var wehrmachtInfo = infoData['wehrmacht'];
 
-	    // set mapMarkers
+	    // set mapMarkers and collect monument titles from each type
 	    $.getScript("js/overlays.js", function() {
 		setMarkers('city', cityInfo, mapdata, siteNames);
 		setMarkers('soviet', sovietInfo, mapdata, siteNames);
 		setMarkers('wehrmacht', wehrmachtInfo, mapdata, siteNames);
 	    });
+
+	    
 	});
     }
+    // for (var i = 0; i < this.mapMarkers.length; i++) {
+    //     var mtype = this.mapMarkers[i];
+    
+    //     for (var k = 0; k < this.mtype.length; k++){
+		
+    //     }
+    // }
 
     this.initMap();
     
@@ -179,7 +189,39 @@ var viewModel = function() {
     this.filterClick = function(data) {
 	var a = this.filterToggle();
 	this.filterToggle(1 - a );
+	console.log(this.filterToggle());
     };
+
+    this.animateMarker = function() {
+	console.log(this);
+        this.populateInfoWindow(this, this.largeInfoWindow);
+        this.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout((function() {
+            this.setAnimation(null);
+        }).bind(this), 1400);
+    };
+
+    // this.myLocationsFilter = ko.computed(function() {
+    //     var result = [];
+    //     for (var i = 0; i < this.mapMarkers.length; i++) {
+    //         var mtype = this.mapMarkers[i];
+
+    // 	    for (var k = 0; k < this.mtype.length; k++){
+
+    // 		var tmark = mtype
+    // 		if (markerLocation.title.toLowerCase().includes(this.searchOption().toLowerCase())) {
+    //                 result.push(markerLocation);
+    //                 this.markers[i].setVisible(true);
+    // 		}
+    // 		else {
+    //                 this.markers[i].setVisible(false);
+    // 		}
+		
+    // 	    }
+    //     }
+    //     return result;
+    // }, this);
+
 };
 
 function searchButton(data, event){

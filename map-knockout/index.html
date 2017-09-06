@@ -72,18 +72,24 @@
 
 	  <!-- filter -->
 	  <button class="nav-button search" data-bind="click: filterClick">
-	    <div id="filterSearch">
-	      <p>Search...</p>	      
-	    </div>
+	    <p>search</p>
 	  </button>
 
 	  <div id="filterNames" class="sidenavMonitor" data-bind="if: filterToggle">
+	    <div id="filterSearch">
+	      <p>
+		<input class="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="...">
+	      </p>
+
+	      <hr class="search-seperater">
+	    </div>
+
 	    <div class="filterContainer">
       	      <div data-bind="mapEvents: detectMouseEvents.bind">
       		<div data-bind="foreach: siteNames">
 		  <button class="filter-button">
-      		    <p data-bind="text: location"></p>
-		    </button>
+      		    <p data-bind="text: location, click: $parent.animateMarker"></p>
+		  </button>
       		</div>
       	      </div>
 	    </div>
