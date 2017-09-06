@@ -202,7 +202,6 @@ var viewModel = function() {
 	    }
 	});
     }
-    this.locationNames = ko.observableArray(siteNames);
     
     this.locationFilter = ko.computed(function(index, data){
 
@@ -220,14 +219,6 @@ var viewModel = function() {
 	}
 	return res;
     }, this);
-    
-    // this.populateAndBounceMarker = function() {
-    //     self.populateInfoWindow(this, self.largeInfoWindow);
-    //     this.setAnimation(google.maps.Animation.BOUNCE);
-    //     setTimeout((function() {
-    //         this.setAnimation(null);
-    //     }).bind(this), 1400);
-    // };
     
 };
 

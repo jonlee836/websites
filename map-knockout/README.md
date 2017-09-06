@@ -2,8 +2,10 @@ Neighborhood map of Volgagrad.
 
 ### How to run:
 - Clone and run the website by clicking on `index.html` or visit the [live site](https://jonlee836.github.io/City-of-Volgagrad/)
+- Run python -m http.server in the project directory and load website in browser.
 
 ### How to use:
+- Type a location in the search navigation.
 - Click on the markers to see historical information about the landmark.
 - Click on the menu button in the top left to toggle on/off the other 2 marker types.
 - Click on the TOGGLE MENU button in the navigation menu to prevent it from closing when you click the map.
