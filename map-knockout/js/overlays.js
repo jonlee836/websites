@@ -9,6 +9,7 @@ function toggleGroup(type, data) {
 
 	    if (!marker.getVisible()) {
 		marker.setVisible(true);
+		marker.setAnimation(google.maps.Animation.DROP);
 	    } else {
 		marker.setVisible(false);
 	    }
@@ -96,6 +97,7 @@ function setMarkers(type, info, mapdata) {
 	    size: new google.maps.Size(20,20),
 	    title : strTitle,
 	    icon: imgIcon,
+	    animation: google.maps.Animation.DROP,
 	    map: mapdata
 	});
 		

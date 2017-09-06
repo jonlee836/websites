@@ -40,7 +40,7 @@ var viewModel = function() {
     this.onoff = ["rgb(129,129,129)", "rgb(255,255,255)"];
     this.currMap = ko.observable("Volgagrad");
     this.setNameColor = ko.observable("rgb(9, 31, 53)");
-        
+    
     this.markerType = ko.observableArray([
 	{ name: 'City',        active: ko.observable(1), type: 'city'},
 	{ name: 'Red Army',    active: ko.observable(0), type: 'soviet'},
@@ -183,24 +183,6 @@ $(function() {
     cityOverlay = new google.maps.GroundOverlay('http://i.imgur.com/pyjuLfd.jpg', imgbounds);
     cityOverlay.setMap(mapdata);
 
-    // create DOM element inside google maps
-    // set buttons for WW2 map and present day satellite map
-
-    // var ctrlDiv = document.createElement('div');
-    // ctrlDiv.index = 1;
-    // ctrlDiv.style['padding-top'] = '1px';
-
-    // $.getScript("js/mapButtons.js", function() {
-    // 	OverlayCtrl(ctrlDiv, mapdata);
-    // });
-
-    // mapdata.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(ctrlDiv);
-
-    // need region detection to determine whether or not to load it in english or russian
-    // local variables makes code more readable vs accessing global variables
-    // or.... you could just access everything global by key
-
-    // Does JS not care about an incorrect number of arguments being passed into a function??!?!?
     var cityInfo = infoData['city'];
     var sovietInfo = infoData['soviet'];
     var wehrmachtInfo = infoData['wehrmacht'];
