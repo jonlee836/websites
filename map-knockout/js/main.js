@@ -77,7 +77,10 @@ var viewModel = function() {
 	if (aboutStatus == 1) {
 	    this.markerType()[aboutIndex].active(0);
 	}
-	aboutButton(data);
+	
+	$.getScript("js/overlays.js", function(event){
+	    aboutButton(data);	    
+	});
 
 	// checking sideNav
 	var toggleIndex = this.markerType().length - 1;
@@ -138,7 +141,36 @@ var viewModel = function() {
 	}
     };
 
-    // Not sure how to subscribe the event changes in mapEvents[] with markerName[]
+    this.initMap = function(){
+	// waits until DOM is fully loaded before executing google maps
+	// definitely a better way of doing this....
+	$.getScript("js/snazzy-info-window.min.js", function(){
+
+	    mapdata = new google.maps.Map(document.getElementById('map'), {
+		// use snazzy-maps mapStyle 
+		styles: mapStyle,	
+		center: defaultPos,
+		zoom: 12,
+		gestureHandling: 'gestures',
+		disableDefaultUI: true
+	    });
+	    
+	    google.maps.event.addDomListener(window, 'load');
+
+	    var cityInfo = infoData['city'];
+	    var sovietInfo = infoData['soviet'];
+	    var wehrmachtInfo = infoData['wehrmacht'];
+
+	    // set mapMarkers
+	    $.getScript("js/overlays.js", function() {
+		setMarkers('city', cityInfo, mapdata, siteNames);
+		setMarkers('soviet', sovietInfo, mapdata, siteNames);
+		setMarkers('wehrmacht', wehrmachtInfo, mapdata, siteNames);
+	    });
+	});
+    }
+
+    this.initMap();
     
     this.siteNames = ko.observableArray(siteNames);
     this.filterToggle = ko.observable(0);
@@ -154,42 +186,10 @@ function searchButton(data, event){
     console.log(data,event);
 }
 
-function initMap(){
-    // waits until DOM is fully loaded before executing google maps
-    // definitely a better way of doing this....
-    $.getScript("js/snazzy-info-window.min.js", function(){
-
-	var clickCount = 1;
-	
-	mapdata = new google.maps.Map(document.getElementById('map'), {
-	    // use snazzy-maps mapStyle 
-	    styles: mapStyle,	
-	    center: defaultPos,
-	    zoom: 12,
-	    gestureHandling: 'gestures',
-	    disableDefaultUI: true
-	});
-	
-	google.maps.event.addDomListener(window, 'load');
-
-	var cityInfo = infoData['city'];
-	var sovietInfo = infoData['soviet'];
-	var wehrmachtInfo = infoData['wehrmacht'];
-
-	// set mapMarkers
-	$.getScript("js/overlays.js", function() {
-	    setMarkers('city', cityInfo, mapdata, siteNames);
-	    setMarkers('soviet', sovietInfo, mapdata, siteNames);
-	    setMarkers('wehrmacht', wehrmachtInfo, mapdata, siteNames);
-	});
-    });
-    ko.applyBindings(new viewModel());
-}
-
 function mapError(){
     alert("Google Maps is offline");
 }
 
 function runApp(){
-    
+    ko.applyBindings(new viewModel());
 }
