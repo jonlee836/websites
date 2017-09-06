@@ -40,8 +40,10 @@ var viewModel = function() {
     this.onoff = ["rgb(129,129,129)", "rgb(255,255,255)"];
     this.currMap = ko.observable("Volgagrad");
     this.setNameColor = ko.observable("rgb(9, 31, 53)");
+    this.toggleSearch = ko.observable(0);
     
     this.markerType = ko.observableArray([
+	{ name: 'Search...',   active: ko.observable(0), type: 'search'},
 	{ name: 'City',        active: ko.observable(1), type: 'city'},
 	{ name: 'Red Army',    active: ko.observable(0), type: 'soviet'},
 	{ name: 'Wehrmacht',   active: ko.observable(0), type: 'wehrmacht'},
@@ -117,32 +119,26 @@ var viewModel = function() {
 
 	// current clicked button
 	var type = data['type'];
-	
+
 	// toggle current status
 	data.active(1-data.active());
 
-	// check if marker or aboutButton
-	$.getScript("js/overlays.js", function(event){
-	    aboutButton(data, event);
-	    toggleGroup(type, data);      // toggle marker layer overlays.js	    
-	});
+	if (type == 'search'){
+	    var a = this.toggleSearch;
+	    this.toggleSearch(1 - a);
+	    console.log("search clicked");
+	}
+	else{
+	    // check if marker or aboutButton
+	    $.getScript("js/overlays.js", function(event){
+		aboutButton(data, event);
+		toggleGroup(type, data);      // toggle marker layer overlays.js	    
+	    });
+	}
     };
 
     // Not sure how to subscribe the event changes in mapEvents[] with eventDetect[]
     var eventDetect = [];
-    
-    // $.getScript("js/google-maps-tools.js", function(event){
-    // 	var i = 0;
-    // 	this.eventDetect = mapEvents.length;
-
-    // 	mapEvents.forEach(function(obj) {
-    // 	    var foo = { event: ko.observable(obj.event),
-    // 			active: ko.observable(obj.active),
-    // 		      };
-    // 	    eventDetect[i] = foo;
-    // 	    i++;
-    // 	});
-    // });
     
     this.eventDetect = ko.observableArray(eventDetect);
     this.displayMessage = ko.observable(0);    

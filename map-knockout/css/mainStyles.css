@@ -45,6 +45,11 @@
     cursor: pointer;
 }
 
+.container {
+    height: 100%;
+    position: relative;
+}
+
 #map {
     overflow: hidden;
     float: center;
@@ -73,6 +78,12 @@ body {
     top: 0;
     right: 25px;
     font-size: 36px;
+}
+
+.searchNav {
+    height:50px;
+    width:200px;
+    color: #888888;
 }
 
 .sidenav {

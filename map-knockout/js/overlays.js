@@ -53,6 +53,10 @@ function aboutButton(data, event){
     }
 }
 
+function searchButton(data, event){
+    
+}
+
 // switch between english and russian layout
 function toggleLanguage(type) {
     
@@ -119,9 +123,9 @@ function setMarkers(type, info, mapdata) {
 	google.maps.event.addListener(marker, "click", function () {
             mapdata.setCenter(this.getPosition());
 
-	    setTimeout(function(){
-		mapdata.panBy(0, -200);		
-	    }, 1);
+	    // setTimeout(function(){
+	    // 	mapdata.panBy(0, -200);		
+	    // }, 1);
 	});
 	
 	// push markers and corresponding info window into arrays for future use

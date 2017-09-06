@@ -369,10 +369,3 @@ function sanitizeHtml (strArray){
     }    
     return fixedArray;
 }
-
-//$(function(e){
-//    $("#windowData").load("js/infowindow.html");
-//});
-
-//var htmltest = $("#windowData *").contents;
-//alert(htmltest.toString());
