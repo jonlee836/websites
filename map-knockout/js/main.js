@@ -197,6 +197,7 @@ var viewModel = function() {
 			obj[currIndex].setVisible(true);
 		    }
 		    google.maps.event.trigger(tmpMark, 'click');
+		   		    
 		}
 	    }
 	});
@@ -216,38 +217,10 @@ var viewModel = function() {
 	    
 	    if (currStr.toLowerCase().includes(currSearch.toLowerCase())){
 		res.push(tempObj);
-		console.log(res[i]);
 	    }
-	}
-
-	if(currSearch != "" && currSearch != "..."){
-	    res.slice(0, res.length);
-	    for (var i = 0; i < siteNames.length; i++){
-		var tempObj = new Object(siteNames[i]);
-		res.push(tempObj);
-	    }
-	}
-	else{
-	    
 	}
 	return res;
     }, this);
-    
-    
-    
-    // this.locationFilter = ko.computed(function() {
-    //     var result = [];
-    //     for (var i = 0; i < this.markers.length; i++) {
-    //         var markerLocation = this.markers[i];
-    //         if (markerLocation.title.toLowerCase().includes(this.searchOption().toLowerCase())) {
-    //             result.push(markerLocation);
-    //             this.markers[i].setVisible(true);
-    //         } else {
-    //             this.markers[i].setVisible(false);
-    //         }
-    //     }
-    //     return result;
-    // }, this);
     
     // this.populateAndBounceMarker = function() {
     //     self.populateInfoWindow(this, self.largeInfoWindow);

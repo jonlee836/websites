@@ -110,7 +110,7 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames) {
 	    animation: google.maps.Animation.DROP,
 	    map: mapdata
 	});
-		
+
 	// call snazzy-info-window.js
 	var infowindow = new SnazzyInfoWindow({
 	    marker: marker,
@@ -122,18 +122,21 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames) {
 	});
 
 	// onload have the city markers be visible.
-	if (type != 'city') {
-	    marker.setVisible(false);
-	}
 	// on mouse click center the screen around the marker.
 	google.maps.event.addListener(marker, "click", function () {
             mapdata.setCenter(this.getPosition());
 
-	    // setTimeout(function(){
-	    // 	mapdata.panBy(0, -200);		
-	    // }, 1);
-	});
+	    // bounce animation on click
+	    this.setAnimation(google.maps.Animation.BOUNCE);
+            setTimeout((function() {
+		this.setAnimation(null);
+            }).bind(this), 1400);
+	})
 	
+	if (type != 'city') {
+	    marker.setVisible(false);
+	}
+
 	// push markers and corresponding info window into arrays for future use
 	mapMarkers[type].push(marker);
 	mapWindows[type].push(infowindow);
