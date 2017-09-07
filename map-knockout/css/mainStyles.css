@@ -151,6 +151,14 @@ body {
     outline: 0;
 }
 
+.btn-highlight-on{
+    color: #ffffff;
+}
+
+.btn-highlight-off{
+    color: #818181;
+}
+
 .nav-button {
     width: 100%;
     height: 40px;

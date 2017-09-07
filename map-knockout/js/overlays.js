@@ -76,7 +76,7 @@ var mapIcons = {
 };
 
 // create markers for the city, red army, and wehrmacht
-function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames) {
+function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, infoHTML) {
 
     var markPos;
     var centerPos;
@@ -92,7 +92,7 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames) {
     for (var currIndex = 0; currIndex < info.length; currIndex++) {
 	
 	var strTitle = info[currIndex][0];
-	var htmlStr = setInfo(currIndex, info);
+	var htmlStr = setInfo(currIndex, info, infoHTML);
 	
 	var markLat = info[currIndex][2];
 	var markLng = info[currIndex][3];
@@ -143,11 +143,8 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames) {
     }
 }
 
-// info window appearance
-var infoHTML = $.getValues("js/infowindow.html");
-
 // read from html file
-function setInfo(currIndex, info) {
+function setInfo(currIndex, info, infoHTML) {
     var markerHtml = [];
     var strHtml = "";
 

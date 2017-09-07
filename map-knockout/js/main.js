@@ -167,9 +167,12 @@ var viewModel = function() {
 
 	    // set mapMarkers and collect monument titles from each type
 	    $.getScript("js/overlays.js", function() {
-		setMarkers('city', cityInfo, mapdata, mapWindows, mapMarkers, siteNames);
-		setMarkers('soviet', sovietInfo, mapdata, mapWindows, mapMarkers, siteNames);
-		setMarkers('wehrmacht', wehrmachtInfo, mapdata, mapWindows, mapMarkers, siteNames);
+		// info window appearance
+		var infoHTML = $.getValues("js/infowindow.html");
+
+		setMarkers('city', cityInfo, mapdata, mapWindows, mapMarkers, siteNames, infoHTML);
+		setMarkers('soviet', sovietInfo, mapdata, mapWindows, mapMarkers, siteNames, infoHTML);
+		setMarkers('wehrmacht', wehrmachtInfo, mapdata, mapWindows, mapMarkers, siteNames, infoHTML);
 	    });
 	});
     }
