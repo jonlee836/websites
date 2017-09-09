@@ -314,15 +314,19 @@ var mapStyle = [
             }
         ]
     }
-];
+]
 
 // read local html file and return it as a string
 jQuery.extend({
     getValues: function(url) {
+<<<<<<< HEAD
         var result = "";
 	var strArray = result.split('\n');
 	var strRes = sanitizeHtml(strArray);
 	
+=======
+        var result = null;
+>>>>>>> parent of 62bd081... 
         $.ajax({
             url: url,
             type: 'get',
@@ -355,13 +359,13 @@ function sanitizeHtml (strArray){
 		    currStr.charCodeAt(k) != 160) {
 		    copyStart = true;
 		}
-		if (copyStart === true) {
+		if (copyStart == true) {
 		    var endIndex = strArray[i].length;
 		    newStr = currStr.substr(k, endIndex);
 		    break;
 		}
 	    }
-	    if (copyStart === true) {
+	    if (copyStart == true) {
 		fixedArray.push(newStr);
 	    }
 	}
