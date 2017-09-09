@@ -320,6 +320,9 @@ var mapStyle = [
 jQuery.extend({
     getValues: function(url) {
         var result = "";
+	var strArray = result.split('\n');
+	var strRes = sanitizeHtml(strArray);
+	
         $.ajax({
             url: url,
             type: 'get',
@@ -330,10 +333,6 @@ jQuery.extend({
             }
         });
 	
-	var strArray = result.split('\n');
-	var strRes = sanitizeHtml(strArray);
-
-	return strRes;
     }
 });
 

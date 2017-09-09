@@ -168,7 +168,10 @@ var viewModel = function() {
 	    // set mapMarkers and collect monument titles from each type
 	    $.getScript("js/overlays.js", function() {
 		// info window appearance
-		var infoHTML = $.getValues("js/infowindow.html");
+
+		var infoHTML = $.getScript("js/citydata.js");
+
+		    
 		// Why none of my async calls eventually loads is the reall question....
 		// var infoHTML = $.getValues("https://raw.githubusercontent.com/jonlee836/websites/master/map-knockout/js/infowindow.html");
 
