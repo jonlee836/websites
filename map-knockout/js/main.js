@@ -1,32 +1,10 @@
-var mapdata, cityOverlay;
-var navWidth = "200px";
-
-var defaultPos = {
-    lat: 48.75686777983242,
-    lng: 44.52157974243164
-};
-
-var clickCount = 1;
-
-ko.bindingHandlers.clickOutside = {
-    init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
-
-	var fn = ko.utils.unwrapObservable(valueAccessor());
-
-	$('html').on('click', function(e) {
-	    if (!($.contains(element, e.target) || element === e.target) &&
-		!($.contains(e.target, "closeButton"))) {
-		fn();
-	    }
-	});
-    }
-}
-
 var viewModel = function() {
 
     // self == scope of viewModel
     var self = this;
 
+    var mapdata, cityOverlay;
+    
     // Map mapMarkers to click on.
     var mapMarkers = {
 	city: [],
@@ -41,7 +19,14 @@ var viewModel = function() {
     }
 
     var siteNames = [];
-    
+
+    var navWidth = "200px";
+
+    var defaultPos = {
+	lat: 48.75686777983242,
+	lng: 44.52157974243164
+    };
+
     this.onoff = ["rgb(129,129,129)", "rgb(255,255,255)"];
     this.currMap = ko.observable("Volgagrad");
     this.setNameColor = ko.observable("rgb(9, 31, 53)");
@@ -230,6 +215,20 @@ var viewModel = function() {
     }, this);
     
 };
+
+ko.bindingHandlers.clickOutside = {
+    init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+
+	var fn = ko.utils.unwrapObservable(valueAccessor());
+
+	$('html').on('click', function(e) {
+	    if (!($.contains(element, e.target) || element === e.target) &&
+		!($.contains(e.target, "closeButton"))) {
+		fn();
+	    }
+	});
+    }
+}
 
 function searchButton(data, event){
     console.log(data,event);
