@@ -24,7 +24,7 @@ ko.bindingHandlers.clickOutside = {
 
 var viewModel = function() {
 
-    // inside scope of viewModel, regular this is the scope of binding in HTML
+    // self == scope of viewModel
     var self = this;
 
     // Map mapMarkers to click on.
@@ -41,7 +41,7 @@ var viewModel = function() {
     }
 
     var siteNames = [];
-
+    
     this.onoff = ["rgb(129,129,129)", "rgb(255,255,255)"];
     this.currMap = ko.observable("Volgagrad");
     this.setNameColor = ko.observable("rgb(9, 31, 53)");
@@ -146,8 +146,12 @@ var viewModel = function() {
     };
 
     this.initMap = function(){
-	// waits until DOM is fully loaded before executing google maps
-	// definitely a better way of doing this....
+
+	// JS scope is absurd.
+	$.getScript("js/citydata.js", function(){
+	    getHTML.init();
+	});
+
 	$.getScript("js/snazzy-info-window.min.js", function(){
 
 	    mapdata = new google.maps.Map(document.getElementById('map'), {
@@ -168,24 +172,17 @@ var viewModel = function() {
 	    // set mapMarkers and collect monument titles from each type
 	    $.getScript("js/overlays.js", function() {
 		// info window appearance
-<<<<<<< HEAD
 
-		var infoHTML = $.getScript("js/citydata.js");
-
-		    
 		// Why none of my async calls eventually loads is the reall question....
 		// var infoHTML = $.getValues("https://raw.githubusercontent.com/jonlee836/websites/master/map-knockout/js/infowindow.html");
-=======
-		var infoHTML = $.getValues("js/infowindow.html");
->>>>>>> parent of 62bd081... 
 
-		setMarkers('city', cityInfo, mapdata, mapWindows, mapMarkers, siteNames, infoHTML);
-		setMarkers('soviet', sovietInfo, mapdata, mapWindows, mapMarkers, siteNames, infoHTML);
-		setMarkers('wehrmacht', wehrmachtInfo, mapdata, mapWindows, mapMarkers, siteNames, infoHTML);
+		setMarkers('city', cityInfo, mapdata, mapWindows, mapMarkers, siteNames, getHTML);
+		setMarkers('soviet', sovietInfo, mapdata, mapWindows, mapMarkers, siteNames, getHTML);
+		setMarkers('wehrmacht', wehrmachtInfo, mapdata, mapWindows, mapMarkers, siteNames, getHTML);
 	    });
 	});
     }
-
+		
     this.initMap();
     
     this.filterToggle = ko.observable(0);

@@ -316,32 +316,34 @@ var mapStyle = [
     }
 ]
 
-// read local html file and return it as a string
-jQuery.extend({
-    getValues: function(url) {
-<<<<<<< HEAD
-        var result = "";
-	var strArray = result.split('\n');
-	var strRes = sanitizeHtml(strArray);
+
+var getHTML = {
+    
+    init:function () {
+
+	var res = "";
 	
-=======
-        var result = null;
->>>>>>> parent of 62bd081... 
-        $.ajax({
-            url: url,
-            type: 'get',
-            dataType: 'html',
-            async: false,
-            success: function(data) {
-                result = data;
-            }
-        });
-	
+	$.ajax({
+	    url: "js/infowindow.html",
+	    type: 'get',
+	    dataType: 'html',
+	    async: true,
+	    
+	    success: function(data) {
+
+		var result = data;
+		var strArray = result.split('\n');
+		var strRes = sanitizeHtml(strArray);
+
+		getHTML = strRes;
+	    }
+	});
     }
-});
+};
 
 // remove things that look like spaces
 function sanitizeHtml (strArray){
+
     var fixedArray = [];
     for (var i = 0; i < strArray.length; i++){
 
