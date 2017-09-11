@@ -1,8 +1,9 @@
 * {
-    font-family: 'Special Elite', cursive;    
+    font-family: 'Special Elite', cursive;
 }
 
 .gm-style .gm-style-iw {
+    max-width: 400px;
     background-color: #fff;
 }
 
@@ -26,19 +27,38 @@
 }
 
 .info-window article {
-    font-size: 18px;
+    padding-top: 15px;
+    font-size: 16px;
     font-weight: 0;
     line-height: 1.42857143;
     text-align: left;
     color: #053573;
 }
 
+#image-gallery .container {
+    margin: 0px 0px 0px 0px;
+    padding: 20px 0px 0px 0px;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    inline-size: auto;
+}
 
+ul {
+    width: auto;
+    display: table-row-group;
+    list-style: none outside none;
+}
 
+li {
+    display: block;
+    float: left;
+    margin: 0px 0px 5px 0px;
+    cursor:pointer;
+}
 
-
-
-
-
-
-
+img {
+    display: block;
+    width: 75px;
+    height: 75px;
+}
