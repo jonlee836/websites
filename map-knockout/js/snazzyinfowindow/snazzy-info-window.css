@@ -162,8 +162,12 @@
   position: relative;
   border: 15px solid transparent;
   z-index: 4; }
-  .si-has-border [class*='si-pointer-bg'] {
-    border-width: 15px; }
+
+.si-has-border [class*='si-pointer-bg'] {
+    border-width: 15px;
+    margin-bottom: 0px;
+    top: -5px;
+}
 
 .si-pointer-border-top,
 .si-pointer-border-bottom {
@@ -185,9 +189,10 @@
   border-top-color: #bbb; }
 
 .si-pointer-bg-top {
-  border-top-color: #fff; }
-  .si-has-border .si-pointer-bg-top {
-    top: -1px;
+    border-top-color: #fff; }
+
+.si-has-border .si-pointer-bg-top {
+    top: 0px;
     margin-bottom: 0px; }
 
 .si-pointer-bottom {

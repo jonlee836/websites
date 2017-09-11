@@ -83,7 +83,7 @@
 
 [class*='si-shadow-pointer'] {
     position: relative;
-    width: 15px;
+    width: 10px;
     height: 15px;
     margin: auto; }
 
@@ -130,9 +130,11 @@
     max-height: 100%;
     padding: 60px;
     background-color: #fff; }
+
 .si-has-border .si-content-wrapper {
-    border: 5px solid #002453;
-    padding: 20px 25px 40px 25px;
+    border: 2px solid #111;
+    padding: 5px 20px 25px 20px;
+    margin-top: -30px;
 }
 
 .si-content {
@@ -160,7 +162,7 @@
 
 [class*='si-pointer-border'] {
     position: absolute;
-    border: 15px solid transparent;
+    border: 13px solid transparent;
     z-index: 3; }
 
 [class*='si-pointer-bg'] {
@@ -168,9 +170,13 @@
     border: 15px solid transparent;
     z-index: 4; }
 .si-has-border [class*='si-pointer-bg'] {
-    border-width: 12px; }
+}
 
-.si-pointer-border-top,
+.si-pointer-border-top {
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0); }
+
 .si-pointer-border-bottom {
     left: 50%;
     -webkit-transform: translate(-50%, 0);
@@ -184,16 +190,21 @@
 
 .si-pointer-top {
     border-bottom: 0; }
+.si-pointer-top si-pointer-bg-top{
+    bottom-margin: 0px;
+    top: -2px;
 
+}
 .si-pointer-border-top {
+
     bottom: 0;
     border-top-color: #2b3031; }
 
 .si-pointer-bg-top {
     border-top-color: #fff; }
+
 .si-has-border .si-pointer-bg-top {
-    top: -8px;
-    margin-bottom: 3px; }
+    margin-bottom: 5px;}
 
 .si-pointer-bottom {
     border-top: 0; }
@@ -203,10 +214,12 @@
     border-bottom-color: #2b3031; }
 
 .si-pointer-bg-bottom {
+
     border-bottom-color: #fff; }
 .si-has-border .si-pointer-bg-bottom {
+    margin-bottom: 5px;
     bottom: -8px;
-    margin-top: 3px; }
+}
 
 .si-pointer-left {
     border-right: 0; }
@@ -246,7 +259,10 @@ body {
     height: 100%; }
 
 .si-wrapper-top {
-    max-width: 300px; }
+    max-width: 500px;
+    max-height: 500px;
+}
+
 @media (min-width: 600px) {
     .si-wrapper-top {
 	max-width: 400px; } }
@@ -266,12 +282,12 @@ body {
     width: 40px;
     height: 40px;
     position: absolute;
-    top: -5px;
+    top: 5px;
     right: 0px;
     border: 0;
     /* outline: none; */
     background-color: rgb(255, 255, 255);
-    color: darkblue;
+    color: black;
     font-family: inherit;
     font-weight: 400;
     font-size: 2em;
@@ -281,6 +297,7 @@ body {
     appearance: none;}
 
 .si-content h1 {
+    margin: auto;
     margin: 0px 0px 10px 25px;
     /*
   border-top: 2px solid #2b3031;

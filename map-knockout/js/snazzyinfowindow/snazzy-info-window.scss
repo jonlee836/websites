@@ -26,8 +26,6 @@ $si-rotation: -45deg;
 $si-rotated-shadow-h: $si-inverse-root-2 * ($si-shadow-h - $si-shadow-v);     // Only applies to a -45deg rotation
 $si-rotated-shadow-v: $si-inverse-root-2 * ($si-shadow-h + $si-shadow-v);     // Only applies to a -45deg rotation
 
-
-
 //////////////////////////////
 // 1. Wrapper Styles
 //////////////////////////////
@@ -253,7 +251,7 @@ $si-triangle-difference: min(round($si-border-width * ($si-root-2 - 1)), $si-poi
 }
 
 .#{$si-pre}-pointer-border-top {
-    bottom: 0;
+    bottom: 0px;
     border-top-color: $si-border-color;
 }
 
@@ -261,8 +259,8 @@ $si-triangle-difference: min(round($si-border-width * ($si-root-2 - 1)), $si-poi
     border-top-color: $si-content-bg;
 
     .#{$si-pre}-has-border & {
-        top: -$si-border-width;
-        margin-bottom: $si-triangle-difference;
+        top: -5px;
+        margin-bottom: -2px;
     }
 }
 

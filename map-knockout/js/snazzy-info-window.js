@@ -83,12 +83,13 @@
         spread: '0px',
         color: '#000'
     };
+
     var _defaultOptions = {
         placement: 'top',
         pointer: true,
         openOnMarkerClick: true,
         closeOnMapClick: true,
-        closeWhenOthersOpen: false,
+        closeWhenOthersOpen: true,
         showCloseButton: true,
         panOnOpen: true,
         edgeOffset: {
@@ -691,10 +692,12 @@
                 if (!this._opts.panOnOpen || !this._html) {
                     return;
                 }
+
                 var mib = this.getMapInnerBounds();
                 var wb = this._html.wrapper.getBoundingClientRect();
                 var dx = 0;
                 var dy = 0;
+
                 if (mib.left >= wb.left) {
                     dx = wb.left - mib.left;
                 } else if (mib.right <= wb.right) {

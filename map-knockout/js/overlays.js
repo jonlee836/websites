@@ -118,12 +118,13 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 	    openOnMarkerClick: true,
 	    panOnOpen: false,
 	    closeOnMapClick: true,
-	    closeWhenOthersOpen: true
+	    closeWhenOthersOpen: true,
 	});
-
+	
 	// onload have the city markers be visible.
 	// on mouse click center the screen around the marker.
 	google.maps.event.addListener(marker, "click", function () {
+
             mapdata.setCenter(this.getPosition());
 
 	    // bounce animation on click

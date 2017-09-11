@@ -11,6 +11,7 @@
 }
 
 #top-menu {
+    font-family: 'Special Elite', cursive;
     background-color: rgba(176, 176, 176, 0);
     border-bottom: 4px solid ##051a4d;
     height: 35px;

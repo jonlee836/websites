@@ -136,7 +136,7 @@ var viewModel = function() {
 	    getHTML.init();
 	});
 
-	$.getScript("js/snazzy-info-window.min.js", function(){
+	$.getScript("js/snazzy-info-window.js", function(){
 
 	    mapdata = new google.maps.Map(document.getElementById('map'), {
 		// use snazzy-maps mapStyle 
