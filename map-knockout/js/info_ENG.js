@@ -10,7 +10,7 @@ var infoData = {
 	],
 	[
 	    "Grain Elevator",
-	    "One of the few buildings to survive the Luftwaffe's bombing campaign. Attempts to destroy the building with tank fire, artillery, and stukas proved futile. On Sept 16th, 1942 the Wehrmacht launched a direct assault on the green giant of Stalingrad.",
+	    "One of the few buildings to survive the Luftwaffe's bombing campaign. Attempts to destroy it with tank fire, artillery, and stukas proved futile. On Sept 16th, 1942 the Wehrmacht launched a direct assault on the green giant of Stalingrad.",
 	    48.687818,
 	    44.483573
 	],
