@@ -55,7 +55,6 @@ var viewModel = function() {
 	}
     };
 
-    // outside click detection
     this.clickOutside = function(data) {
 
 	// checking aboutButton
@@ -132,7 +131,7 @@ var viewModel = function() {
 
     this.initMap = function(){
 
-	// JS scope is absurd.
+	// init marker/infowindow data
 	$.getScript("js/citydata.js", function(){
 	    getHTML.init();
 	});
@@ -144,7 +143,7 @@ var viewModel = function() {
 		styles: mapStyle,	
 		center: defaultPos,
 		zoom: 12,
-		gestureHandling: 'gestures',
+		gestureHandling: 'greedy',
 		disableDefaultUI: true
 	    });
 	    
@@ -156,11 +155,8 @@ var viewModel = function() {
 
 	    // set mapMarkers and collect monument titles from each type
 	    $.getScript("js/overlays.js", function() {
+
 		// info window appearance
-
-		// Why none of my async calls eventually loads is the reall question....
-		// var infoHTML = $.getValues("https://raw.githubusercontent.com/jonlee836/websites/master/map-knockout/js/infowindow.html");
-
 		setMarkers('city', cityInfo, mapdata, mapWindows, mapMarkers, siteNames, getHTML);
 		setMarkers('soviet', sovietInfo, mapdata, mapWindows, mapMarkers, siteNames, getHTML);
 		setMarkers('wehrmacht', wehrmachtInfo, mapdata, mapWindows, mapMarkers, siteNames, getHTML);

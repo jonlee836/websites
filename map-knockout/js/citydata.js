@@ -324,7 +324,7 @@ var getHTML = {
 	var res = "";
 	
 	$.ajax({
-	    url: "js/infowindow.html",
+	    url: "js/infowindow/infowindow.html",
 	    type: 'get',
 	    dataType: 'html',
 	    async: true,
