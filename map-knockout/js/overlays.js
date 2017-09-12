@@ -65,13 +65,13 @@ function toggleLanguage(type) {
 
 var mapIcons = {
     city: {
-        icon: 'images/blueicon_city.png'
+        icon: 'icons/blueicon_city.png'
     },
     soviet: {
-        icon: 'images/icon_redarmy.png'
+        icon: 'icons/icon_redarmy.png'
     },
     wehrmacht: {
-        icon: 'images/icon_wehrmacht.png'
+        icon: 'icons/icon_wehrmacht.png'
     },
 };
 
@@ -93,7 +93,7 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 	
 	var strTitle = info[currIndex][0];
 	var htmlStr = setInfo(currIndex, info, infoHTML);
-	
+
 	var markLat = info[currIndex][2];
 	var markLng = info[currIndex][3];
 
@@ -132,8 +132,8 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
             setTimeout((function() {
 		this.setAnimation(null);
             }).bind(this), 1400);
-	})
-	
+	});
+
 	if (type != 'city') {
 	    marker.setVisible(false);
 	}
@@ -163,6 +163,7 @@ function setInfo(currIndex, info, infoHTML) {
 	else if (markerHtml[i] == 'article'){
 	    markerHtml[i] = info[currIndex][1];
 	}
+	else if (markerHtml[i] == '')
 	strHtml = strHtml + markerHtml[i];
     }
     return strHtml;
