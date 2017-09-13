@@ -122,7 +122,8 @@ var viewModel = function() {
 	    getHTML.init();
 	});
 
-	$.getScript("js/snazzy-info-window.js", function(){
+	// apply snazzy info window style
+	$.getScript("js/snazzyinfowindow/snazzy-info-window.js", function(){
 
 	    mapdata = new google.maps.Map(document.getElementById('map'), {
 		// use snazzy-maps mapStyle 
@@ -138,6 +139,7 @@ var viewModel = function() {
 	    var wehrmachtInfo = infoData['wehrmacht'];
 
 	    // set mapMarkers and collect monument titles from each type
+
 	    $.getScript("js/overlays.js", function() {
 
 		// info window appearance

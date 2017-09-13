@@ -163,7 +163,6 @@ function setInfo(currIndex, info, infoHTML) {
 	else if (markerHtml[i] == 'article'){
 	    markerHtml[i] = info[currIndex][1];
 	}
-	else if (markerHtml[i] == '')
 	strHtml = strHtml + markerHtml[i];
     }
     return strHtml;

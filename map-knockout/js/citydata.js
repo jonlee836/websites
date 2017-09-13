@@ -335,6 +335,9 @@ var getHTML = {
 		var strRes = sanitizeHtml(strArray);
 
 		getHTML = strRes;
+
+		//console.log("getHTML success : URL ", url);
+		console.log("getHTML success : DATA ", strRes);
 	    }
 	});
     }
