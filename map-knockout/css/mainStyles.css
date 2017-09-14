@@ -10,6 +10,10 @@
     box-sizing: border-box;
 }
 
+.display-time {
+	font-size: 18px;
+}
+
 #top-menu {
     font-family: 'Special Elite', cursive;
     background-color: rgba(176, 176, 176, 0);
@@ -274,14 +278,14 @@ body {
 }
 
 #Stalingrad_Button, #Volgagrad_Button {
-  background-color: #fff;
-  border: 2px solid #fff;
-  border-radius: 3px;
-  box-shadow: 0 2px 6px rgba(0,0,0,.3);
-  cursor: pointer;
-  float: left;
-  margin-bottom: 22px;
-  text-align: center;
+	background-color: #fff;
+	border: 2px solid #fff;
+	border-radius: 3px;
+	box-shadow: 0 2px 6px rgba(0,0,0,.3);
+	cursor: pointer;
+	float: left;
+	margin-bottom: 22px;
+	text-align: center;
 }
 
 #Stalingrad_Button_Text, #Volgagrad_Button_Text {
@@ -294,5 +298,5 @@ body {
 }
 
 #Volgagrad_Button {
-  margin-left: 12px;
+	margin-left: 12px;
 }

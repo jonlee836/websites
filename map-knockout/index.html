@@ -1,24 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="map">
-    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
-    <meta name="author" content="Jon Lee">
+	<meta charset="UTF-8">
+	<meta name="description" content="map">
+	<meta name="keywords" content="HTML,CSS,XML,JavaScript">
+	<meta name="author" content="Jon Lee">
 
-    <meta name="viewport" content="width=device-height, initial-scale=1.0">
+	<meta name="viewport" content="width=device-height, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/mainStyles.css">
-    <link rel="stylesheet" href="js/infowindow/infowindow.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/mainStyles.css">
+	<link rel="stylesheet" href="js/infowindow/infowindow.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
 
-    <!--<script type="text/javascript" src="js/knockout-min.js"></script> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.3/css/lightslider.min.css"> -->
-    <!--<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js"></script> -->
-    <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script> -->
+	<!--<script type="text/javascript" src="js/knockout-min.js"></script> -->
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.3/css/lightslider.min.css"> -->
+	<!--<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js"></script> -->
+	<!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script> -->
 
   </head>
 
@@ -26,85 +26,95 @@
   <!-- infowindow.html -> object -> array -> replace content at matching indexes -> create marker's infowindow -->
   <body>
 
-    <div id="top-menu" >
-      <div class="btnMenu" data-bind="click: toggleNav">
-	&#9776;MENU
-      </div>
-
-    </div>
-
-    <!-- google-maps canvas -->
-    <div id="map"></div>
-
-    <div class="container">
-      <!-- The About Modal -->
-      <div id="aboutId" class="about-modal">
-
-	<!-- Modal content -->
-	<div class="about-content">
-
-	  <!-- X close button -->
-	  <span class="about-close">&times;</span>
-
-	  <h1>Created by Jon Lee</h1>
-	  <article>This is a google maps overlay with key landmarks from the battle of Stalingrad. If you would like to contribute historical information to this project please contact me at jonlee836@gmail.com! </article>
-	  <h2>Last updated 8/28/2017</h2>
-	</div>
-      </div>
-
-      <!-- detect outside clicks -->
-      <div data-bind="clickOutside: clickOutside.bind($data)">
-
-	<div id="mySidenav" class="sidenav">
-
-	  <!-- X button (close Sidenav) -->
-	  <a href="javascript:void(0)" id="closeButton" class="closebtn" data-bind="click: closeNav">&times;</a>
-
-	  <!-- filter -->
-	  <button class="nav-button search" data-bind="click: filterClick">
-	    <p>search</p>
-	  </button>
-
-	  <!-- search Button -->
-	  <div id="filterNames" class="sidenavMonitor" data-bind="if: filterToggle">
-	    <div id="filterSearch">
-	      <p>
-		<input class="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="...">
-	      </p>
-	      <hr class="search-seperater">
-	    </div>
-
-	    <!-- list of items -->
-	    <div class="filterContainer">
-	      <div data-bind="mapEvents: detectMouseEvents.bind">
-
-		<!-- Type in search string -->
-		<div class="filter-button" data-bind="foreach: locationFilter">
-		  <a href="#">
-		    <p data-bind="text: $data.location, click: $parent.goToMarker"></p>
-		  </a>
+	
+	<div class="container" id="top-menu" >
+	  <div class="row">
+		<div class="btnMenu" data-bind="click: toggleNav">
+		  &#9776;MENU
 		</div>
-
-	      </div>
-	    </div>
-	  </div>
-	  <!--	Create array of Sidenav buttons -->
-	  <div data-bind="foreach: markerType">
-	    <button class="nav-button" data-bind="attr: {id: name}, click: $parent.navbtnToggle.bind($parent, $index(), $data)">
-	      <!-- Use the value of markerType[active()] as the index for onoff[color1, color2] -->
-
-	      <!-- I don't understand why style is frowned upon. -->
-	      <!-- <div data-bind="style: {color: $parent.onoff[active()]}, text: name"></div> -->
-	      <div data-bind="css: active() > 0 ? 'btn-highlight-on' : 'btn-highlight-off', text: name"></div>
-	    </button>
 	  </div>
 	</div>
-      </div>
+	
+	<!-- google-maps canvas -->
+	<div id="map"></div>
 
+	<div class="container">
+	  <!-- The About Modal -->
+	  <div id="aboutId" class="about-modal">
+
+		<!-- Modal content -->
+		<div class="about-content">
+
+		  <!-- X close button -->
+		  <span class="about-close">&times;</span>
+
+		  <h1>Created by Jon Lee</h1>
+		  <article>This is a google maps overlay with key landmarks from the battle of Stalingrad. If you would like to contribute historical information to this project please contact me at jonlee836@gmail.com! </article>
+
+		  <div id="city-time">
+			<div class="display-time" data-bind="text: CityTime">
+			  <p></p>
+			</div>
+		  </div>
+
+		  <h2>Last updated 8/28/2017</h2>
+		</div>
+	  </div>
+
+	  <!-- detect outside clicks -->
+	  <div data-bind="clickOutside: clickOutside.bind($data)">
+
+		<div id="mySidenav" class="sidenav">
+
+		  <!-- X button (close Sidenav) -->
+		  <a href="javascript:void(0)" id="closeButton" class="closebtn" data-bind="click: closeNav">&times;</a>
+
+		  <!-- filter -->
+		  <button class="nav-button search" data-bind="click: filterClick">
+			<p>search</p>
+		  </button>
+
+		  <!-- search Button -->
+		  <div id="filterNames" class="sidenavMonitor" data-bind="if: filterToggle">
+			<div id="filterSearch">
+			  <p>
+				<input class="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="...">
+			  </p>
+			  <hr class="search-seperater">
+			</div>
+
+			<!-- list of items -->
+			<div class="filterContainer">
+			  <div data-bind="mapEvents: detectMouseEvents.bind">
+
+				<!-- Type in search string -->
+				<div class="filter-button" data-bind="foreach: locationFilter">
+				  <a href="#">
+					<p data-bind="text: $data.location, click: $parent.goToMarker"></p>
+				  </a>
+				</div>
+
+			  </div>
+			</div>
+		  </div>
+		  <!--	Create array of Sidenav buttons -->
+		  <div data-bind="foreach: markerType">
+			<button class="nav-button" data-bind="attr: {id: name}, click: $parent.navbtnToggle.bind($parent, $index(), $data)">
+			  <!-- Use the value of markerType[active()] as the index for onoff[color1, color2] -->
+
+			  <!-- I don't understand why style is frowned upon. -->
+			  <!-- <div data-bind="style: {color: $parent.onoff[active()]}, text: name"></div> -->
+			  <div data-bind="css: active() > 0 ? 'btn-highlight-on' : 'btn-highlight-off', text: name"></div>
+			</button>
+		  </div>
+		</div>
+	  </div>
   </body>
+
   <script type="text/javascript" src="js/minjs/knockout-min.js"></script>
   <script type="text/javascript" src="js/minjs/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
   <!-- image slider -->
   <script type="text/javascript" src="js/lightslider/lightslider.js"></script>
   <link rel="stylesheet" href="js/lightslider/lightslider.css">
