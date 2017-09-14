@@ -4,19 +4,23 @@ function toggleGroup(type, data, mapWindows, mapMarkers) {
     console.log(data.active());
     
     if (type != 'toggle' && type != 'about'){
-	for (var i = 0; i < mapMarkers[type].length; i++) {
 
-	    // I'm assuming marker is a reference here...'
-	    var marker = mapMarkers[type][i];
-
-	    if (data.active() == 1 && !marker.getVisible()) {
-		marker.setVisible(true);
-		marker.setAnimation(google.maps.Animation.DROP);
+	// if (data.active() == 1) turn on all markers that are off
+	if (data.active() == 1){
+	    for (var i = 0; i < mapMarkers[type].length; i++) {
+		var marker = mapMarkers[type][i];
+		if (!marker.getVisible()){
+		    marker.setVisible(true);
+		    marker.setAnimation(google.maps.Animation.DROP);
+		}
 	    }
-	    else {
+	}
+	// if (data.active() == 0) turn off all markers
+	else{
+	    for (var i = 0; i < mapMarkers[type].length; i++) {
+		var marker = mapMarkers[type][i];
 		marker.setVisible(false);
 	    }
-	    mapWindows[type][i].close();
 	}
     }
 }
