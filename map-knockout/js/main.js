@@ -32,7 +32,7 @@ var viewModel = function() {
 	this.setNameColor = ko.observable("rgb(9, 31, 53)");
 	this.toggleSearch = ko.observable(0);
 	this.searchOption = ko.observable("...");
-    
+	
 	this.markerType = ko.observableArray([
 		{ name: 'City',		   active: ko.observable(1), type: 'city'},
 		{ name: 'Red Army',	   active: ko.observable(1), type: 'soviet'},
@@ -107,7 +107,6 @@ var viewModel = function() {
 		}
 		else{
 			// check if marker or aboutButton
-            
 			$.getScript("js/overlays.js", function(event){
 				aboutButton(data, event);
 				toggleGroup(type, data, mapWindows, mapMarkers);	  // toggle marker layer overlays.js
@@ -115,18 +114,18 @@ var viewModel = function() {
 		}
 	};
 
-    var getTime = "";
-    this.CityTime = "foo";
+	var getTime = "";
+	this.CityTime = "foo";
 	this.initMap = function(){
 
 		// init marker/infowindow data
 		$.getScript("js/citydata.js", function(){
 			getHTML.init();
 
-            // Why can't I make this an observable?!?
-            getTime = cityTime.init();
+			// Why can't I make this an observable?!?
+			getTime = cityTime.init();
 		});
-        
+
 		// apply snazzy info window style
 		$.getScript("js/snazzyinfowindow/snazzy-info-window.js", function(){
 
@@ -171,9 +170,9 @@ var viewModel = function() {
 	};
 
 	// open marker via 'click' signal
-	this.goToMarker = function(data){        
-        // console.log("city time formatted", cityTime.formatted);
-        
+	this.goToMarker = function(data){		 
+		// console.log("city time formatted", cityTime.formatted);
+
 		jQuery.each(mapMarkers, function(i, obj){
 
 			for (var currIndex = 0; currIndex < obj.length; currIndex++){
