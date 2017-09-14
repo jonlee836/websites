@@ -1,13 +1,15 @@
 // Control ground overlays and marker overlays
 function toggleGroup(type, data, mapWindows, mapMarkers) {
 
+    console.log(data.active());
+    
     if (type != 'toggle' && type != 'about'){
 	for (var i = 0; i < mapMarkers[type].length; i++) {
 
 	    // I'm assuming marker is a reference here...'
 	    var marker = mapMarkers[type][i];
 
-	    if (!marker.getVisible()) {
+	    if (data.active() == 1 && !marker.getVisible()) {
 		marker.setVisible(true);
 		marker.setAnimation(google.maps.Animation.DROP);
 	    }

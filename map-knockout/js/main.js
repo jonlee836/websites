@@ -91,7 +91,6 @@ var viewModel = function() {
 	}
     };
 
-    // Because active is observable you can modify it with knockoutJS.
     // Show/hide map marker layer on button click.    
     this.navbtnToggle = function(index, data){
 
@@ -161,6 +160,7 @@ var viewModel = function() {
 	this.filterToggle(1 - a );
     };
 
+    // open marker via 'click' signal
     this.goToMarker = function(index, data){
 
 	jQuery.each(mapMarkers, function(i, obj){
@@ -174,7 +174,6 @@ var viewModel = function() {
 			obj[currIndex].setVisible(true);
 		    }
 		    google.maps.event.trigger(tmpMark, 'click');
-		   		    
 		}
 	    }
 	});
