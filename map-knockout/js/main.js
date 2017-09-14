@@ -187,34 +187,34 @@ var viewModel = function() {
 
 	var visibleOn = [];
 	var visibleOff = [];
-	
-    	var currSearch = this.searchOption().toLowerCase();	    
-    	for (var i = 0; i < siteNames.length; i++){
 
-    	    var tempObj = new Object(siteNames[i]);
-    	    var currStr = tempObj.location.toLowerCase();
-	    
-    	    if (currStr.includes(currSearch)){
-    		visibleOn.push(tempObj);
-    	    }
+	var currSearch = this.searchOption().toLowerCase();
+	for (var i = 0; i < siteNames.length; i++){
+
+	    var tempObj = new Object(siteNames[i]);
+	    var currStr = tempObj.location.toLowerCase();
+
+	    if (currStr.includes(currSearch)){
+		visibleOn.push(tempObj);
+	    }
 	    else{
 		visibleOff.push(tempObj);
 	    }
-    	}
+	}
 
-	// turn on/off markers
+	// turn on markers
 	setMarkerVisible(visibleOn, true);
 	setMarkerVisible(visibleOff, false);
-	
+
 	return visibleOn;
-	
+
     }, this);
 
     function setMarkerVisible(data, condition){
-	
+
 	for (var i = 0; i < data.length; i++){
 	    var dataMark = data[i];
-	    
+
 	    jQuery.each(mapMarkers, function(i, obj){
 		for (var currIndex = 0; currIndex < obj.length; currIndex++){
 		    var tmpMark = obj[currIndex];

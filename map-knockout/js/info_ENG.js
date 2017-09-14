@@ -21,7 +21,7 @@ var infoData = {
 	    44.6062698
 	]
     ],
-    
+
     soviet: [
 	[
 	    "Pavlov's House",
@@ -36,7 +36,7 @@ var infoData = {
 	    44.560116
 	]
     ],
-    
+
     wehrmacht: [
 	[ 
 	    "Univermag",

@@ -51,7 +51,7 @@ function aboutButton(data, event){
     if (arguments.length == 2){
 
 	// if state of about is 0 or null
-	
+
 	if(!data.active()){
 	    aboutModal.style.display = "none";
 	}
@@ -64,18 +64,18 @@ function searchButton(data, event){
 
 // switch between english and russian layout
 function toggleLanguage(type) {
-    
+
 }
 
 var mapIcons = {
     city: {
-        icon: 'icons/blueicon_city.png'
+	icon: 'icons/blueicon_city.png'
     },
     soviet: {
-        icon: 'icons/icon_redarmy.png'
+	icon: 'icons/icon_redarmy.png'
     },
     wehrmacht: {
-        icon: 'icons/icon_wehrmacht.png'
+	icon: 'icons/icon_wehrmacht.png'
     },
 };
 
@@ -85,14 +85,14 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
     var markPos;
     var centerPos;
     var mapIcon = mapIcons[type] || {};
-    
+
     var imgIcon = {
 	scaledSize: new google.maps.Size(30, 30),
 	origin: new google.maps.Point(0, 0),
 	anchor: new google.maps.Point(15, 35),
 	url: mapIcon.icon
     }
-    
+
     for (var currIndex = 0; currIndex < info.length; currIndex++) {
 
 	var strTitle = info[currIndex][0];
@@ -105,7 +105,7 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 
 	locStr.location = strTitle;
 	siteNames.push(locStr);
-	
+
 	var marker = new google.maps.Marker({
 	    position: new google.maps.LatLng(markLat, markLng),
 	    size: new google.maps.Size(20,20),
@@ -124,27 +124,26 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 	    closeOnMapClick: true,
 	    closeWhenOthersOpen: true,
 	});
-	
+
 	// onload have the city markers be visible.
 	// on mouse click center the screen around the marker.
 	google.maps.event.addListener(marker, "click", function () {
 
-            mapdata.setCenter(this.getPosition());
+	    mapdata.setCenter(this.getPosition());
 
 	    // bounce animation on click
 	    this.setAnimation(google.maps.Animation.BOUNCE);
-	    
-            setTimeout((function() {
+
+	    setTimeout((function() {
 		this.setAnimation(null);
-            }).bind(this), 1400);
-	    
+	    }).bind(this), 1400);
 	});
 
 	// How to attach an image slider....
 	google.maps.event.addListener(infowindow, 'domready', function(){
 	    console.log("dom loaded");
 	});
-	
+
 	// Set city to be visible on load
 	// if (type != 'city') {
 	    // marker.setVisible(false);
