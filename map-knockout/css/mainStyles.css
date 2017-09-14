@@ -196,8 +196,18 @@ body {
     transition: 1;
     font-family: 'Special Elite', cursive;
 }
-.filter-button p {
-    margin: 0px 0px 0px 0px;
+
+.filter-button a p {
+    color: gray;
+    margin: 15px 0px 15px 0px;
+}
+
+.filter-button a:hover, a:visited, a:link, a:active{
+    text-decoration: none;
+}
+
+.filter-button a p:active, a p:visited, a p:hover {
+    color: white;
 }
 
 .search {
