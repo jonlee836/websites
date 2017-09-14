@@ -318,7 +318,7 @@ var mapStyle = [
 
 var getHTML = {
     
-    init:function () {
+    init: function () {
 
 	var res = "";
 	
@@ -335,10 +335,12 @@ var getHTML = {
 		var strRes = sanitizeHtml(strArray);
 
 		getHTML = strRes;
+	    },
+	    error: function (textStatus, errorThrown) {
+		console.log(textStatus, errorThrown);
+		getHTML = "";
+            }
 
-		//console.log("getHTML success : URL ", url);
-		console.log("getHTML success : DATA ", strRes);
-	    }
 	});
     }
 };

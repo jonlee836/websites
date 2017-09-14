@@ -1,8 +1,6 @@
 // Control ground overlays and marker overlays
 function toggleGroup(type, data, mapWindows, mapMarkers) {
 
-    console.log(data.active());
-    
     if (type != 'toggle' && type != 'about'){
 
 	// if (data.active() == 1) turn on all markers that are off
@@ -96,7 +94,7 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
     }
     
     for (var currIndex = 0; currIndex < info.length; currIndex++) {
-	
+
 	var strTitle = info[currIndex][0];
 	var htmlStr = setInfo(currIndex, info, infoHTML);
 
@@ -135,15 +133,24 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 
 	    // bounce animation on click
 	    this.setAnimation(google.maps.Animation.BOUNCE);
+	    
             setTimeout((function() {
 		this.setAnimation(null);
             }).bind(this), 1400);
+	    
 	});
 
-	if (type != 'city') {
-	    marker.setVisible(false);
-	}
+	// How to attach an image slider....
+	google.maps.event.addListener(infowindow, 'domready', function(){
+	    console.log("dom loaded");
+	});
+	
+	// Set city to be visible on load
+	// if (type != 'city') {
+	    // marker.setVisible(false);
+	// }
 
+	marker.setVisible(true);
 	// push markers and corresponding info window into arrays for future use
 	mapMarkers[type].push(marker);
 	mapWindows[type].push(infowindow);

@@ -4,7 +4,7 @@ var viewModel = function() {
     var self = this;
 
     var mapdata, cityOverlay;
-    
+
     // Map mapMarkers to click on.
     var mapMarkers = {
 	city: [],
@@ -31,12 +31,12 @@ var viewModel = function() {
     this.currMap = ko.observable("Volgagrad");
     this.setNameColor = ko.observable("rgb(9, 31, 53)");
     this.toggleSearch = ko.observable(0);
-    this.searchOption = ko.observable("");
-    
+    this.searchOption = ko.observable("...");
+
     this.markerType = ko.observableArray([
-	{ name: 'City',        active: ko.observable(1), type: 'city'},
-	{ name: 'Red Army',    active: ko.observable(0), type: 'soviet'},
-	{ name: 'Wehrmacht',   active: ko.observable(0), type: 'wehrmacht'},
+	{ name: 'City',	       active: ko.observable(1), type: 'city'},
+	{ name: 'Red Army',    active: ko.observable(1), type: 'soviet'},
+	{ name: 'Wehrmacht',   active: ko.observable(1), type: 'wehrmacht'},
 	{ name: 'About',       active: ko.observable(0), type: 'about'},
 	{ name: 'Toggle Menu', active: ko.observable(0), type: 'toggle'}
     ]);
@@ -51,9 +51,9 @@ var viewModel = function() {
 	if (aboutStatus == 1) {
 	    this.markerType()[aboutIndex].active(0);
 	}
-	
+
 	$.getScript("js/overlays.js", function(event){
-	    aboutButton(data);	    
+	    aboutButton(data);
 	});
 
 	// checking sideNav
@@ -71,7 +71,7 @@ var viewModel = function() {
 	}
     };
 
-    this.openNav = function(){	
+    this.openNav = function(){
 	document.getElementById("mySidenav").style.width = navWidth;
     }
     this.closeNav = function(){
@@ -91,7 +91,7 @@ var viewModel = function() {
 	}
     };
 
-    // Show/hide map marker layer on button click.    
+    // Show/hide map marker layer on button click.
     this.navbtnToggle = function(index, data){
 
 	// current clicked button
@@ -109,7 +109,7 @@ var viewModel = function() {
 	    // check if marker or aboutButton
 	    $.getScript("js/overlays.js", function(event){
 		aboutButton(data, event);
-		toggleGroup(type, data, mapWindows, mapMarkers);      // toggle marker layer overlays.js	    
+		toggleGroup(type, data, mapWindows, mapMarkers);      // toggle marker layer overlays.js
 	    });
 	}
     };
@@ -125,14 +125,14 @@ var viewModel = function() {
 	$.getScript("js/snazzyinfowindow/snazzy-info-window.js", function(){
 
 	    mapdata = new google.maps.Map(document.getElementById('map'), {
-		// use snazzy-maps mapStyle 
-		styles: mapStyle,	
+		// use snazzy-maps mapStyle
+		styles: mapStyle,
 		center: defaultPos,
 		zoom: 12,
 		gestureHandling: 'greedy',
 		disableDefaultUI: true
 	    });
-	    
+
 	    var cityInfo = infoData['city'];
 	    var sovietInfo = infoData['soviet'];
 	    var wehrmachtInfo = infoData['wehrmacht'];
@@ -145,18 +145,21 @@ var viewModel = function() {
 		setMarkers('city', cityInfo, mapdata, mapWindows, mapMarkers, siteNames, getHTML);
 		setMarkers('soviet', sovietInfo, mapdata, mapWindows, mapMarkers, siteNames, getHTML);
 		setMarkers('wehrmacht', wehrmachtInfo, mapdata, mapWindows, mapMarkers, siteNames, getHTML);
-		
+
 	    });
 	});
     }
-		
+
     this.initMap();
-    
+
     this.filterToggle = ko.observable(0);
 
     // toggle button for google map events
     this.filterClick = function(data) {
 	var a = this.filterToggle();
+
+	// very hacky, i'm aware -_-
+	this.searchOption("");
 	this.filterToggle(1 - a );
     };
 
@@ -169,7 +172,7 @@ var viewModel = function() {
 		var tmpMark = obj[currIndex];
 
 		if (tmpMark.title == index.location){
-		    console.log(tmpMark);
+
 		    if (!tmpMark.getVisible()){
 			obj[currIndex].setVisible(true);
 		    }
@@ -178,22 +181,25 @@ var viewModel = function() {
 	    }
 	});
     }
-    
-    this.locationFilter = ko.computed(function(index, data){
 
-	var res = [];
-	var currSearch = this.searchOption();
+    // this.siteNames = ko.observableArray(siteNames);
+    this.searchOption();
+    this.locationFilter = ko.computed(function(){
 
-	for (var i = 0; i < siteNames.length; i++){
+	var filterRes = [];
+
+    	var currSearch = this.searchOption().toLowerCase();	    
+    	for (var i = 0; i < siteNames.length; i++){
+
+    	    var tempObj = new Object(siteNames[i]);
+    	    var currStr = tempObj.location.toLowerCase();
 	    
-	    var tempObj = new Object(siteNames[i]);
-	    var currStr = tempObj.location;
-	    
-	    if (currStr.toLowerCase().includes(currSearch.toLowerCase())){
-		res.push(tempObj);
-	    }
-	}
-	return res;
+    	    if (currStr.includes(currSearch)){
+    		filterRes.push(tempObj);
+    	    }
+    	}
+	return filterRes;
+	
     }, this);
 };
 
