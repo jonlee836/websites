@@ -38,7 +38,7 @@ var infoData = {
     ],
 
     wehrmacht: [
-	[ 
+	[
 	    "Univermag",
 	    "Overlooking Fallen Fighters square, this apartment store became refuge to the remaining officers of the 6th Army. On January 31, 1943 Field Marshall Paulus formally surrendered to the Red Army in the basement of Univermag.",
 	    48.70893211397571,
