@@ -149,7 +149,6 @@ var viewModel = function() {
 	    });
 	});
     }
-
     this.initMap();
 
     this.filterToggle = ko.observable(0);
@@ -159,35 +158,36 @@ var viewModel = function() {
 	var a = this.filterToggle();
 
 	// very hacky, i'm aware -_-
+	this.searchOption("...");
 	this.searchOption("");
 	this.filterToggle(1 - a );
     };
 
     // open marker via 'click' signal
-    this.goToMarker = function(index, data){
-
+    this.goToMarker = function(data){
 	jQuery.each(mapMarkers, function(i, obj){
-	    for (var currIndex = 0; currIndex < obj.length; currIndex++){
 
+	    for (var currIndex = 0; currIndex < obj.length; currIndex++){
 		var tmpMark = obj[currIndex];
 
-		if (tmpMark.title == index.location){
-
+		if (tmpMark.title == data.location){
 		    if (!tmpMark.getVisible()){
 			obj[currIndex].setVisible(true);
 		    }
+		    // show infowindow
 		    google.maps.event.trigger(tmpMark, 'click');
 		}
 	    }
 	});
-    }
+    };
 
     // this.siteNames = ko.observableArray(siteNames);
     this.searchOption();
     this.locationFilter = ko.computed(function(){
 
-	var filterRes = [];
-
+	var visibleOn = [];
+	var visibleOff = [];
+	
     	var currSearch = this.searchOption().toLowerCase();	    
     	for (var i = 0; i < siteNames.length; i++){
 
@@ -195,12 +195,37 @@ var viewModel = function() {
     	    var currStr = tempObj.location.toLowerCase();
 	    
     	    if (currStr.includes(currSearch)){
-    		filterRes.push(tempObj);
+    		visibleOn.push(tempObj);
     	    }
+	    else{
+		visibleOff.push(tempObj);
+	    }
     	}
-	return filterRes;
+
+	// turn on/off markers
+	setMarkerVisible(visibleOn, true);
+	setMarkerVisible(visibleOff, false);
+	
+	return visibleOn;
 	
     }, this);
+
+    function setMarkerVisible(data, condition){
+	
+	for (var i = 0; i < data.length; i++){
+	    var dataMark = data[i];
+	    
+	    jQuery.each(mapMarkers, function(i, obj){
+		for (var currIndex = 0; currIndex < obj.length; currIndex++){
+		    var tmpMark = obj[currIndex];
+		    if (tmpMark.title == dataMark.location){
+			obj[currIndex].setVisible(condition);
+		    }
+		}
+	    });
+	}
+    };
+
 };
 
 ko.bindingHandlers.clickOutside = {
