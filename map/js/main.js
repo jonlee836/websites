@@ -29,11 +29,11 @@ var battlefront = []; // Overlay
 $(function() {
 
     mapdata = new google.maps.Map(document.getElementById('map'), {
-	styles: mapStyle,	
-	center: defaultPos,
-	zoom: 12,
-	gestureHandling: 'gestures',
-	disableDefaultUI: false
+		styles: mapStyle,	
+		center: defaultPos,
+		zoom: 12,
+		gestureHandling: 'gestures',
+		disableDefaultUI: false
     });
     
     google.maps.event.addDomListener(window, 'load');
@@ -42,8 +42,8 @@ $(function() {
     var cityOverlay = new google.maps.OverlayView();
 
     var imgbounds = new google.maps.LatLngBounds(
-	new google.maps.LatLng(49.005447494058096, 44.894256591796875),
-	new google.maps.LatLng(48.53843177405044, 44.33807373046875)
+		new google.maps.LatLng(49.005447494058096, 44.894256591796875),
+		new google.maps.LatLng(48.53843177405044, 44.33807373046875)
     );
     
     cityOverlay = new google.maps.GroundOverlay('http://i.imgur.com/pyjuLfd.jpg', imgbounds);
@@ -70,8 +70,8 @@ $(function() {
     
     // set mapMarkers
     $.getScript("js/overlays.js", function() {
-	setMarkers('city', cityInfo, mapdata);
-	setMarkers('soviet', sovietInfo, mapdata);
+		setMarkers('city', cityInfo, mapdata);
+		setMarkers('soviet', sovietInfo, mapdata);
     });
 
     // get lat, lng
@@ -82,11 +82,11 @@ $(function() {
 function openNav() {
     // if it is open close it, the window.onclick stuff is so it doesn't close when you click inside the navbar
     if(document.getElementById("mySidenav").style.width == navWidth){
-	closeNav();
+		closeNav();
     }
     // if it's not open, open it
     else{
-	document.getElementById("mySidenav").style.width = navWidth;
+		document.getElementById("mySidenav").style.width = navWidth;
     }
 }
 
@@ -97,11 +97,11 @@ function closeNav() {
 // recenter map to clicked location
 function getclickPos() {
     google.maps.event.addListener(mapdata, 'click', function(event) {
-	var lat = event.latLng.lat();
-	var lng = event.latLng.lng();
-	console.log(lat, lng);
-	//	mapdata.panTo(new google.maps.LatLng(lat, lng));
-	//	mapdata.setCenter(new google.maps.LatLng(lat, lng));
+		var lat = event.latLng.lat();
+		var lng = event.latLng.lng();
+		console.log(lat, lng);
+		//	mapdata.panTo(new google.maps.LatLng(lat, lng));
+		//	mapdata.setCenter(new google.maps.LatLng(lat, lng));
     });
 }
 
@@ -115,38 +115,38 @@ function toggleClick(e){
     var colorOff = hexToRgb("#818181");
 
     switch(str.toUpperCase()){
-	
+		
     case "The City".toUpperCase():
-	toggle[0] = !toggle[0];
-	break;
+		toggle[0] = !toggle[0];
+		break;
     case "Red Army".toUpperCase():
-	toggle[1] = !toggle[1];
-	break;
+		toggle[1] = !toggle[1];
+		break;
     case "Wehrmacht".toUpperCase():
-	toggle[2] = !toggle[2];
-	break;
+		toggle[2] = !toggle[2];
+		break;
     case "About".toUpperCase():
-	toggle[3] = !toggle[3];
-	break;
+		toggle[3] = !toggle[3];
+		break;
     case "Toggle Menu".toUpperCase():
-	toggle[endIndex] = !toggle[endIndex];
-	break;
+		toggle[endIndex] = !toggle[endIndex];
+		break;
     }
 
     var cc = document.getElementById(strId).style.color;
     if (cc != colorOn){
-	document.getElementById(strId).style.color = colorOn;
-	console.log("Highlighting ON");
+		document.getElementById(strId).style.color = colorOn;
+		console.log("Highlighting ON");
     }
     else {
-	document.getElementById(strId).style.color = colorOff;
-	console.log("Highlighting OFF");
+		document.getElementById(strId).style.color = colorOff;
+		console.log("Highlighting OFF");
     }
 }
 
 // get the type of Obj
 var toType = function(obj) {
-  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+	return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
 }
 
 // hex color  converter
@@ -156,10 +156,10 @@ function hexToRgb(hex, alpha) {
     var g = parseInt(hex.length == 3 ? hex.slice(1, 2).repeat(2) : hex.slice(2, 4), 16);
     var b = parseInt(hex.length == 3 ? hex.slice(2, 3).repeat(2) : hex.slice(4, 6), 16);
     if ( alpha ) {
-	return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+		return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
     }
     else {
-	return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+		return 'rgb(' + r + ', ' + g + ', ' + b + ')';
     }
 }
 
@@ -174,10 +174,10 @@ function getButtonStr (e) {
     var str = "";
 
     if (e.target.matches("nav-button")){
-	str = e.target.firstElementChild.innerHTML;
+		str = e.target.firstElementChild.innerHTML;
     }
     else{
-	str = e.target.innerText;
+		str = e.target.innerText;
     }
 
     return str;
@@ -187,21 +187,21 @@ function getButtonStr (e) {
 window.onclick = function(event) {    
     // if toggleCondition is true don't hide navbar when you click outside it
     if (event.target.matches("button.nav-button") ||
-	event.target.matches("p")
+		event.target.matches("p")
        ){
-	toggleClick(event);
+		toggleClick(event);
     }
     else if (toggle[endIndex]){
-	
-	// check if click is outside the nav bar
-	if(!event.target.matches(".button") &&
-	   !event.target.matches(".sidenav") &&
-	   !event.target.matches("p") &&
-	   !event.target.matches(".toggle-button-sidenav") &&
-	   !event.target.matches(".nav-button") &&
-	   document.getElementById("mySidenav").style.width === navWidth
-	  ){
-	    closeNav();
-	}
+		
+		// check if click is outside the nav bar
+		if(!event.target.matches(".button") &&
+		   !event.target.matches(".sidenav") &&
+		   !event.target.matches("p") &&
+		   !event.target.matches(".toggle-button-sidenav") &&
+		   !event.target.matches(".nav-button") &&
+		   document.getElementById("mySidenav").style.width === navWidth
+		  ){
+			closeNav();
+		}
     }
 }

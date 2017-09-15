@@ -342,37 +342,6 @@ var getHTML = {
 	}
 };
 
-// https://api.timezonedb.com/v2/get-time-zone?key=XHIVKKJVKTKZ&by=position&lat=48.75686777983242&lng=44.52157974243164&format=json
-var cityTime = {
-
-	init: function() {
-		$.ajax({
-			url: "https://api.timezonedb.com/v2/get-time-zone",
-			async: true,
-			method: "get",
-			data: {
-				key: 'XHIVKKJVKTKZ',
-				by: 'position',
-				lat: 48.75686777983242,
-				lng: 44.52157974243164,
-				format: 'json'
-			},
-			dataType: 'json',
-
-			success: function (response) {
-				var result = response.formatted;
-				cityTime = result;
-				return result;
-				// console.log(response);
-			},
-			error: function (textStatus, errorThrown) {
-				console.log(textStatus, errorThrown);
-				cityTime = "failed to retrieve time";
-			}
-		});
-	}
-};
-
 // remove things that look like spaces
 function sanitizeHtml (strArray){
 

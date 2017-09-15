@@ -3,23 +3,23 @@ function toggleGroup(type, data, mapWindows, mapMarkers) {
 
 	if (type != 'toggle' && type != 'about'){
 
-	// if (data.active() == 1) turn on all markers that are off
-	if (data.active() == 1){
-		for (var i = 0; i < mapMarkers[type].length; i++) {
-		var marker = mapMarkers[type][i];
-		if (!marker.getVisible()){
-			marker.setVisible(true);
-			marker.setAnimation(google.maps.Animation.DROP);
+		// if (data.active() == 1) turn on all markers that are off
+		if (data.active() == 1){
+			for (var i = 0; i < mapMarkers[type].length; i++) {
+				var marker = mapMarkers[type][i];
+				if (!marker.getVisible()){
+					marker.setVisible(true);
+					marker.setAnimation(google.maps.Animation.DROP);
+				}
+			}
 		}
+		// if (data.active() == 0) turn off all markers
+		else{
+			for (var i = 0; i < mapMarkers[type].length; i++) {
+				var marker = mapMarkers[type][i];
+				marker.setVisible(false);
+			}
 		}
-	}
-	// if (data.active() == 0) turn off all markers
-	else{
-		for (var i = 0; i < mapMarkers[type].length; i++) {
-		var marker = mapMarkers[type][i];
-		marker.setVisible(false);
-		}
-	}
 	}
 }
 
@@ -33,28 +33,28 @@ function aboutButton(data, event){
 
 	// open on about button click
 	aboutBtn.onclick = function(){
-	aboutModal.style.display = "block";
+		aboutModal.style.display = "block";
 	}
 
 	// close on about X button click
 	aboutSpan.onclick = function() {
-	aboutModal.style.display = "none";
+		aboutModal.style.display = "none";
 	}
 
 	// close on clicking outside the modal
 	window.onclick = function(event){
-	if (event.target == aboutModal){
-		aboutModal.style.display = "none";
-	}
+		if (event.target == aboutModal){
+			aboutModal.style.display = "none";
+		}
 	}
 
 	if (arguments.length == 2){
 
-	// if state of about is 0 or null
+		// if state of about is 0 or null
 
-	if(!data.active()){
-		aboutModal.style.display = "none";
-	}
+		if(!data.active()){
+			aboutModal.style.display = "none";
+		}
 	}
 }
 
@@ -69,13 +69,13 @@ function toggleLanguage(type) {
 
 var mapIcons = {
 	city: {
-	icon: 'icons/blueicon_city.png'
+		icon: 'icons/blueicon_city.png'
 	},
 	soviet: {
-	icon: 'icons/icon_redarmy.png'
+		icon: 'icons/icon_redarmy.png'
 	},
 	wehrmacht: {
-	icon: 'icons/icon_wehrmacht.png'
+		icon: 'icons/icon_wehrmacht.png'
 	},
 };
 
@@ -87,77 +87,115 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 	var mapIcon = mapIcons[type] || {};
 
 	var imgIcon = {
-	scaledSize: new google.maps.Size(30, 30),
-	origin: new google.maps.Point(0, 0),
-	anchor: new google.maps.Point(15, 35),
-	url: mapIcon.icon
+		scaledSize: new google.maps.Size(30, 30),
+		origin: new google.maps.Point(0, 0),
+		anchor: new google.maps.Point(15, 35),
+		url: mapIcon.icon
 	}
 
 	for (var currIndex = 0; currIndex < info.length; currIndex++) {
 
-	var strTitle = info[currIndex][0];
-	var htmlStr = setInfo(currIndex, info, infoHTML);
+		var strTitle = info[currIndex][0];
+		var htmlStr = setInfo(currIndex, info, infoHTML);
 
-	var markLat = info[currIndex][2];
-	var markLng = info[currIndex][3];
+		var markLat = info[currIndex][2];
+		var markLng = info[currIndex][3];
 
-	var locStr = new Object();
+		var locStr = new Object();
 
-	locStr.location = strTitle;
-	siteNames.push(locStr);
+		locStr.location = strTitle;
+		siteNames.push(locStr);
 
-	var marker = new google.maps.Marker({
-		position: new google.maps.LatLng(markLat, markLng),
-		size: new google.maps.Size(20,20),
-		title : strTitle,
-		icon: imgIcon,
-		animation: google.maps.Animation.DROP,
-		map: mapdata
-	});
+		var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(markLat, markLng),
+			size: new google.maps.Size(20,20),
+			title : strTitle,
+			icon: imgIcon,
+			animation: google.maps.Animation.DROP,
+			map: mapdata
+		});
 
-	// call snazzy-info-window.js
-	var infowindow = new SnazzyInfoWindow({
-		marker: marker,
-		content: htmlStr,
-		openOnMarkerClick: true,
-		panOnOpen: false,
-		closeOnMapClick: true,
-		closeWhenOthersOpen: true,
-	});
+		// call snazzy-info-window.js
+		var infowindow = new SnazzyInfoWindow({
+			marker: marker,
+			content: htmlStr,
+			openOnMarkerClick: true,
+			panOnOpen: false,
+			closeOnMapClick: true,
+			closeWhenOthersOpen: true,
+		});
 
-	// onload have the city markers be visible.
-	// on mouse click center the screen around the marker.
-	google.maps.event.addListener(marker, "click", function () {
+		// for the udacity project have all the city markers be visible onload.
 
-		mapdata.setCenter(this.getPosition());
+		// This will show only the city markers onload.
 
-		// bounce animation on click
-		this.setAnimation(google.maps.Animation.BOUNCE);
+		/* 
+		   if (type != 'city'){
+		   marker.setVisible(false);
+		   }
+		*/
+		
+		// on mouse click center the screen around the marker.
+		google.maps.event.addListener(marker, "click", function () {
 
-		setTimeout((function() {
-		this.setAnimation(null);
-		}).bind(this), 1400);
-	});
+			mapdata.setCenter(this.getPosition());
 
-	// How to attach an image slider....
-	google.maps.event.addListener(infowindow, 'domready', function(){
-		console.log("dom loaded");
-	});
+			// bounce animation on click
+			this.setAnimation(google.maps.Animation.BOUNCE);
 
-	// Set city to be visible on load
-	// if (type != 'city') {
-	// marker.setVisible(false);
-	// }
+			setTimeout((function() {
+				this.setAnimation(null);
+			}).bind(this), 1400);
+		});
 
-	marker.setVisible(true);
-	// push markers and corresponding info window into arrays for future use
-	mapMarkers[type].push(marker);
-	mapWindows[type].push(infowindow);
+		// How to attach an image slider....
+		google.maps.event.addListener(infowindow, 'domready', function(){
+			console.log("dom loaded");
+		});
+
+		// Set city to be visible on load
+		// if (type != 'city') {
+		// marker.setVisible(false);
+		// }
+
+		marker.setVisible(true);
+		// push markers and corresponding info window into arrays for future use
+		mapMarkers[type].push(marker);
+		mapWindows[type].push(infowindow);
 	}
 }
 
 // read from html file
 function setInfo(currIndex, info, infoHTML) {
+
+	var CLIENT_ID = '0V5NAVXIRLYN3O5OYPYKNRYOZFO2PGIFR5NELPVX3YONN334';
+	var CLIENT_SECRET = 'VYNNTIJVZYE1X2FHZ32XOOT0AK0QLDBZ53OLUZHXADXOXAAM';
+
+	var title = info[currIndex][0];
+	var lat = info[currIndex][2];
+	var lng = info[currIndex][3];
+
+	var url = 'https://api.foursquare.com/v2/venues/search?v=20161016&ll='
+		+ lat + ',' + lng + '&intent=global&query=' + title
+		+ '&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET;
+
+	console.log(currIndex);
+	$.getJSON(url).done(function(data) {
+
+		var data = data.response.venues[0];
+
+		console.log(data);
+		// titleRU = data.name;
+		// category = data.categories[0].shortName;
+		// address = data.location.formattedAddress.join(', ');
+		// checkinsCount = data.stats.checkinsCount;
+		// usersCount = data.stats.usersCount;
+		// tipCount = data.stats.tipCount;
+		
+	}).fail(function() {
+		alert('There was an error occured with the Foursquare API. Please try again later.');
+	});
+	
 	var markerHtml = [];
 	var strHtml = "";
 
@@ -165,17 +203,20 @@ function setInfo(currIndex, info, infoHTML) {
 	// This creates a new copy of the array and put it into a string.
 	// Then it will return the string which is then put into the info window
 	for (var i = 0; i < infoHTML.length; i++){
-	markerHtml[i] = infoHTML[i];
+		markerHtml[i] = infoHTML[i];
 	}
 
 	for (var i = 0; i < markerHtml.length; i++){
-	if (markerHtml[i] == 'title'){
-		markerHtml[i] = info[currIndex][0];
-	}
-	else if (markerHtml[i] == 'article'){
-		markerHtml[i] = info[currIndex][1];
-	}
-	strHtml = strHtml + markerHtml[i];
+		if (markerHtml[i] == 'title'){
+			markerHtml[i] = info[currIndex][0];
+		}
+		else if (markerHtml[i] == 'article'){
+			markerHtml[i] = info[currIndex][1];
+		}
+		strHtml = strHtml + markerHtml[i];
 	}
 	return strHtml;
+
+
+	
 }

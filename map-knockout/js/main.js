@@ -1,3 +1,6 @@
+var CLIENT_ID = '0V5NAVXIRLYN3O5OYPYKNRYOZFO2PGIFR5NELPVX3YONN334';
+var CLIENT_SECRET = 'VYNNTIJVZYE1X2FHZ32XOOT0AK0QLDBZ53OLUZHXADXOXAAM';
+
 var viewModel = function() {
 
 	// self == scope of viewModel
@@ -114,16 +117,11 @@ var viewModel = function() {
 		}
 	};
 
-	var getTime = "";
-	this.CityTime = "foo";
 	this.initMap = function(){
 
 		// init marker/infowindow data
 		$.getScript("js/citydata.js", function(){
 			getHTML.init();
-
-			// Why can't I make this an observable?!?
-			getTime = cityTime.init();
 		});
 
 		// apply snazzy info window style
@@ -154,8 +152,6 @@ var viewModel = function() {
 		});
 	}
 
-	this.initMap();
-
 	this.filterToggle = ko.observable(0);
 
 	// toggle button for google map events
@@ -171,7 +167,6 @@ var viewModel = function() {
 
 	// open marker via 'click' signal
 	this.goToMarker = function(data){		 
-		// console.log("city time formatted", cityTime.formatted);
 
 		jQuery.each(mapMarkers, function(i, obj){
 
@@ -218,6 +213,8 @@ var viewModel = function() {
 
 	}, this);
 
+    this.initMap();
+    
 	function setMarkerVisible(data, condition){
 
 		for (var i = 0; i < data.length; i++){
