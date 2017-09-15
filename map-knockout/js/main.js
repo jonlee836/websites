@@ -118,18 +118,21 @@ var viewModel = function() {
 	};
 
 	this.initMap = function(){
-
+        
+        var mapStyle = $.getJSON('js/map-style.json');
+        
 		// init marker/infowindow data
 		$.getScript("js/citydata.js", function(){
 			getHTML.init();
 		});
 
+        console.log("mapstyle", mapStyle);
 		// apply snazzy info window style
 		$.getScript("js/snazzyinfowindow/snazzy-info-window.js", function(){
 
 			mapdata = new google.maps.Map(document.getElementById('map'), {
 				// use snazzy-maps mapStyle
-				styles: mapStyle,
+				styles: mapStyle.responseJSON,
 				center: defaultPos,
 				zoom: 12,
 				gestureHandling: 'greedy',
