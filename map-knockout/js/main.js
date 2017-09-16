@@ -118,7 +118,7 @@ var viewModel = function() {
 	};
 
 	this.initMap = function(){
-        
+
         var mapStyle = $.getJSON('js/map-style.json');
         
 		// init marker/infowindow data
@@ -216,6 +216,8 @@ var viewModel = function() {
 
 	}, this);
 
+	
+	
     this.initMap();
     
 	function setMarkerVisible(data, condition){

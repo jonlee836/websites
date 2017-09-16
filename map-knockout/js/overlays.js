@@ -174,49 +174,50 @@ function setInfo(currIndex, info, infoHTML) {
 	var title = info[currIndex][0];
 	var lat = info[currIndex][2];
 	var lng = info[currIndex][3];
-
-	var url = 'https://api.foursquare.com/v2/venues/search?v=20161016&ll='
-		+ lat + ',' + lng + '&intent=global&query=' + title
+	var section = "sights";
+	
+	var address = "";
+	
+	var url = 'https://api.foursquare.com/v2/venues/explore?v=20161016&ll='
+		+ lat + ',' + lng + '&section=' + section + '&intent=global&query=' + title
 		+ '&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET;
 
-	console.log(currIndex);
-	$.getJSON(url).done(function(data) {
+	var fourSquare = $.getJSON((url), function(data) {
 
-		var data = data.response.venues[0];
-
-		console.log(data);
+        address = data.response.groups[0].items[0].venue.location.formattedAddress
 		// titleRU = data.name;
 		// category = data.categories[0].shortName;
-		// address = data.location.formattedAddress.join(', ');
 		// checkinsCount = data.stats.checkinsCount;
 		// usersCount = data.stats.usersCount;
 		// tipCount = data.stats.tipCount;
-		
+		console.log("inside $.getJson ", title, currIndex, address);
+
+		var markerHtml = [];
+		var strHtml = "";
+
+		// Apparently copy by reference is default when cloning arrays in javascript.....
+		// This creates a new copy of the array and put it into a string.
+		// Then it will return the string which is then put into the info window
+		for (var i = 0; i < infoHTML.length; i++){
+			markerHtml[i] = infoHTML[i];
+		}
+
+		for (var i = 0; i < markerHtml.length; i++){
+			if (markerHtml[i] == 'title'){
+				markerHtml[i] = info[currIndex][0];
+			}
+			else if (markerHtml[i] == 'article'){
+				markerHtml[i] = info[currIndex][1];
+			}
+			else if (markerHtml[i] == 'time'){
+				markerHtml[i] = address;
+			}
+			strHtml = strHtml + markerHtml[i];
+		}
+		return strHtml;
+
 	}).fail(function() {
-		alert('There was an error occured with the Foursquare API. Please try again later.');
+		console.log('There was an error occured with the Foursquare API. Please try again later.');
 	});
-	
-	var markerHtml = [];
-	var strHtml = "";
-
-	// Apparently copy by reference is default when cloning arrays in javascript.....
-	// This creates a new copy of the array and put it into a string.
-	// Then it will return the string which is then put into the info window
-	for (var i = 0; i < infoHTML.length; i++){
-		markerHtml[i] = infoHTML[i];
-	}
-
-	for (var i = 0; i < markerHtml.length; i++){
-		if (markerHtml[i] == 'title'){
-			markerHtml[i] = info[currIndex][0];
-		}
-		else if (markerHtml[i] == 'article'){
-			markerHtml[i] = info[currIndex][1];
-		}
-		strHtml = strHtml + markerHtml[i];
-	}
-	return strHtml;
-
-
 	
 }

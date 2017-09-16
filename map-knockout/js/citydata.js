@@ -1,7 +1,4 @@
 // 0 = Name , 1 = description, 2 = lat, 3 = lng
-
-// this unique map style was created with https://snazzymaps.com/editor
-
 var getHTML = {
 
 	init: function() {
