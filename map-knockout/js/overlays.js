@@ -182,6 +182,9 @@ function setInfo(currIndex, info, infoHTML) {
 		+ lat + ',' + lng + '&section=' + section + '&intent=global&query=' + title
 		+ '&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET;
 
+	var markerHtml = [];
+	var strHtml = "";
+
 	var fourSquare = $.getJSON((url), function(data) {
 
         address = data.response.groups[0].items[0].venue.location.formattedAddress
@@ -192,32 +195,30 @@ function setInfo(currIndex, info, infoHTML) {
 		// tipCount = data.stats.tipCount;
 		console.log("inside $.getJson ", title, currIndex, address);
 
-		var markerHtml = [];
-		var strHtml = "";
-
-		// Apparently copy by reference is default when cloning arrays in javascript.....
-		// This creates a new copy of the array and put it into a string.
-		// Then it will return the string which is then put into the info window
-		for (var i = 0; i < infoHTML.length; i++){
-			markerHtml[i] = infoHTML[i];
-		}
-
-		for (var i = 0; i < markerHtml.length; i++){
-			if (markerHtml[i] == 'title'){
-				markerHtml[i] = info[currIndex][0];
-			}
-			else if (markerHtml[i] == 'article'){
-				markerHtml[i] = info[currIndex][1];
-			}
-			else if (markerHtml[i] == 'time'){
-				markerHtml[i] = address;
-			}
-			strHtml = strHtml + markerHtml[i];
-		}
-		return strHtml;
-
 	}).fail(function() {
 		console.log('There was an error occured with the Foursquare API. Please try again later.');
 	});
 	
+	console.log("outside $.getJson ", title, currIndex, address);
+	
+	// Apparently copy by reference is default when cloning arrays in javascript.....
+	// This creates a new copy of the array and put it into a string.
+	// Then it will return the string which is then put into the info window
+	for (var i = 0; i < infoHTML.length; i++){
+		markerHtml[i] = infoHTML[i];
+	}
+
+	for (var i = 0; i < markerHtml.length; i++){
+		if (markerHtml[i] == 'title'){
+			markerHtml[i] = info[currIndex][0];
+		}
+		else if (markerHtml[i] == 'article'){
+			markerHtml[i] = info[currIndex][1];
+		}
+		else if (markerHtml[i] == 'time'){
+			markerHtml[i] = address;
+		}
+		strHtml = strHtml + markerHtml[i];
+	}
+	return strHtml;
 }
