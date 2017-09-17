@@ -26,7 +26,6 @@
   <!-- infowindow.html -> object -> array -> replace content at matching indexes -> create marker's infowindow -->
   <body>
 
-	
 	<div class="container" id="top-menu" >
 	  <div class="row">
 		<div class="btnMenu" data-bind="click: toggleNav">
@@ -40,24 +39,26 @@
 
 	<div class="container">
 	  <!-- The About Modal -->
-	  <div id="aboutId" class="about-modal">
+	  <div id="aboutId" class="popup-modal">
 
-		<!-- Modal content -->
-		<div class="about-content">
+		<!-- about modal -->
+		<div class="container">
+		  <div class="about-content">
 
-		  <!-- X close button -->
-		  <span class="about-close">&times;</span>
+			<!-- X close button -->
+			<span class="about-close">&times;</span>
 
-		  <h1>Created by Jon Lee</h1>
-		  <article>This is a google maps overlay with key landmarks from the battle of Stalingrad. If you would like to contribute historical information to this project please contact me at jonlee836@gmail.com! </article>
+			<h1>Created by Jon Lee</h1>
+			<article>This is a google maps overlay with key landmarks from the battle of Stalingrad. If you would like to contribute historical information to this project please contact me at jonlee836@gmail.com! </article>
 
-		  <div id="city-time">
-			<!-- <div class="display-time" data-bind="text: CityTime"> -->
+			<div id="city-time">
+			  <!-- <div class="display-time" data-bind="text: CityTime"> -->
 			  <!-- <p></p> -->
-			<!-- </div> -->
-		  </div>
+			  <!-- </div> -->
+			</div>
 
-		  <h2>Last updated 8/28/2017</h2>
+			<h2>Last updated 9/16/2017</h2>
+		  </div>
 		</div>
 	  </div>
 
@@ -113,8 +114,10 @@
 
   <script type="text/javascript" src="js/minjs/knockout-min.js"></script>
   <script type="text/javascript" src="js/minjs/jquery-3.2.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-
+  <script type="text/javascript" src="js/minjs/popper.min.js"></script>
+  <script type="text/javascript" src="js/minjs/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/minjs/eModal.min.js"></script>
+  
   <!-- image slider -->
   <script type="text/javascript" src="js/lightslider/lightslider.js"></script>
   <link rel="stylesheet" href="js/lightslider/lightslider.css">

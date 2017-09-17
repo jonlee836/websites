@@ -218,10 +218,11 @@ function setfourSquare(url, title, htmlStr, mapWindows, type, index){
 
 		mapWindows[type][index].setContent(htmlStr);
 
-		console.log("     JSON COMPLETE", type, "street", street, "city", city, "country", country, title, index, jsonStr, "data", data.response);
+		// console.log("     JSON COMPLETE", type, "street", street, "city", city, "country", country, title, index, jsonStr, "data", data.response);
 
 	}).fail(function() {
-		console.log('There was an error occured with the Foursquare API. Please try again later.');
+		 eModal.alert('There was an error occured with the Foursquare API. Please try again later.');
+		// console.log('There was an error occured with the Foursquare API. Please try again later.');
 	});
 }
 

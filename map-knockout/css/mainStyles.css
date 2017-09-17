@@ -103,7 +103,7 @@ body {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 6;
+    z-index: 5;
     top: 0;
     left: 0;
     background-color: #111;
@@ -164,7 +164,7 @@ body {
     color: #818181;
 }
 
-.nav-button {
+button.nav-button {
     width: 100%;
     height: 40px;
     margin-top: 5%;
@@ -237,11 +237,18 @@ body {
 .title-super {
     font-size: 60px;
 }
+
 /* The Modal (background) */
-.about-modal {
+.popup-modal {
+	float: none;
+    clear: both;
+    width: 100%;
+    max-wdith: 400px;
+    position: relative;
+
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 6; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;

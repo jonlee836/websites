@@ -19,6 +19,7 @@ var getHTML = {
 			},
 			error: function (textStatus, errorThrown) {
 				console.log(textStatus, errorThrown);
+				eModal.alert("unable to retrieve infowindow data, please refresh the page");
 				getHTML = "";
 			}
 		});

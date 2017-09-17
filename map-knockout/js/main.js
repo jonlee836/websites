@@ -57,6 +57,8 @@ var viewModel = function() {
 
 		$.getScript("js/overlays.js", function(event){
 			aboutButton(data);
+		}).fail(function(){
+			eModal.alert("unable to load modal failed to load");
 		});
 
 		// checking sideNav
@@ -113,17 +115,25 @@ var viewModel = function() {
 			$.getScript("js/overlays.js", function(event){
 				aboutButton(data, event);
 				toggleGroup(type, data, mapWindows, mapMarkers);	  // toggle marker layer overlays.js
+			}).fail(function(){
+				eModal.alert("something went wrong!try refreshing the page.")
 			});
 		}
 	};
 
 	this.initMap = function(){
 
-		var mapStyle = $.getJSON('js/map-style.json');
+		var mapStyle = $.getJSON('js/map-style.json', function(event){
+			console.log("map-style.json loaded");
+		}).fail(function(){
+			eModal.alert("failed to load map-style, try refreshing the page or deleting your browser cache");
+		});
 
 		// init marker/infowindow data
 		$.getScript("js/citydata.js", function(){
 			getHTML.init();
+		}).fail(function(){
+			eModal.alert("unable to load landmark descriptions, please try again later.")
 		});
 
 		// console.log("mapstyle", mapStyle);
@@ -151,7 +161,11 @@ var viewModel = function() {
 				setMarkers('city', cityInfo, mapdata, mapWindows, mapMarkers, siteNames, getHTML);
 				setMarkers('soviet', sovietInfo, mapdata, mapWindows, mapMarkers, siteNames, getHTML);
 				setMarkers('wehrmacht', wehrmachtInfo, mapdata, mapWindows, mapMarkers, siteNames, getHTML);
+			}).fail(function(){
+				eModal.alert("something went wrong, try reloading the page.");
 			});
+		}).fail(function(){
+			eModal.alert("something went wrong while loading the infowindows");
 		});
 	}
 
@@ -215,8 +229,6 @@ var viewModel = function() {
 		return visibleOn;
 
 	}, this);
-
-
 
 	this.initMap();
 
