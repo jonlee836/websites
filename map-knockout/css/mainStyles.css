@@ -266,14 +266,15 @@ button.nav-button {
 }
 
 /* Modal Content */
+
 .about-content {
     background-color: #ffffff;
 	color: #053573;
 
-    margin: auto;
-    padding: 5% 5% 5% 5%;
+    margin: 0 auto;
+    padding: 20px 10px 10% 10px;
     border: 2px solid #111111;
-    width: 65%;
+    width: 45%;
     font-family: 'Special Elite', cursive;
 }
 
@@ -283,7 +284,7 @@ button.nav-button {
 }
 
 .about-content article{
-	color: #053573;
+	color: #05357;
 	font-size: 16px;
 }
 
