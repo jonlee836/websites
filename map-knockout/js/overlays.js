@@ -13,11 +13,11 @@ function toggleGroup(type, data, mapWindows, mapMarkers) {
 				}
 			}
 		}
-		// if (data.active() == 0) turn off all markers
+		// if (data.active() == 0) turn off all markers and corresponding infowindows
 		else{
 			for (var i = 0; i < mapMarkers[type].length; i++) {
-				var marker = mapMarkers[type][i];
-				marker.setVisible(false);
+				mapMarkers[type][i].setVisible(false);
+				mapWindows[type][i].close();
 			}
 		}
 	}

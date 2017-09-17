@@ -189,7 +189,7 @@ var ViewModel = function() {
 		this.searchOption("");
 	};
 
-	// open marker via 'click' signal
+	// open markers in search field via 'click' signal
 	this.goToMarker = function(data){
 
 		jQuery.each(mapMarkers, function(i, obj){

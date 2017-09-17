@@ -31,7 +31,7 @@ var infoData = {
 		],
 		[
 			"Red October Factory",
-			"Tank production at this factory continued during the battle. Each T-34 went from assembly line straight to front line in less than 2 hours.",
+			"Tank production at this factory continued during the battle. T-34 tanks went from assembly line straight to the frontline in less than 2 hours.",
 			48.763266,
 			44.560116
 		]
