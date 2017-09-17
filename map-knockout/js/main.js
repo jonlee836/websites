@@ -1,7 +1,7 @@
 var CLIENT_ID = '0V5NAVXIRLYN3O5OYPYKNRYOZFO2PGIFR5NELPVX3YONN334';
 var CLIENT_SECRET = 'VYNNTIJVZYE1X2FHZ32XOOT0AK0QLDBZ53OLUZHXADXOXAAM';
 
-var viewModel = function() {
+var ViewModel = function() {
 
 	// self == scope of viewModel
 	var self = this;
@@ -272,5 +272,5 @@ function mapError(){
 }
 
 function runApp(){
-	ko.applyBindings(new viewModel());
+	ko.applyBindings(new ViewModel());
 }
