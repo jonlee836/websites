@@ -82,8 +82,6 @@ var mapIcons = {
 // create markers for the city, red army, and wehrmacht
 function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, infoHTML) {
 
-	console.log("inside setMarkers :", type);
-
 	var markPos;
 	var centerPos;
 	var mapIcon = mapIcons[type] || {};
@@ -183,8 +181,7 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 
 		// Async call to foursquare data, this returns the nearest topPick according to fourSquare.
 		
-		setfourSquare(url, title, htmlStr, mapWindows, type, mapWindows_Index);
-		console.log("--------------");
+		// setfourSquare(url, title, htmlStr, mapWindows, type, mapWindows_Index);
 	}
 }
 

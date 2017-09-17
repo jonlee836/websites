@@ -71,33 +71,32 @@
 		  <a href="javascript:void(0)" id="closeButton" class="closebtn" data-bind="click: closeNav">&times;</a>
 
 		  <!-- filter -->
-		  <button class="nav-button search" data-bind="click: filterClick">
-			<p>search</p>
+		  <button class="nav-button" data-bind="click: filterClick">
+			<div data-bind="css: searchHilite">
+			  <p>search</p>
+			</div>
 		  </button>
 
 		  <!-- search Button -->
 		  <div id="filterNames" class="sidenavMonitor" data-bind="if: filterToggle">
 			<div id="filterSearch" class="searchField">
 			  <p>
-				<input id="filterField" class="search" data-bind="textInput: searchOption, hasFocus: filterToggle, valueUpdate: 'afterkeydown'" placeholder=". . . . ." autofocus>
+				<input id="filterField" class="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder=". . . . .">
 			  </p>
 			  <hr class="search-seperater">
 			</div>
 
 			<!-- list of items -->
-			<div class="filterContainer">
-			  <div data-bind="mapEvents: detectMouseEvents.bind">
 
-				<!-- Type in search string -->
-				<div class="filter-button" data-bind="foreach: locationFilter">
-				  <a href="#">
-					<p data-bind="text: $data.location, click: $parent.goToMarker"></p>
-				  </a>
-				</div>
-
-			  </div>
+			<!-- Type in search string -->
+			<div class="filter-container" data-bind="foreach: locationFilter" data-bind="mapEvents: detectMouseEvents.bind">
+			  <a href="#">
+				<p data-bind="text: $data.location, click: $parent.goToMarker"></p>
+			  </a>
 			</div>
+
 		  </div>
+
 		  <!--	Create array of Sidenav buttons -->
 		  <div data-bind="foreach: markerType">
 			<button class="nav-button" data-bind="attr: {id: name}, click: $parent.navbtnToggle.bind($parent, $index(), $data)">

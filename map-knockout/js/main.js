@@ -171,21 +171,22 @@ var ViewModel = function() {
 
 	this.filterToggle = ko.observable(0);
 
+	this.searchHilite = ko.pureComputed(function() {
+        return this.filterToggle() == 1 ? "btn-highlight-on" : "btn-highlight-off";
+    }, this);
+	
+
 	// toggle button for google map events
 	this.filterClick = function(data) {
 
 		// document.getElementsByClassName("search");
 		// document.getElementById("searchfield").focus;
 		var a = this.filterToggle();
-
-		$( "#filterField" ).focus(function() {
-			
-		});
+		this.filterToggle(1 - a );
 		
 		// very hacky, i'm aware -_-
 		this.searchOption(". . . . .");
 		this.searchOption("");
-		this.filterToggle(1 - a );
 	};
 
 	// open marker via 'click' signal
@@ -209,7 +210,7 @@ var ViewModel = function() {
 
 	// this.siteNames = ko.observableArray(siteNames);
 	this.searchOption();
-
+	
 	this.locationFilter = ko.computed(function(){
 		var visibleOn = [];
 		var visibleOff = [];
