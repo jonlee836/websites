@@ -141,21 +141,15 @@
     overflow: auto; }
 
 .si-close-button {
-    
     position: absolute;
-    top: -5px;
-    right: -5px;
-    border: 0;
-    outline: none;
     background-color: transparent;
-    color: inherit;
-    font-family: Arial, Baskerville, monospace;
-    font-size: 2em;
+    color: black;
+    font-size: 30px;
     cursor: pointer;
-    opacity: 0.7;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none; }
+
 .si-close-button:hover, .si-close-button:focus {
     color: darkslategray;
     opacity: 0.5; }

@@ -270,7 +270,7 @@ button.nav-button {
 .about-content {
     background-color: #ffffff;
 	color: #053573;
-
+	max-width: 400px;
     margin: 0 auto;
     padding: 20px 10px 10% 10px;
     border: 2px solid #111111;
