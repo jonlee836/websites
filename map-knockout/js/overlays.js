@@ -118,11 +118,11 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 		//		+ '&intent=&query=' + title + '&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET;
 
 		// var url = 'https://api.foursquare.com/v2/venues/explore?v=20170916&ll='
-		//		+ markLat + ',' + markLng + '&sortByDistance=1' + '&section=' + section + '&intent=nextVenues&query=' + title
-		//		+ '&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET;
+		// 		+ markLat + ',' + markLng + '&sortByDistance=1' + '&section=' + section + '&intent=nextVenues&query=' + title
+		// 		+ '&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET;
 
 		var url = 'https://api.foursquare.com/v2/venues/explore?v=20170916&ll='
-			+ markLat + ',' + markLng + '&radius' + radius + '&sortByDistance=1' + '&section=' + section + '&intent=global&query=' + title
+			+ markLat + ',' + markLng + '&intent=browse=' + title
 			+ '&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET;
 
 		var locStr = new Object();
