@@ -151,7 +151,7 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 		google.maps.event.addListener(marker, "click", function () {
 
 			mapdata.setCenter(this.getPosition());
-
+			// console.log(infowindow);
 			// bounce animation on click
 			this.setAnimation(google.maps.Animation.BOUNCE);
 
@@ -176,7 +176,6 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 		mapMarkers[type].push(marker);
 		mapWindows[type].push(infowindow);
 
-		console.log("length", mapWindows[type].length);
 		var mapWindows_Index = mapWindows[type].length -1;
 
 		// Async call to foursquare data, this returns the nearest topPick according to fourSquare.
