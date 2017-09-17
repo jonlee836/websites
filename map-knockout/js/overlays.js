@@ -184,6 +184,31 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 		// setfourSquare(url, title, htmlStr, mapWindows, type, mapWindows_Index);
 	}
 }
+// read from html file
+function setInfo(currIndex, info, infoHTML) {
+
+	var markerHtml = [];
+	var strHtml = "";
+
+	// Apparently copy by reference is default when cloning arrays in javascript.....
+	// This creates a new copy of the array and put it into a string.
+	// Then it will return the string which is then put into the info window
+	for (var i = 0; i < infoHTML.length; i++){
+		markerHtml[i] = infoHTML[i];
+	}
+
+	for (var i = 0; i < markerHtml.length; i++){
+		if (markerHtml[i] == 'MARKUPtitle'){
+			markerHtml[i] = info[currIndex][0];
+		}
+		else if (markerHtml[i] == 'MARKUParticle'){
+			markerHtml[i] = info[currIndex][1];
+		}
+		strHtml = strHtml + markerHtml[i];
+	}
+	return strHtml;
+}
+
 
 function setfourSquare(url, title, htmlStr, mapWindows, type, index){
 
@@ -218,32 +243,7 @@ function setfourSquare(url, title, htmlStr, mapWindows, type, index){
 		// console.log("     JSON COMPLETE", type, "street", street, "city", city, "country", country, title, index, jsonStr, "data", data.response);
 
 	}).fail(function() {
-		 eModal.alert('There was an error occured with the Foursquare API. Please try again later.');
+		// eModal.alert('There was an error occured with the Foursquare API. Please try again later.');
 		// console.log('There was an error occured with the Foursquare API. Please try again later.');
 	});
-}
-
-// read from html file
-function setInfo(currIndex, info, infoHTML) {
-
-	var markerHtml = [];
-	var strHtml = "";
-
-	// Apparently copy by reference is default when cloning arrays in javascript.....
-	// This creates a new copy of the array and put it into a string.
-	// Then it will return the string which is then put into the info window
-	for (var i = 0; i < infoHTML.length; i++){
-		markerHtml[i] = infoHTML[i];
-	}
-
-	for (var i = 0; i < markerHtml.length; i++){
-		if (markerHtml[i] == 'MARKUPtitle'){
-			markerHtml[i] = info[currIndex][0];
-		}
-		else if (markerHtml[i] == 'MARKUParticle'){
-			markerHtml[i] = info[currIndex][1];
-		}
-		strHtml = strHtml + markerHtml[i];
-	}
-	return strHtml;
 }
