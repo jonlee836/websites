@@ -77,9 +77,9 @@
 
 		  <!-- search Button -->
 		  <div id="filterNames" class="sidenavMonitor" data-bind="if: filterToggle">
-			<div id="filterSearch">
+			<div id="filterSearch" class="searchField">
 			  <p>
-				<input class="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="...">
+				<input id="filterField" class="search" data-bind="textInput: searchOption, hasFocus: filterToggle, valueUpdate: 'afterkeydown'" placeholder=". . . . ." autofocus>
 			  </p>
 			  <hr class="search-seperater">
 			</div>

@@ -174,10 +174,16 @@ var ViewModel = function() {
 	// toggle button for google map events
 	this.filterClick = function(data) {
 
+		// document.getElementsByClassName("search");
+		// document.getElementById("searchfield").focus;
 		var a = this.filterToggle();
 
+		$( "#filterField" ).focus(function() {
+			
+		});
+		
 		// very hacky, i'm aware -_-
-		this.searchOption("...");
+		this.searchOption(". . . . .");
 		this.searchOption("");
 		this.filterToggle(1 - a );
 	};
