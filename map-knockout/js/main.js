@@ -250,7 +250,7 @@ var ViewModel = function() {
 };
 
 ko.bindingHandlers.clickOutside = {
-	init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+	init: function(element, valueAccessor, allBindings, ViewModel, bindingContext) {
 
 		var fn = ko.utils.unwrapObservable(valueAccessor());
 
