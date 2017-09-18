@@ -21,8 +21,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-top: -20px;
-  margin-left: 0px;
+
   -webkit-transform: translate(-50%, -100%);
           transform: translate(-50%, -100%); }
 

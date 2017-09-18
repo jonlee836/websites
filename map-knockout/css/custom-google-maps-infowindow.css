@@ -1,16 +1,3 @@
-.poi-info-window .full-width {
-	width: 300px;
-	font-family: 'Special Elite', cursive;
-	color: #053573;
-	font-size: 18px;
-}
-
-.poi-info-window .title{
-	font-family: 'Special Elite', cursive;
-	color: #7b0000;
-	font-size: 25px;
-}
-
 .info-window info-header {
 	position: center;
 	font-size: 18px;
@@ -53,4 +40,22 @@
     max-height: 100%;
     padding: 10px;
     background-color: #fff;
+}
+
+.poi-info-window .full-width {
+	width: 300px;
+	font-family: 'Special Elite', cursive;
+	color: #053573;
+	font-size: 14px;
+}
+
+.poi-info-window .title{
+	font-family: 'Special Elite', cursive;
+	font-weight: 900;
+	color: #7b0000;
+	font-size: 25px;
+}
+
+.poi-info-window .view-link, .poi-info-window a:visited {
+    color: black;
 }
