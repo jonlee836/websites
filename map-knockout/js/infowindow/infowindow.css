@@ -2,50 +2,6 @@
 	font-family: 'Special Elite', cursive;
 }
 
-.gm-style .gm-style-iw {
-	min-width: 400px;
-	background-color: #fff;
-}
-
-.gm-style .gm-style-iw .info-window {
-	padding: 0;
-	max-height: 500px;
-}
-
-.info-window info-header {
-	position: center;
-	font-size: 18px;
-}
-
-.info-window b {
-	color: #7b0000;
-	font-size: 25px;
-}
-
-.gm-style article {
-	font-weight: 400;
-}
-
-.info-window location-info {
-	font-size: 13px;
-	color: black;
-}
-
-#location-info {
-	margin-top: 15px;
-	font-size: 13px;
-	color: black;
-}
-
-.info-window article {
-	padding-top: 15px;
-	font-size: 16px;
-	font-weight: 0;
-	line-height: 1.42857143;
-	text-align: left;
-	color: #053573;
-}
-
 .small {
 	font-size: 11px;
 	color: #999;
@@ -58,7 +14,6 @@
 }
 
 .page-head {
-	padding: 60px 0;
 	text-align: center;
 }
 
@@ -129,20 +84,31 @@
 	right: -58px;
 }
 
-.image-gallery > ul {
+.image-gallery {
+    -ms-text-justify: distribute-all-lines;
+    text-justify: distribute-all-lines;
+	display:block;
+    /* just for demo */
+}
 
+.image-gallery > ul {
+	width: 100%;
+	display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    -webkit-padding-start: 0;
 }
 
 .image-gallery > ul > li {
-	margin-bottom: 15px;
-	width: 80px;
 	display: inline-block;
-	margin-right: 10px;
-	padding-top: 25%;
-	list-style: outside none none;
+	padding: 10px 5px 10px 10px;
 }
 
 .image-gallery > ul > li a {
+	border: 1px solid black;
 	display: block;
 	overflow: hidden;
 	position: relative;
@@ -158,8 +124,8 @@
 	transition: transform 0.15s ease 0s;
 	-webkit-transform: scale3d(1, 1, 1);
 	transform: scale3d(1, 1, 1);
-	height: 75px;
-	width: 75px;
+	height: 50px;
+	width: 50px;
 }
 
 .image-gallery > ul > li a:hover > img {
@@ -245,21 +211,18 @@
 
 .image-gallery .justified-gallery > a:hover .image-gallery-poster {
 	background-color: rgba(0, 0, 0, 0.5);
-	max-width: 50px;
-	max-height: 50px;
+	max-width: 60px;
+	max-height: 60px;
 }
 
 .image-gallery .video .image-gallery-poster img {	
 	opacity: 0.8;
 }
 
-.image-gallery > ul > li a {
-    border: 1px solid #000;
-    overflow: hidden;
-    position: relative;
-    float: center;
-}
-
-.image-gallery {
-    margin: 5% 5% 0 5%;
+@media screen and (min-width: 700px) 
+{
+	.image-gallery .justified-gallery > a > img {
+		height: 50px;
+		width: 50px;
+	}
 }

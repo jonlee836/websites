@@ -149,9 +149,7 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 
 		// on mouse click center the screen around the marker.
 		google.maps.event.addListener(marker, "click", function () {
-
 			mapdata.setCenter(this.getPosition());
-			// console.log(infowindow);
 			// bounce animation on click
 			this.setAnimation(google.maps.Animation.BOUNCE);
 
@@ -183,8 +181,6 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 		// setfourSquare(url, title, htmlStr, mapWindows, type, mapWindows_Index);
 	}
 }
-
-
 
 // read from html file
 function setInfo(currIndex, info, infoHTML) {
@@ -260,5 +256,12 @@ function setfourSquare(url, title, htmlStr, mapWindows, type, index){
 	}).fail(function() {
 		// eModal.alert('There was an error occured with the Foursquare API. Please try again later.');
 		// console.log('There was an error occured with the Foursquare API. Please try again later.');
+	});
+}
+
+function runlightgallery(){
+	$(document).ready(function(){
+		console.log("#lightgallery is ready");
+		$('#lightgallery').lightGallery();
 	});
 }

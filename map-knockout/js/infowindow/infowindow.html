@@ -1,12 +1,10 @@
 <!doctype html>
 <html>
-  <head>
-	<link rel="stylesheet" href="js/infowindow/infowindow.css">
-	<link rel="stylesheet" href="js/lightslider/dist/css/lightgallery.css">
-	<!-- <link rel="stylesheet" href="./infowindow.css"> -->
-  </head>
   <body>
-
+	<head>
+	  <link rel="stylesheet" href="css/custom-google-maps-infowindow.css">
+	</head>
+	
 	<div class="info-window">
 	  <h1 id="info-header">
 		<b>
@@ -16,20 +14,19 @@
 	  <article>
 		MARKUParticle
 	  </article>
-	  <div id="location-info">
-		<p>
-		  <!-- Saterday 16, 2017 -->
+	  <!-- <div id="location-info"> -->
+	  <!-- <p> -->
+	  <!-- Saterday 16, 2017 -->
 
-		  <!-- Question : Why is the word "city" not replaced when calling "htmlStr = htmlStr.replace("city", city);"? -->
-		  <!-- Answer : Mamayev Kurgan's description contained the word "city"and -->
-		  <!-- was therefore replaced instead of "city" found inside the <p> tag. -->
-		  <!-- This is why you should always have unique markers. -_-  -->
+	  <!-- Question : Why is the word "city" not replaced when calling "htmlStr = htmlStr.replace("city", city);"? -->
+	  <!-- Answer : Mamayev Kurgan's description contained the word "city"and -->
+	  <!-- was therefore replaced instead of "city" found inside the <p> tag. -->
+	  <!-- This is why you should always have unique markers. -_-  -->
 
-		  <!-- MARKUPstreet<br /> -->
-		  <!-- MARKUPcity MARKUPcountry -->
-		</p>
-	  </div>
-
+	  <!-- MARKUPstreet<br /> -->
+	  <!-- MARKUPcity MARKUPcountry -->
+	  <!-- </p> -->
+	  
 	  <div class="image-gallery">
 		<ul id="lightgallery">
 		  <li data-responsive="https://sachinchoolur.github.io/lightgallery.js/static/img/1-375.jpg 375, https://sachinchoolur.github.io/lightgallery.js/static/img/1-480.jpg 480, https://sachinchoolur.github.io/lightgallery.js/static/img/1.jpg 800" data-src="https://sachinchoolur.github.io/lightgallery.js/static/img/1-1600.jpg"
@@ -68,9 +65,19 @@
 			  </div>
 			</a>
 		  </li>
+		  <li data-responsive="https://sachinchoolur.github.io/lightgallery.js/static/img/1-375.jpg 375, https://sachinchoolur.github.io/lightgallery.js/static/img/1-480.jpg 480, https://sachinchoolur.github.io/lightgallery.js/static/img/1.jpg 800" data-src="https://sachinchoolur.github.io/lightgallery.js/static/img/1-1600.jpg"
+			  data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+			<a href="">
+			  <img class="img-responsive" src="https://sachinchoolur.github.io/lightgallery.js/static/img/thumb-1.jpg">
+			  <div class="image-gallery-poster">
+				<img src="https://sachinchoolur.github.io/lightgallery.js/static/img/zoom.png">
+			  </div>
+			</a>
+		  </li>
+
 		</ul>
 	  </div>
 	</div>
-	
-  </body>
+</div>
+</body>
 </html>

@@ -1,8 +1,3 @@
-@media screen and (max-height: 800px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-}
-
 *{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -325,4 +320,9 @@ button.nav-button {
 
 #Volgagrad_Button {
 	margin-left: 12px;
+}
+
+@media screen and (max-width: 800px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
 }
