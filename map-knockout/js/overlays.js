@@ -85,7 +85,7 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 	var markPos;
 	var centerPos;
 	var mapIcon = mapIcons[type] || {};
-
+	console.log(mapIcon);
 	var imgIcon = {
 		scaledSize: new google.maps.Size(30, 30),
 		origin: new google.maps.Point(0, 0),
@@ -93,6 +93,8 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 		url: mapIcon.icon
 	}
 
+	console.log(imgIcon);
+		
 	for (var currIndex = 0; currIndex < info.length; currIndex++) {
 
 		var CLIENT_ID = '3GA0C0WY5T0XLTP0ISKQGJPEA2F5L01NM33NUHUF5Q1FDRDD';
@@ -173,7 +175,7 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 		// push markers and corresponding info window into arrays for future use
 		mapMarkers[type].push(marker);
 		mapWindows[type].push(infowindow);
-
+		
 		var mapWindows_Index = mapWindows[type].length -1;
 
 		// Async call to foursquare data, this returns the nearest topPick according to fourSquare.
@@ -196,10 +198,10 @@ function setInfo(currIndex, info, infoHTML) {
 	}
 
 	for (var i = 0; i < markerHtml.length; i++){
-		if (markerHtml[i] == 'MARKUPtitle'){
+		if (markerHtml[i] == '<MARKUPtitle>'){
 			markerHtml[i] = info[currIndex][0];
 		}
-		else if (markerHtml[i] == 'MARKUParticle'){
+		else if (markerHtml[i] == '<MARKUParticle>'){
 			markerHtml[i] = info[currIndex][1];
 		}
 		strHtml = strHtml + markerHtml[i];
@@ -209,8 +211,29 @@ function setInfo(currIndex, info, infoHTML) {
 
 function getImages(title, htmlStr, mapWindows, type, index){
 
-	var fourSquare = $.getJSON((url), function(data) {
+	var markupHTML = '<li data-responsive=<MARKUP_THUMBNAIL> data-src=<MARKUP_FULLIMAGE>
+		  data-sub-html="<p><MARKUP_DESCRIPTION></p>">
+		<a href="">
+		  <img class="img-responsive" src="https://sachinchoolur.github.io/lightgallery.js/static/img/thumb-1.jpg">
+		  <div class="image-gallery-poster">
+			<img src="https://sachinchoolur.github.io/lightgallery.js/static/img/zoom.png">
+		  </div>
+		</a>
+    </li>';
 
+	var rootImagePath = 'images/'+'';
+	// <li data-responsive="https://sachinchoolur.github.io/lightgallery.js/static/img/2-375.jpg 375, https://sachinchoolur.github.io/lightgallery.js/static/img/2-480.jpg 480, https://sachinchoolur.github.io/lightgallery.js/static/img/2.jpg 800" data-src="https://sachinchoolur.github.io/lightgallery.js/static/img/2-1600.jpg"
+	// 	  data-sub-html="<h4>Bowness Bay</h4><p>A beautiful Sunrise this morning taken En-route to Keswick not one as planned but I'm extremely happy I was passing the right place at the right time....</p>">
+	// 	<a href="">
+	// 	  <img class="img-responsive" src="https://sachinchoolur.github.io/lightgallery.js/static/img/thumb-2.jpg">
+	// 	  <div class="image-gallery-poster">
+	// 		<img src="https://sachinchoolur.github.io/lightgallery.js/static/img/zoom.png">
+	// 	  </div>
+	// 	</a>
+	// </li>
+
+	$.getJSON((url), function(data) {
+		mapWindows[type][index].setContent(htmlStr);
 		mapWindows[type][index].setContent(htmlStr);
 
 		// console.log("     JSON COMPLETE", type, "street", street, "city", city, "country", country, title, index, jsonStr, "data", data.response);

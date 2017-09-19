@@ -31,7 +31,7 @@ var infoData = {
 		],
 		[
 			"Red October Factory",
-			"Tank production at this factory continued during the battle. T-34 tanks went from assembly line straight to the frontline in less than 2 hours.",
+			"Tank production would continue during the battle. Unpainted T-34s went straight from the assembly line to the front line; some without gunsights, others without turrets. In early October, fighting would rage inside the factory as factory workers fought off the infantry and assault guns of the 14th Panzer and 60th motorized division.",
 			48.763266,
 			44.560116
 		]
