@@ -156,7 +156,6 @@ var ViewModel = function() {
 			// set mapMarkers and collect monument titles from each type
 
 			$.getScript("js/overlays.js", function() {
-
 				// info window appearance
 				setMarkers('city', cityInfo, mapdata, mapWindows, mapMarkers, siteNames, getHTML);
 				setMarkers('soviet', sovietInfo, mapdata, mapWindows, mapMarkers, siteNames, getHTML);
@@ -172,9 +171,8 @@ var ViewModel = function() {
 	this.filterToggle = ko.observable(0);
 
 	this.searchHilite = ko.pureComputed(function() {
-        return this.filterToggle() == 1 ? "btn-highlight-on" : "btn-highlight-off";
-    }, this);
-	
+		return this.filterToggle() == 1 ? "btn-highlight-on" : "btn-highlight-off";
+	}, this);
 
 	// toggle button for google map events
 	this.filterClick = function(data) {
@@ -183,7 +181,7 @@ var ViewModel = function() {
 		// document.getElementById("searchfield").focus;
 		var a = this.filterToggle();
 		this.filterToggle(1 - a );
-		
+
 		// very hacky, i'm aware -_-
 		this.searchOption(". . . . .");
 		this.searchOption("");

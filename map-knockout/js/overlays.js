@@ -85,7 +85,7 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 	var markPos;
 	var centerPos;
 	var mapIcon = mapIcons[type] || {};
-	console.log(mapIcon);
+
 	var imgIcon = {
 		scaledSize: new google.maps.Size(30, 30),
 		origin: new google.maps.Point(0, 0),
@@ -93,8 +93,6 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 		url: mapIcon.icon
 	}
 
-	console.log(imgIcon);
-		
 	for (var currIndex = 0; currIndex < info.length; currIndex++) {
 
 		var CLIENT_ID = '3GA0C0WY5T0XLTP0ISKQGJPEA2F5L01NM33NUHUF5Q1FDRDD';
@@ -118,8 +116,8 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 		//		+ '&intent=&query=' + title + '&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET;
 
 		// var url = 'https://api.foursquare.com/v2/venues/explore?v=20170916&ll='
-		// 		+ markLat + ',' + markLng + '&sortByDistance=1' + '&section=' + section + '&intent=nextVenues&query=' + title
-		// 		+ '&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET;
+		//			+ markLat + ',' + markLng + '&sortByDistance=1' + '&section=' + section + '&intent=nextVenues&query=' + title
+		//			+ '&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET;
 
 		var url = 'https://api.foursquare.com/v2/venues/explore?v=20170916&ll='
 			+ markLat + ',' + markLng + '&intent=browse=' + title
@@ -175,16 +173,52 @@ function setMarkers(type, info, mapdata, mapWindows, mapMarkers, siteNames, info
 		// push markers and corresponding info window into arrays for future use
 		mapMarkers[type].push(marker);
 		mapWindows[type].push(infowindow);
-		
+
 		var mapWindows_Index = mapWindows[type].length -1;
 
-		// Async call to foursquare data, this returns the nearest topPick according to fourSquare.
+		getImages(title, htmlStr, mapWindows, type, mapWindows_Index);
 		
+		// Async call to foursquare data, this returns the nearest topPick according to fourSquare.
 		// setfourSquare(url, title, htmlStr, mapWindows, type, mapWindows_Index);
 	}
 }
 
-// read from html file
+function getImages(title, htmlStr, mapWindows, type, index){
+
+	var markupHTML =
+		"<li data-responsive=<MARKUP_THUMBNAIL> data-src=<MARKUP_FULLIMAGE>" +
+		"data-sub-html=\"<p><MARKUP_DESCRIPTION></p>\">"+ 
+		"<a href=\"\">"+
+		"<img class=\"img-responsive\" src=\"https://sachinchoolur.github.io/lightgallery.js/static/img/thumb-1.jpg\">"+
+		"<div class=\"image-gallery-poster\">" +
+		"<img src=\"https://sachinchoolur.github.io/lightgallery.js/static/img/zoom.png\">" +
+		"</div>"+
+		"</a></li>";
+
+	console.log(markupHTML);
+	// var rootImagePath = 'images/'+'';
+	// // <li data-responsive="https://sachinchoolur.github.io/lightgallery.js/static/img/2-375.jpg 375, https://sachinchoolur.github.io/lightgallery.js/static/img/2-480.jpg 480, https://sachinchoolur.github.io/lightgallery.js/static/img/2.jpg 800" data-src="https://sachinchoolur.github.io/lightgallery.js/static/img/2-1600.jpg"
+	//		  data-sub-html="<h4>Bowness Bay</h4><p>A beautiful Sunrise this morning taken En-route to Keswick not one as planned but I'm extremely happy I was passing the right place at the right time....</p>">
+	//		<a href="">
+	//		  <img class="img-responsive" src="https://sachinchoolur.github.io/lightgallery.js/static/img/thumb-2.jpg">
+	//		  <div class="image-gallery-poster">
+	//			<img src="https://sachinchoolur.github.io/lightgallery.js/static/img/zoom.png">
+	//		  </div>
+	//		</a>
+	// </li>
+
+// 	$.getJSON((url), function(data) {
+// 		mapWindows[type][index].setContent(htmlStr);
+// 		mapWindows[type][index].setContent(htmlStr);
+
+// 		// console.log("     JSON COMPLETE", type, "street", street, "city", city, "country", country, title, index, jsonStr, "data", data.response);
+
+// 	}).fail(function() {
+// 		// eModal.alert('There was an error occured with the Foursquare API. Please try again later.');
+// 		// console.log('There was an error occured with the Foursquare API. Please try again later.');
+// 	});
+}
+
 function setInfo(currIndex, info, infoHTML) {
 
 	var markerHtml = [];
@@ -207,41 +241,6 @@ function setInfo(currIndex, info, infoHTML) {
 		strHtml = strHtml + markerHtml[i];
 	}
 	return strHtml;
-}
-
-function getImages(title, htmlStr, mapWindows, type, index){
-
-	var markupHTML = '<li data-responsive=<MARKUP_THUMBNAIL> data-src=<MARKUP_FULLIMAGE>
-		  data-sub-html="<p><MARKUP_DESCRIPTION></p>">
-		<a href="">
-		  <img class="img-responsive" src="https://sachinchoolur.github.io/lightgallery.js/static/img/thumb-1.jpg">
-		  <div class="image-gallery-poster">
-			<img src="https://sachinchoolur.github.io/lightgallery.js/static/img/zoom.png">
-		  </div>
-		</a>
-    </li>';
-
-	var rootImagePath = 'images/'+'';
-	// <li data-responsive="https://sachinchoolur.github.io/lightgallery.js/static/img/2-375.jpg 375, https://sachinchoolur.github.io/lightgallery.js/static/img/2-480.jpg 480, https://sachinchoolur.github.io/lightgallery.js/static/img/2.jpg 800" data-src="https://sachinchoolur.github.io/lightgallery.js/static/img/2-1600.jpg"
-	// 	  data-sub-html="<h4>Bowness Bay</h4><p>A beautiful Sunrise this morning taken En-route to Keswick not one as planned but I'm extremely happy I was passing the right place at the right time....</p>">
-	// 	<a href="">
-	// 	  <img class="img-responsive" src="https://sachinchoolur.github.io/lightgallery.js/static/img/thumb-2.jpg">
-	// 	  <div class="image-gallery-poster">
-	// 		<img src="https://sachinchoolur.github.io/lightgallery.js/static/img/zoom.png">
-	// 	  </div>
-	// 	</a>
-	// </li>
-
-	$.getJSON((url), function(data) {
-		mapWindows[type][index].setContent(htmlStr);
-		mapWindows[type][index].setContent(htmlStr);
-
-		// console.log("     JSON COMPLETE", type, "street", street, "city", city, "country", country, title, index, jsonStr, "data", data.response);
-
-	}).fail(function() {
-		// eModal.alert('There was an error occured with the Foursquare API. Please try again later.');
-		// console.log('There was an error occured with the Foursquare API. Please try again later.');
-	});
 }
 
 function setfourSquare(url, title, htmlStr, mapWindows, type, index){
