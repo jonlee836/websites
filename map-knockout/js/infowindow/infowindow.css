@@ -2,6 +2,10 @@
 	font-family: 'Special Elite', cursive;
 }
 
+.hide-image-wrapper{
+	display: hidden;
+}
+
 .small {
 	font-size: 11px;
 	color: #999;

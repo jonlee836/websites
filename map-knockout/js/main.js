@@ -135,7 +135,7 @@ var ViewModel = function() {
 		}).fail(function(){
 			eModal.alert("unable to load landmark descriptions, please try again later.")
 		});
-
+		
 		// console.log("mapstyle", mapStyle);
 		// apply snazzy info window style
 		$.getScript("js/snazzyinfowindow/snazzy-info-window.js", function(){
