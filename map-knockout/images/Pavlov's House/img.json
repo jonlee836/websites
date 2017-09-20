@@ -1,4 +1,18 @@
 {
-    "fullsize": [],
-    "thumbnails": []
+    "fullsize": [
+        "images/Pavlov's House/fullsize/pavlov's_house01.jpg",
+        "images/Pavlov's House/fullsize/pavlov's_house02.jpg",
+        "images/Pavlov's House/fullsize/pavlov's_house03.jpg",
+        "images/Pavlov's House/fullsize/pavlov's_house04.jpeg",
+        "images/Pavlov's House/fullsize/pavlov's_house05.jpg",
+        "images/Pavlov's House/fullsize/pavlov's_house06.gif"
+    ],
+    "thumbnails": [
+        "images/Pavlov's House/thumbnails/pavlov's_house01.jpg",
+        "images/Pavlov's House/thumbnails/pavlov's_house02.jpg",
+        "images/Pavlov's House/thumbnails/pavlov's_house03.jpg",
+        "images/Pavlov's House/thumbnails/pavlov's_house04.jpg",
+        "images/Pavlov's House/thumbnails/pavlov's_house05.jpg",
+        "images/Pavlov's House/thumbnails/pavlov's_house06.jpg"
+    ]
 }

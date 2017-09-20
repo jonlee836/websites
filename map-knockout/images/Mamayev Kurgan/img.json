@@ -1,4 +1,24 @@
 {
-    "fullsize": [],
-    "thumbnails": []
+    "fullsize": [
+        "images/Mamayev Kurgan/fullsize/mamayev_kurgan01.jpg",
+        "images/Mamayev Kurgan/fullsize/mamayev_kurgan02.jpg",
+        "images/Mamayev Kurgan/fullsize/mamayev_kurgan03.jpg",
+        "images/Mamayev Kurgan/fullsize/mamayev_kurgan04.jpg",
+        "images/Mamayev Kurgan/fullsize/mamayev_kurgan05.png",
+        "images/Mamayev Kurgan/fullsize/mamayev_kurgan06.jpg",
+        "images/Mamayev Kurgan/fullsize/mamayev_kurgan07.JPG",
+        "images/Mamayev Kurgan/fullsize/mamayev_kurgan08.jpg",
+        "images/Mamayev Kurgan/fullsize/mamayev_kurgan09.jpg"
+    ],
+    "thumbnails": [
+        "images/Mamayev Kurgan/thumbnails/mamayev_kurgan_thumbnail01.jpg",
+        "images/Mamayev Kurgan/thumbnails/mamayev_kurgan_thumbnail02.jpg",
+        "images/Mamayev Kurgan/thumbnails/mamayev_kurgan_thumbnail03.jpg",
+        "images/Mamayev Kurgan/thumbnails/mamayev_kurgan_thumbnail04.jpg",
+        "images/Mamayev Kurgan/thumbnails/mamayev_kurgan_thumbnail05.jpg",
+        "images/Mamayev Kurgan/thumbnails/mamayev_kurgan_thumbnail06.jpg",
+        "images/Mamayev Kurgan/thumbnails/mamayev_kurgan_thumbnail07.jpg",
+        "images/Mamayev Kurgan/thumbnails/mamayev_kurgan_thumbnail08.jpg",
+        "images/Mamayev Kurgan/thumbnails/mamayev_kurgan_thumbnail09.jpg"
+    ]
 }

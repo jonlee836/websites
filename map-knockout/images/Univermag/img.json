@@ -1,4 +1,26 @@
 {
-    "fullsize": [],
-    "thumbnails": []
+    "fullsize": [
+        "images/Univermag/fullsize/univermag01.jpg",
+        "images/Univermag/fullsize/univermag02.jpg",
+        "images/Univermag/fullsize/univermag03.jpg",
+        "images/Univermag/fullsize/univermag04.jpg",
+        "images/Univermag/fullsize/univermag05.jpg",
+        "images/Univermag/fullsize/univermag06.jpg",
+        "images/Univermag/fullsize/univermag07.jpg",
+        "images/Univermag/fullsize/univermag08.jpeg",
+        "images/Univermag/fullsize/univermag09.jpeg",
+        "images/Univermag/fullsize/univermag10.jpeg"
+    ],
+    "thumbnails": [
+        "images/Univermag/thumbnails/univermag_thumbnail01.jpg",
+        "images/Univermag/thumbnails/univermag_thumbnail02.jpg",
+        "images/Univermag/thumbnails/univermag_thumbnail03.jpg",
+        "images/Univermag/thumbnails/univermag_thumbnail04.jpg",
+        "images/Univermag/thumbnails/univermag_thumbnail05.jpg",
+        "images/Univermag/thumbnails/univermag_thumbnail06.jpg",
+        "images/Univermag/thumbnails/univermag_thumbnail07.jpg",
+        "images/Univermag/thumbnails/univermag_thumbnail08.jpg",
+        "images/Univermag/thumbnails/univermag_thumbnail09.jpg",
+        "images/Univermag/thumbnails/univermag_thumbnail10.jpg"
+    ]
 }

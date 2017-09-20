@@ -1,0 +1,16 @@
+{
+    "fullsize": [
+        "images/Railway Station 1/fullsize/railway_station01.jpg",
+        "images/Railway Station 1/fullsize/railway_station02.jpeg",
+        "images/Railway Station 1/fullsize/railway_station03.jpeg",
+        "images/Railway Station 1/fullsize/railway_station04.jpeg",
+        "images/Railway Station 1/fullsize/railway_station05.jpg"
+    ],
+    "thumbnails": [
+        "images/Railway Station 1/thumbnails/railway_station_thumbnail01.jpg",
+        "images/Railway Station 1/thumbnails/railway_station_thumbnail02.jpg",
+        "images/Railway Station 1/thumbnails/railway_station_thumbnail03.jpg",
+        "images/Railway Station 1/thumbnails/railway_station_thumbnail04.jpg",
+        "images/Railway Station 1/thumbnails/railway_station_thumbnail05.jpg"
+    ]
+}
